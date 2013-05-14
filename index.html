@@ -25,6 +25,28 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.min.js"></script>
 	  <script type="text/javascript" src="./javascripts/amountTests.js"></script>  
 	  <script type="text/javascript" src="./javascripts/dateTests.js"></script>
+	<script>
+		jQuery(document).ready(function(){
+			// binds form submission and fields to the validation engine
+//			$( ".datepicker" ).datepicker();
+			jQuery("#formID").validationEngine();
+		});
+
+		/**
+		*
+		* @param {jqObject} the field where the validation applies
+		* @param {Array[String]} validation rules for this field
+		* @param {int} rule index
+		* @param {Map} form options
+		* @return an error string if validation failed
+		*/
+		function checkHELLO(field, rules, i, options){
+			if (field.val() != "HELLO") {
+				// this allows to use i18 for the error msgs
+				return options.allrules.validate2fields.alertText;
+			}
+		}
+	</script>	  
     <title>QTCc</title>
   </head>
 
@@ -85,6 +107,1074 @@ $ git checkout gh-pages
         <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
+
+
+<form id="formID" class="formular" method="post" action="">
+	<table width="100%" >
+		<tbody>
+			<tr>
+				<td>
+		<fieldset>
+
+			<legend>
+				Amount
+			</legend>
+			
+			<span>
+				<b>Rule: </b>
+				ADV0200  BETRAG NACHK=0,VORK=2,WERT=(>0)
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[ADV0200]] text-input" type="text" name="amountid" id="amountid" />
+			</label>
+			 <!--script>
+			//  var input = $("input")[0];
+			// 	$("#amountid").blur(function() {
+			// 	  alert('Handler for .blur() called. '+jQuery.data(input,"resultString"));
+			// 	});
+			// </script-->
+
+			<span>
+				<b>Rule: </b>
+				BTRLVE01 BETRAG NACHK=0,VORK=2,WERT=(0:23)
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRLVE01]] text-input" type="text" name="amount-rangeid" id="amount-rangeid" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRLVE02 BETRAG NACHK=0,VORK=2,WERT=(0:59)
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRLVE02]] text-input" type="text" name="amount-rangeid1" id="amount-rangeid1" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRLVE03 BETRAG NACHK=0,VORK=2,WERT=(0:24)
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRLVE03]] text-input" type="text" name="amount-rangeid2" id="amount-rangeid2" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRLVF01 BETRAG NACHK=0,VORK=2,WERT=(0:10)
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRLVF01]] text-input" type="text" name="amount-rangeid3" id="amount-rangeid3" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRN0700 BETRAG NACHK=0,VORK=7,TRENNZ='.',MINUS='-',WERT=(<0)
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRN0700]] text-input" type="text" name="amount-rangeid4" id="amount-rangeid4" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRW0202 BETRAG NACHK=2,VORK=2,WERT=('0:99,99'),DEZ=',',PLUS='+' 
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRW0202]] text-input" type="text" name="amount-rangeid5" id="amount-rangeid5" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				ADV0500  BETRAG NACHK=0,VORK=5,WERT=(>0)
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[ADV0500]] text-input" type="text" name="amountid1" id="amountid1"/>
+			</label>
+
+
+			<span>
+				<b>Rule: </b>
+				BTRM0100 BETRAG NACHK=0,VORK=1,PLUS='+'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRM0100]] text-input" type="text" name="amountid2" id="amountid2" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTRM0101 BETRAG NACHK=1,VORK=1,TRENNZ='.',DEZ=',',PLUS='+' 
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRM0101]] text-input" type="text" name="amountid3" id="amountid3" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTRM0102 BETRAG NACHK=2,VORK=1,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRM0102]] text-input" type="text" name="amountid4" id="amountid4" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTRM0104 BETRAG NACHK=4,VORK=1,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRM0104]] text-input" type="text" name="amountidp4" id="amountidp4" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTRM0106 BETRAG NACHK=6,VORK=1,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRM0106]] text-input" type="text" name="amountidp5" id="amountidp5" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTRM0107 BETRAG NACHK=7,VORK=1,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRM0107]] text-input" type="text" name="amountidp6" id="amountidp6" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTRM0200 BETRAG NACHK=0,VORK=2,TRENNZ='.',PLUS='+'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRM0200]] text-input" type="text" name="amountid5" id="amountid5" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTRM0201 BETRAG NACHK=1,VORK=2,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRM0201]] text-input" type="text" name="amountid6" id="amountid6" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTRM0202 BETRAG NACHK=2,VORK=2,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRM0202]] text-input" type="text" name="amountid7" id="amountid7" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTRM0205 BETRAG NACHK=5,VORK=2,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRM0205]] text-input" type="text" name="amountid8" id="amountid8" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRM0207 BETRAG NACHK=7,VORK=2,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRM0207]] text-input" type="text" name="amountid9" id="amountid9" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTRM0208 BETRAG NACHK=8,VORK=2,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRM0208]] text-input" type="text" name="amountid10" id="amountid10" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRM0300 BETRAG NACHK=0,VORK=3,TRENNZ='.',PLUS='+'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRM0300]] text-input" type="text" name="amountid11" id="amountid11" />
+			</label>               
+
+			<span>
+				<b>Rule: </b>
+				BTRM0301 BETRAG NACHK=1,VORK=3,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRM0301]] text-input" type="text" name="amountid12" id="amountid12" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTRM0302 BETRAG NACHK=2,VORK=3,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRM0302]] text-input" type="text" name="amountid13" id="amountid13" />
+			</label>               
+			<span>
+				<b>Rule: </b>
+				BTRM0303 BETRAG NACHK=3,VORK=3,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRM0303]] text-input" type="text" name="amountid14" id="amountid14" />
+			</label>               
+			<span>
+				<b>Rule: </b>
+				BTRM0304 BETRAG NACHK=4,VORK=3,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRM0304]] text-input" type="text" name="amountid15" id="amountid15" />
+			</label>               
+			<span>
+				<b>Rule: </b>
+				BTRM0305 BETRAG NACHK=5,VORK=3,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRM0305]] text-input" type="text" name="amountid16" id="amountid16" />
+			</label> 
+			<span>
+				<b>Rule: </b>
+				BTRM0308 BETRAG NACHK=8,VORK=3,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRM0308]] text-input" type="text" name="amountid17" id="amountid17" />
+			</label> 
+			<span>
+				<b>Rule: </b>
+				BTRM0309 BETRAG NACHK=9,VORK=3,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRM0309]] text-input" type="text" name="amountid18" id="amountid18" />
+			</label> 
+			<span>
+				<b>Rule: </b>
+				BTRM0400 BETRAG NACHK=0,VORK=4,TRENNZ='.',PLUS='+'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRM0400]] text-input" type="text" name="amountid19" id="amountid19" />
+			</label>   
+			<span>
+				<b>Rule: </b>
+				BTRM0402 BETRAG NACHK=2,VORK=4,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+						
+			<label>
+				<input value="" class="validate[amount[BTRM0402]] text-input" type="text" name="amountid20" id="amountid20" />
+			</label> 
+			<span>
+				<b>Rule: </b>
+				BTRM0404 BETRAG NACHK=4,VORK=4,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+						
+			<label>
+				<input value="" class="validate[amount[BTRM0404]] text-input" type="text" name="amountid21" id="amountid21" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRM0407 BETRAG NACHK=7,VORK=4,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+						
+			<label>
+				<input value="" class="validate[amount[BTRM0407]] text-input" type="text" name="amountid22" id="amountid22" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRM0500 BETRAG NACHK=0,VORK=5,TRENNZ='.',PLUS='+'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRM0500]] text-input" type="text" name="amountid23" id="amountid23" />
+			</label>   
+			<span>
+				<b>Rule: </b>
+				BTRM0502 BETRAG NACHK=2,VORK=5,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+						
+			<label>
+				<input value="" class="validate[amount[BTRM0502]] text-input" type="text" name="amountid24" id="amountid24" />
+			</label> 
+			<span>
+				<b>Rule: </b>
+				BTRM0503 BETRAG NACHK=3,VORK=5,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+						
+			<label>
+				<input value="" class="validate[amount[BTRM0503]] text-input" type="text" name="amountid25" id="amountid25" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRM0504 BETRAG NACHK=4,VORK=5,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+			<label>
+				<input value="" class="validate[amount[BTRM0504]] text-input" type="text" name="amountid26" id="amountid26" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRM0600 BETRAG NACHK=0,VORK=6,TRENNZ='.',PLUS='+'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRM0600]] text-input" type="text" name="amountid27" id="amountid27" />
+			</label>   
+			<span>
+				<b>Rule: </b>
+				BTRM0602 BETRAG NACHK=2,VORK=6,TRENNZ='.',DEZ=',',PLUS='+' 
+			</span>
+						
+			<label>
+				<input value="" class="validate[amount[BTRM0602]] text-input" type="text" name="amountid28" id="amountid28" />
+			</label> 
+			<span>
+				<b>Rule: </b>
+				BTRM0604 BETRAG NACHK=4,VORK=6,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+						
+			<label>
+				<input value="" class="validate[amount[BTRM0604]] text-input" type="text" name="amountid29" id="amountid29" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRM0605 BETRAG NACHK=5,VORK=6,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+						
+			<label>
+				<input value="" class="validate[amount[BTRM0605]] text-input" type="text" name="amountid30" id="amountid30" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRM0608 BETRAG NACHK=8,VORK=6,TRENNZ='.',DEZ=',',PLUS='+' 
+			</span>
+									
+			<label>
+				<input value="" class="validate[amount[BTRM0608]] text-input" type="text" name="amountid31" id="amountid31" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRM0700 BETRAG NACHK=0,VORK=7,TRENNZ='.',PLUS='+'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTRM0700]] text-input" type="text" name="amountid32" id="amountid32" />
+			</label>   
+			<span>
+				<b>Rule: </b>
+				BTRM0702 BETRAG NACHK=2,VORK=7,TRENNZ='.',DEZ=',',PLUS='+' 
+			</span>
+						
+			<label>
+				<input value="" class="validate[amount[BTRM0702]] text-input" type="text" name="amountid33" id="amountid33" />
+			</label> 
+			<span>
+				<b>Rule: </b>
+				BTRM0800 BETRAG NACHK=0,VORK=8,TRENNZ='.',PLUS='+'
+			</span>
+						
+			<label>
+				<input value="" class="validate[amount[BTRM0800]] text-input" type="text" name="amountid34" id="amountid34" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRM0801 BETRAG NACHK=1,VORK=8,TRENNZ='.',DEZ=',',PLUS='+' 
+			</span>
+						
+			<label>
+				<input value="" class="validate[amount[BTRM0801]] text-input" type="text" name="amountid35" id="amountid35" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRM0802 BETRAG NACHK=2,VORK=8,TRENNZ='.',DEZ=',',PLUS='+'
+			</span>
+									
+			<label>
+				<input value="" class="validate[amount[BTRM0802]] text-input" type="text" name="amountid36" id="amountid36" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRM0807 BETRAG NACHK=7,VORK=8,TRENNZ='.',DEZ=',',PLUS='+'
+				</span>
+				
+			<label>
+				<input value="" class="validate[amount[BTRM0807]] text-input" type="text" name="amountid37" id="amountid37" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRM0900 BETRAG NACHK=0,VORK=9,TRENNZ='.',PLUS='+' 
+				</span>
+				
+			<label>
+				<input value="" class="validate[amount[BTRM0900]] text-input" type="text" name="amountid38" id="amountid38" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTRM0902 BETRAG NACHK=2,VORK=9,TRENNZ='.',DEZ=',',PLUS='+'
+				</span>
+			<label>
+				<input value="" class="validate[amount[BTRM0902]] text-input" type="text" name="amountid39" id="amountid39" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRM0905 BETRAG NACHK=5,VORK=9,TRENNZ='.',DEZ=',',PLUS='+'
+				</span>
+			<label>
+				<input value="" class="validate[amount[BTRM0905]] text-input" type="text" name="amountid40" id="amountid40" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRM0906 BETRAG NACHK=6,VORK=9,TRENNZ='.',DEZ=',',PLUS='+'
+				</span>
+			<label>
+				<input value="" class="validate[amount[BTRM0906]] text-input" type="text" name="amountid41" id="amountid41" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRM1000 BETRAG NACHK=0,VORK=10,TRENNZ='.',PLUS='+' 
+				</span>
+			<label>
+				<input value="" class="validate[amount[BTRM1000]] text-input" type="text" name="amountid42" id="amountid42" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRM1002 BETRAG NACHK=2,VORK=10,TRENNZ='.',PLUS='+',DEZ=',' 
+				</span>
+			<label>
+				<input value="" class="validate[amount[BTRM1002]] text-input" type="text" name="amountid43" id="amountid43" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRM1005 BETRAG NACHK=5,VORK=10,TRENNZ='.',PLUS='+',DEZ=','  
+				</span>
+			<label>
+				<input value="" class="validate[amount[BTRM1005]] text-input" type="text" name="amountid44" id="amountid44" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRM1100 BETRAG NACHK=0,VORK=11,TRENNZ='.',PLUS='+'  
+			</span>
+			<label>
+				<input value="" class="validate[amount[BTRM1100]] text-input" type="text" name="amountid45" id="amountid45" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRM1102 BETRAG NACHK=2,VORK=11,TRENNZ='.',DEZ=',',PLUS='+'  
+			</span>
+			<label>
+				<input value="" class="validate[amount[BTRM1102]] text-input" type="text" name="amountid46" id="amountid46" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRM1300 BETRAG NACHK=0,VORK=13,TRENNZ='.',PLUS='+'  
+			</span>
+			<label>
+				<input value="" class="validate[amount[BTRM1300]] text-input" type="text" name="amountid47" id="amountid47" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTRM1400 BETRAG NACHK=0,VORK=14,TRENNZ='.',PLUS='+'  
+			</span>
+			<label>
+				<input value="" class="validate[amount[BTRM1400]] text-input" type="text" name="amountid48" id="amountid48" />
+			</label>
+		</fieldset>
+			</td>
+		<td>
+		<fieldset>
+			<span>
+				<b>Rule: </b>
+				BTR00100 BETRAG NACHK=0,VORK=1,TRENNZ='.',PLUS='+',MINUS='-'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTR00100]] text-input" type="text" name="amountid-2" id="amountid-2" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTR00101 BETRAG NACHK=1,VORK=1,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-' 
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTR00101]] text-input" type="text" name="amountid-3" id="amountid-3" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTR00102 BETRAG NACHK=2,VORK=1,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTR00102]] text-input" type="text" name="amountid-4" id="amountid-4" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTR00103 BETRAG NACHK=3,VORK=1,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTR00103]] text-input" type="text" name="amountidp-5" id="amountidp-5" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTR00104 BETRAG NACHK=4,VORK=1,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTR00104]] text-input" type="text" name="amountidp-6" id="amountidp-6" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTR00105 BETRAG NACHK=5,VORK=1,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTR00105]] text-input" type="text" name="amountidp-7" id="amountidp-7" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTR00106 BETRAG NACHK=6,VORK=1,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTR00106]] text-input" type="text" name="amountidp-8" id="amountidp-8" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTR00112 BETRAG NACHK=12,VORK=1,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTR00112]] text-input" type="text" name="amountidp-9" id="amountidp-9" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTR00200 BETRAG NACHK=0,VORK=2,TRENNZ='.',PLUS='+',MINUS='-'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTR00200]] text-input" type="text" name="amountid-5" id="amountid-5" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTR00201 BETRAG NACHK=1,VORK=2,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTR00201]] text-input" type="text" name="amountid-6" id="amountid-6" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTR00202 BETRAG NACHK=2,VORK=2,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTR00202]] text-input" type="text" name="amountid-7" id="amountid-7" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTR00203 BETRAG NACHK=3,VORK=2,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTR00203]] text-input" type="text" name="amountid-81" id="amountid-81" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTR00205 BETRAG NACHK=5,VORK=2,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTR00205]] text-input" type="text" name="amountid-9" id="amountid-9" />
+			</label>
+						<span>
+				<b>Rule: </b>
+				BTR00300 BETRAG NACHK=0,VORK=3,TRENNZ='.',PLUS='+',MINUS='-'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTR00300]] text-input" type="text" name="amountid-11" id="amountid-11" />
+			</label>               
+
+			<span>
+				<b>Rule: </b>
+				BTR00301 BETRAG NACHK=1,VORK=3,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTR00301]] text-input" type="text" name="amountid-12" id="amountid-12" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTR00302 BETRAG NACHK=2,VORK=3,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTR00302]] text-input" type="text" name="amountid-13" id="amountid-13" />
+			</label>               
+			<span>
+				<b>Rule: </b>
+				BTR00303 BETRAG NACHK=3,VORK=3,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-' 
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTR00303]] text-input" type="text" name="amountid-14" id="amountid-14" />
+			</label>               
+			<span>
+				<b>Rule: </b>
+				BTR00304 BETRAG NACHK=4,VORK=3,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-' 
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTR00304]] text-input" type="text" name="amountid-15" id="amountid-15" />
+			</label>               
+			<span>
+				<b>Rule: </b>
+				BTR00306 BETRAG NACHK=6,VORK=3,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-' 
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTR00306]] text-input" type="text" name="amountid-16" id="amountid-16" />
+			</label> 
+			<span>
+				<b>Rule: </b>
+				BTR00308 BETRAG NACHK=8,VORK=3,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+			<label>
+				<input value="" class="validate[amount[BTR00308]] text-input" type="text" name="amountid-17" id="amountid-17" />
+			</label> 
+			
+			<span>
+				<b>Rule: </b>
+				BTR00400 BETRAG NACHK=0,VORK=4,TRENNZ='.',PLUS='+',MINUS='-'
+			</span>
+			
+			<label>
+				<input value="" class="validate[amount[BTR00400]] text-input" type="text" name="amountid19" id="amountid19" />
+			</label>   
+			<span>
+				<b>Rule: </b>
+				BTR00401 BETRAG NACHK=1,VORK=4,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+						
+			<label>
+				<input value="" class="validate[amount[BTR00401]] text-input" type="text" name="amountid20" id="amountid20" />
+			</label> 
+			<span>
+				<b>Rule: </b>
+				BTR00402 BETRAG NACHK=2,VORK=4,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+									
+			<label>
+				<input value="" class="validate[amount[BTR00402]] text-input" type="text" name="amountidp-20" id="amountidp-20" />
+			</label> 
+			<span>
+				<b>Rule: </b>
+				BTR00403 BETRAG NACHK=3,VORK=4,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00403]] text-input" type="text" name="amountid-p-20" id="amountid-p-20" />
+			</label> 
+			
+			<span>
+				<b>Rule: </b>
+				BTR00404 BETRAG NACHK=4,VORK=4,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+						
+			<label>
+				<input value="" class="validate[amount[BTR00404]] text-input" type="text" name="amountid-21" id="amountid-21" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR00405 BETRAG NACHK=5,VORK=4,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00405]] text-input" type="text" name="amountidp-21" id="amountidp-21" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR00407 BETRAG NACHK=7,VORK=4,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+						
+			<label>
+				<input value="" class="validate[amount[BTR00407]] text-input" type="text" name="amountidp-22" id="amountidp-22" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR00500 BETRAG NACHK=0,VORK=5,TRENNZ='.',PLUS='+',MINUS='-' 
+			</span>
+						
+			<label>
+				<input value="" class="validate[amount[BTR00500]] text-input" type="text" name="amountidp-22" id="amountidp-22" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR00501 BETRAG NACHK=1,VORK=5,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00501]] text-input" type="text" name="amountidp-23" id="amountidp-23" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR00502 BETRAG NACHK=2,VORK=5,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00502]] text-input" type="text" name="amountidp-24" id="amountidp-24" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR00503 BETRAG NACHK=3,VORK=5,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00503]] text-input" type="text" name="amountidp-25" id="amountidp-25" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR00600 BETRAG NACHK=0,VORK=6,TRENNZ='.',PLUS='+',MINUS='-' 
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00600]] text-input" type="text" name="amountid-p-25" id="amountid-p-25" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR00601 BETRAG NACHK=1,VORK=6,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-' 
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00601]] text-input" type="text" name="amountidp-26" id="amountidp-26" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR00602 BETRAG NACHK=2,VORK=6,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-' 
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00602]] text-input" type="text" name="amountidp-27" id="amountidp-27" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR00603 BETRAG NACHK=3,VORK=6,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00603]] text-input" type="text" name="amountidp-28" id="amountidp-28" />
+			</label>	
+			<span>
+				<b>Rule: </b>
+				BTR00608 BETRAG NACHK=8,VORK=6,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00608]] text-input" type="text" name="amountidp-29" id="amountidp-29" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR00700 BETRAG NACHK=0,VORK=7,TRENNZ='.',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00700]] text-input" type="text" name="amountidp-29" id="amountidp-29" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR00701 BETRAG NACHK=1,VORK=7,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00701]] text-input" type="text" name="amountidp-30" id="amountidp-30" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR00702 BETRAG NACHK=2,VORK=7,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00702]] text-input" type="text" name="amountidp-31" id="amountidp-31" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR00703 BETRAG NACHK=3,VORK=7,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00703]] text-input" type="text" name="amountidp-32" id="amountidp-32" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR00800 BETRAG NACHK=0,VORK=8,TRENNZ='.',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00800]] text-input" type="text" name="amountidp-32" id="amountidp-32" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR00801 BETRAG NACHK=1,VORK=8,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00801]] text-input" type="text" name="amountidp-33" id="amountidp-33" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR00802 BETRAG NACHK=2,VORK=8,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00802]] text-input" type="text" name="amountidp-34" id="amountidp-34" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR00803 BETRAG NACHK=3,VORK=8,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00803]] text-input" type="text" name="amountidp-35" id="amountidp-35" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR00805 BETRAG NACHK=5,VORK=8,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00805]] text-input" type="text" name="amountidp-36" id="amountidp-36" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR00807 BETRAG NACHK=7,VORK=8,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00807]] text-input" type="text" name="amountidp-37" id="amountidp-37" />
+			</label>
+
+			<span>
+				<b>Rule: </b>
+				BTR00900 BETRAG NACHK=0,VORK=9,TRENNZ='.',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00900]] text-input" type="text" name="amountidp-37" id="amountidp-37" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR00901 BETRAG NACHK=1,VORK=9,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00901]] text-input" type="text" name="amountidp-38" id="amountidp-38" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR00902 BETRAG NACHK=2,VORK=9,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00902]] text-input" type="text" name="amountidp-39" id="amountidp-39" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR00903 BETRAG NACHK=3,VORK=9,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00903]] text-input" type="text" name="amountidp-40" id="amountidp-40" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR00905 BETRAG NACHK=5,VORK=9,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR00905]] text-input" type="text" name="amountidp-41" id="amountidp-41" />
+			</label>
+						<span>
+				<b>Rule: </b>
+				BTR01000 BETRAG NACHK=0,VORK=10,TRENNZ='.',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR01000]] text-input" type="text" name="amountidp-41" id="amountidp-41" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR01001 BETRAG NACHK=1,VORK=10,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR01001]] text-input" type="text" name="amountidp-42" id="amountidp-42" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR01002 BETRAG NACHK=2,VORK=10,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR01002]] text-input" type="text" name="amountidp-43" id="amountidp-43" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR01003 BETRAG NACHK=3,VORK=10,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR01003]] text-input" type="text" name="amountidp-44" id="amountidp-44" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR01004 BETRAG NACHK=4,VORK=10,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR01004]] text-input" type="text" name="amountidp-45" id="amountidp-45" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR01005 BETRAG NACHK=5,VORK=10,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR01005]] text-input" type="text" name="amountidp-46" id="amountidp-46" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR01102 BETRAG NACHK=2,VORK=11,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+
+			<label>
+				<input value="" class="validate[amount[BTR01102]] text-input" type="text" name="amountidp-47" id="amountidp-47" />
+			</label>
+			<span>
+				<b>Rule: </b>
+				BTR01302 BETRAG NACHK=2,VORK=13,TRENNZ='.',DEZ=',',PLUS='+',MINUS='-'
+			</span>
+			<label>
+				<input value="" class="validate[amount[BTR01302]] text-input" type="text" name="amountidp-48" id="amountidp-48" />
+			</label>			
+			<label>
+				<input class="submit" type="submit" value="Validate &amp; Send the form!"/><hr/>
+			</label>
+		</fieldset>
+			</td>
+		<td>
+		<fieldset>
+			<legend>
+				Date
+			</legend>
+			<span>
+			  <b>Rule:</b>
+			  DAT00003 DATUM  EIN=(TTMM,T.M.),AUS='TTMM' 
+			</span>
+			<label>
+				<input value="" class="validate[date[DAT00003]] text-input" type="text" name="date1" id="date1" />
+			</label>
+			<span>
+			  <b>Rule:</b>
+			  DAT00004 DATUM  EIN=(TTMMJJ,T.M.JJ,TT.MM.JJ),AUS='TTMMJJ'
+			</span>
+			<label>
+				<input value="" class="validate[date[DAT00004]] text-input" type="text" name="date2" id="date2" />
+			</label>
+
+			<span>
+			  <b>Rule:</b>
+			  DAT00005 DATUM  EIN=(TTMMJJJJ,TTMMJJ,T.M.JJ,T.M.JJJJ),AUS='TTMMJJJJ' 
+			</span>
+			<label>
+				<input value="" class="validate[date[DAT00005]] text-input" type="text" name="date3" id="date3" />
+			</label>
+			<span>
+			  <b>Rule:</b>
+			  DAT00006 DATUM  EIN=(MMJJ,M.JJ),AUS='MMJJ'
+			</span>
+			<label>
+				<input value="" class="validate[date[DAT00006]] text-input" type="text" name="date4" id="date4" />
+			</label>
+			<span>
+			  <b>Rule:</b>
+			  DAT00008 DATUM EIN=(MM.JJ,MM.JJJJ),AUS='MM.JJJJ' 
+			</span>
+			<label>
+				<input value="" class="validate[date[DAT00008]] text-input" type="text" name="date5" id="date5" />
+			</label>
+			<span>
+			  <b>Rule:</b>
+			  DAT00012 DATUM  EIN=(TTMMJJJJ,T.M.JJJJ,TT.MM.JJJJ),AUS=TT.MM.JJJJ
+			</span>
+			<label>
+				<input value="" class="validate[date[DAT00012]] text-input" type="text" name="date6" id="date6" />
+			</label>
+			<span>
+			  <b>Rule:</b>
+			  DAT00013 DATUM  EIN=(TTMM,T.M.,T.MM.,TT.M.),AUS=TT.MM.
+			</span>
+			<label>
+				<input value="" class="validate[date[DAT00013]] text-input" type="text" name="date7" id="date7" />
+			</label>
+			<span>
+			  <b>Rule:</b>
+			  DAT00009 DATUM  EIN=(TTMMJJJJ,TTMMJJ,T.M.JJ,T.M.JJJJ),AUS=TT.MM.JJJJ,  ZEIT=(<=HEUTE)
+			</span>
+			<label>
+				<input value="" class="validate[date[DAT00009]] text-input" type="text" name="date8" id="date8" />
+			</label>
+			<span>
+			  <b>Rule:</b>
+			  DAT00011 DATUM  EIN=(TTMMJJJJ,TTMMJJ,T.M.JJ,T.M.JJJJ),AUS=TT.MM.JJJJ, ZEIT=(HEUTE:HEUTE+6M)
+			</span>
+			<label>
+				<input value="" class="validate[date[DAT00011]] text-input" type="text" name="date9" id="date9" />
+			</label>
+			<span>
+			  <b>Rule:</b>
+			  DAT00007 DATUM EIN=(M/JJ,M/JJJJ),AUS='MM/JJJJ',ZEIT=(199001:HEUTM)
+			</span>
+			<label>
+				<input value="" class="validate[date[DAT00007]] text-input" type="text" name="date10" id="date10" />
+			</label>
+			
+		</fieldset>
+		</td>
+	</tr>
+	</tbody>
+	</table>
+	</form>
+
 
       <h1 id="qunit-header">QUnit Test Suite</h1>  
     <h2 id="qunit-banner"></h2>  
