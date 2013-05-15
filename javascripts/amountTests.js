@@ -2415,7 +2415,7 @@ test("Rule : BTRM0104", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0,1");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"01","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A1","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-9,9");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"J9","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -2458,9 +2458,9 @@ test("Rule : BTRM0104", function() {
          field.val("1,012");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
-         field.val("-0,01");
+         field.val("-0,1");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A10","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-9,99");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"J99","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -2505,7 +2505,7 @@ test("Rule : BTRM0104", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0,001");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"0001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-9,999");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"J999","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -2550,7 +2550,7 @@ test("Rule : BTRM0104", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0,0001");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"00001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A0001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-1,1111");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"B1111","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -2614,9 +2614,9 @@ test("Rule : BTRM0104", function() {
          field.val("1,012345");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
-         field.val("-0,00001");
+         field.val("-0,1");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A10000","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-1,11111");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"B11111","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -2682,7 +2682,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0,000001");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"0000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-1,111111");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"B111111","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -2748,7 +2748,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0,000000000001");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"0000000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A000000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-1,111111111111");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"B111111111111","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -2943,7 +2943,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0,01");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"0001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-10,01");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"B001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -3073,9 +3073,9 @@ test("Rule : BTR00106", function() {
          field.val("12,012345");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
-         field.val("-00,00001");
+         field.val("-0,00001");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"0000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-01,00001");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A100001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -3132,7 +3132,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"000","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A00","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-1");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A01","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -3208,9 +3208,9 @@ test("Rule : BTR00106", function() {
          field.val("123,01");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
-         field.val("-000,1");
+         field.val("-0,1");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"0001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-001,1");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A011","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -3279,7 +3279,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0,01");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"00001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A0001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-001,01");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A0101","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -3348,7 +3348,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0,001");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A00001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-01,001");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A01001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -3417,7 +3417,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0,0001");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"0000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-01,0001");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A010001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -3486,7 +3486,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0,000001");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A00000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-01,000001");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A01000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -3555,7 +3555,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0,00000001");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"00000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A0000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-01,00000001");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A0100000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -3687,7 +3687,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0000,1");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"00001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A0001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0001,1");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A0011","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -3756,7 +3756,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0000,01");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A00001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0001,01");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A00101","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -3825,7 +3825,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0000,001");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"0000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0001,001");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A001001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -3894,7 +3894,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0000,0001");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"00000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A0000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0001,0001");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A0010001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -3963,7 +3963,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0000,00001");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A00000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0001,00001");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A00100001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -4030,9 +4030,9 @@ test("Rule : BTR00106", function() {
          field.val("1234,01234567");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
-         field.val("-0000,0000001");
+         field.val("-0,1");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"00000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A0001000000","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0001,0000001");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A0010000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -4164,7 +4164,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-00000,1");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A00001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-00001,1");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A00011","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -4233,7 +4233,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-00000,01");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"0000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-00001,01");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A000101","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -4302,7 +4302,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-00000,001");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"00000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A0000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-00001,001");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A0001001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -4434,7 +4434,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-000000,1");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"0000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-000001,1");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A000011","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -4503,7 +4503,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-000000,01");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"00000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A0000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-000001,01");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A0000101","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -4572,7 +4572,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-000000,001");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A00000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-000001,001");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A00001001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -4641,7 +4641,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-000000,00000001");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"00000000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A0000000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-000001,00000001");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A0000100000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -4773,7 +4773,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0000000,1");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"00000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A0000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0000001,1");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A0000011","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -4842,7 +4842,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0000000,01");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A00000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0000001,01");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A00000101","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -4911,7 +4911,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0000000,001");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"0000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0000001,001");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A000001001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -5043,7 +5043,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-00000000,1");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A00000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-00000001,1");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A00000011","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -5112,7 +5112,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-00000000,01");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"0000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-00000001,01");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A000000101","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -5181,7 +5181,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-00000000,001");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"00000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A0000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-00000001,001");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A0000001001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -5250,7 +5250,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-00000000,00001");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"0000000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A000000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-00000001,00001");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A000000100001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -5319,7 +5319,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-00000000,0000001");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"000000000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A00000000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-00000001,0000001");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A00000010000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -5451,7 +5451,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-000000000,1");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"0000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-000000001,1");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A000000011","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -5520,7 +5520,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-000000000,01");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"00000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A0000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-000000001,01");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A0000000101","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -5589,7 +5589,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-000000000,001");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"000000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A00000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-000000001,001");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A00000001001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -5658,7 +5658,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-000000000,00001");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"00000000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A0000000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-000000001,00001");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A0000000100001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -5790,7 +5790,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0000000000,1");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"00000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A0000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0000000001,1");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A0000000011","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -5859,7 +5859,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0000000000,01");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"000000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A00000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0000000001,01");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A00000000101","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -5928,7 +5928,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0000000000,001");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"0000000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A000000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0000000001,001");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A000000001001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -5997,7 +5997,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0000000000,0001");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"00000000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A0000000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0000000001,0001");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A0000000010001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -6066,10 +6066,10 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0000000000,00001");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"000000000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
-         field.val("-0000000001,00001");
+         equal(jQuery.data(input,"resultString"),"A00000000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         field.val("-1");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"A00000000100001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A00000000100000","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-1111111111,11111");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"B11111111111111","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -6135,7 +6135,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-00000000000,01");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"0000000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A000000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-00000000001,01");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A000000000101","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -6204,7 +6204,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0000000000000,01");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"000000000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A00000000000001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-0000000000001,01");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"A00000000000101","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -6489,7 +6489,9 @@ test("Rule : BTR00106", function() {
       var input = $("input")[0];
       var field = $('#amount-rangeid5');
          rules = ["","BTRW0202"];
-            
+         field.val("12");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(input,"resultString"),"1200","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("0,01");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),"0001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
@@ -6516,7 +6518,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-00,01");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(input,"resultString"),"0001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
+         equal(jQuery.data(input,"resultString"),"A001","Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
          field.val("-01,01");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(input,"resultString"),options.allrules[rules[1]].alertTextRange,"Input : "+field.val()+ ", Result : "+jQuery.data(input,"resultString")); 
