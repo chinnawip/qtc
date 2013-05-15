@@ -12,7 +12,7 @@
  */
  (function($) {
 
-  "use strict";
+	"use strict";
 	
 	var methods = {
 
@@ -1003,17 +1003,17 @@
 				}
 			}else if (amountRangeFormat.indexOf("<=") >=0){
 				amountRange = parseInt(amountRangeFormat.substr(2));
-				if(!(fieldValueAmount <= amountRange)){
+				if(!(parseInt(fieldValueAmount) <= amountRange)){
 					return options.allrules[ruleName].alertTextRange ;
 				}
 			}else if (amountRangeFormat.indexOf("<") >=0){
 				amountRange = parseInt(amountRangeFormat.substr(1));
-				if(!(fieldValueAmount < amountRange)){
+				if(!(parseInt(fieldValueAmount) < amountRange)){
 					return options.allrules[ruleName].alertTextRange ;
 				}
 			}else if (amountRangeFormat.indexOf(">=") >=0){
 				amountRange = parseInt(amountRangeFormat.substr(2));
-				if(!(fieldValueAmount >= amountRange)){
+				if(!(parseInt(fieldValueAmount) >= amountRange)){
 					return options.allrules[ruleName].alertTextRange ;
 				}
 			}else if (amountRangeFormat.indexOf(">") >=0){
@@ -1102,6 +1102,9 @@
 					var strArrayValue;
 					var beforeCommaValue = "";
 					var afterCommaValue = "";
+					var minusLeadVal = "",
+						plusLeadVal = options.allrules[customRule].plusLeadVal;
+
 					if (field.val().indexOf(',') >= 0 )
 					{
 						strArrayValue = field.val().split(',');
@@ -1116,7 +1119,8 @@
 					{
 						beforeCommaValue = beforeCommaValue.substr(beforeCommaValue.indexOf("+")+1);
 					}else if(beforeCommaValue.indexOf("-") >= 0 ){
-						beforeCommaValue = parseInt(beforeCommaValue) + "";
+				//		beforeCommaValue = parseInt(beforeCommaValue) + "";
+						minusLeadVal = options.allrules[customRule].minusLeadVal;
 					}
 					if(rule["amountRange"]){
 						var amountRangeFormat = options.allrules[customRule].amountRange;
@@ -1128,7 +1132,8 @@
 					}
 
 				
-					var minusPrefixValue = "";
+					var minusPrefixValue = "",
+						firstPosChar = "0";
 					while (beforeCommaValue.indexOf(".") >= 0 ){
 							beforeCommaValue = beforeCommaValue.substr(0,beforeCommaValue.indexOf(".")) + beforeCommaValue.substr(beforeCommaValue.indexOf(".")+1);	
 					}	
@@ -1138,6 +1143,7 @@
 						if (beforeCommaValue.length >=0 && beforeCommaValue.length <options.allrules[customRule].beforeComma)
 						{
 							minusPrefixValue = 'A';
+							firstPosChar = '0';
 						}else
 						{
 							
@@ -1173,6 +1179,7 @@
 							    	minusPrefixValue = 'J';
 							    	break;									    				    				    				    	
 							}
+							firstPosChar = beforeCommaValue.substr(0,1);
 							beforeCommaValue = beforeCommaValue.substr(1);
 						}
 						for (var i=beforeCommaValue.length+1; i<options.allrules[customRule].beforeComma; i++)
@@ -1200,8 +1207,26 @@
   					{
   						afterCommaValue = afterCommaValue + "0";
   					}
-  					var input = $("input")[0];
-  					jQuery.data(input,"resultString",beforeCommaValue + afterCommaValue);
+  					var input = $("input")[0],
+  						finalResultString = beforeCommaValue + afterCommaValue;
+  					if(plusLeadVal != "" && plusLeadVal != undefined)
+  					{
+  						
+  						if(minusLeadVal != "" && minusLeadVal != undefined){
+  							beforeCommaValue = beforeCommaValue.replace(beforeCommaValue[0],firstPosChar);
+  						}else{
+  							minusLeadVal = plusLeadVal;
+  						}
+  						var finalResultStringTemp  = beforeCommaValue + afterCommaValue,
+  							plusMinusLeadStr = "";
+  						for (var i = 0; i< (finalResultStringTemp.length - 1);i++)
+  						{
+  							plusMinusLeadStr = plusMinusLeadStr + plusLeadVal + finalResultStringTemp[i];
+  						}
+  						plusMinusLeadStr = plusMinusLeadStr + minusLeadVal + finalResultStringTemp[finalResultStringTemp.length-1];
+  						//alert("plusMinusLeadStr : "+ plusMinusLeadStr);
+  					}
+  					jQuery.data(input,"resultString",finalResultString);
   					//alert("Final Value :"  + beforeCommaValue + afterCommaValue);
 
 			} else if(rule["func"]) {
