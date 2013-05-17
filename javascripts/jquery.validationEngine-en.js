@@ -219,6 +219,24 @@
                         "regex": /^[\+\-]?(([0-9]{1,3})([.][0-9]{3})*)?([\,]([0-9]{2}))$/,
                                     "alertText": "* Enter valid amount"
                 },
+                "LDC0200": {
+                     "beforeComma": 2,
+                     "afterComma":0,
+                     "plus": "+",
+                     "minus": "-",
+                     "plusLeadVal": "C",
+                     "minusLeadVal": "D",
+                     "alertText": "* Enter valid amount in '99' format.",
+                },
+                "LDC0402": {
+                     "beforeComma": 4,
+                     "afterComma":2,
+                     "plus": "+",
+                     "minus": "-",
+                     "plusLeadVal": "C",
+                     "minusLeadVal": "D",
+                     "alertText": "* Enter valid amount in '9999,99' format.",
+                },
                 "ADV0200": {
                   //   "regex": /^(([1-9]{1,2}))$/,
                      "beforeComma": 2,
