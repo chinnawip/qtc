@@ -1120,7 +1120,12 @@
 						beforeCommaValue = beforeCommaValue.substr(beforeCommaValue.indexOf("+")+1);
 					}else if(beforeCommaValue.indexOf("-") >= 0 ){
 				//		beforeCommaValue = parseInt(beforeCommaValue) + "";
-						minusLeadVal = options.allrules[customRule].minusLeadVal;
+						if (parseInt(beforeCommaValue) == 0 ){
+							minusLeadVal = options.allrules[customRule].plusLeadVal;	
+						}else{
+							minusLeadVal = options.allrules[customRule].minusLeadVal;	
+						}
+						
 					}
 					if(rule["amountRange"]){
 						var amountRangeFormat = options.allrules[customRule].amountRange;
@@ -1224,6 +1229,7 @@
   							plusMinusLeadStr = plusMinusLeadStr + plusLeadVal + finalResultStringTemp[i];
   						}
   						plusMinusLeadStr = plusMinusLeadStr + minusLeadVal + finalResultStringTemp[finalResultStringTemp.length-1];
+  						finalResultString = plusMinusLeadStr;
   						//alert("plusMinusLeadStr : "+ plusMinusLeadStr);
   					}
   					jQuery.data(input,"resultString",finalResultString);
