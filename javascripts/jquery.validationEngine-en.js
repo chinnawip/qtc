@@ -137,42 +137,42 @@
                 "DAT00003": {
                    // "regex": /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$|^(?:(?:(?:0?[13578]|1[02])(\/|-)31)|(?:(?:0?[1,3-9]|1[0-2])(\/|-)(?:29|30)))(\/|-)(?:[1-9]\d\d\d|\d[1-9]\d\d|\d\d[1-9]\d|\d\d\d[1-9])$|^(?:(?:0?[1-9]|1[0-2])(\/|-)(?:0?[1-9]|1\d|2[0-8]))(\/|-)(?:[1-9]\d\d\d|\d[1-9]\d\d|\d\d[1-9]\d|\d\d\d[1-9])$|^(0?2(\/|-)29)(\/|-)(?:(?:0[48]00|[13579][26]00|[2468][048]00)|(?:\d\d)?(?:0[48]|[2468][048]|[13579][26]))$/,
                   // "regex": /^(((0[1-9]|[12][0-9]|3[01])(0[1-9]|1[012]))|([1-9][\.][1-9][\.]))$/,
-                   "dateFormat": "TTMM,T.M.",
+                   "dateFormat": ["TTMM","T.M."],
                    "dateFormatOutput": "TTMM",
                    "alertText": "* Please enter valid date in one of these formats"
                 },
                 // DAT00004 DATUM  EIN=(TTMMJJ,T.M.JJ,TT.MM.JJ),AUS='TTMMJJ'
                 "DAT00004": {
                   // "regex": /^(((0[1-9]|[12][0-9]|3[01])(0[1-9]|1[012])([0-9]{2}))|([1-9][\.][1-9][\.][0-9]{2})|((0[1-9]|[12][0-9]|3[01])[\.](0[1-9]|1[012])[\.][0-9]{2}))$/,
-                   "dateFormat": "TTMMJJ,T.M.JJ,TT.MM.JJ",
+                   "dateFormat": ["TTMMJJ","T.M.JJ","TT.MM.JJ"],
                    "dateFormatOutput": "TTMMJJ",
                    "alertText": "* Please enter valid date in correct format"
                 },
                 // DAT00005 DATUM  EIN=(TTMMJJJJ,TTMMJJ,T.M.JJ,T.M.JJJJ),AUS='TTMMJJJJ'
                 "DAT00005": {
                   // "regex": /^(((0[1-9]|[12][0-9]|3[01])(0[1-9]|1[012])([0-9]{4}))|((0[1-9]|[12][0-9]|3[01])(0[1-9]|1[012])([0-9]{2}))|([1-9][\.][1-9][\.][0-9]{4})|([1-9][\.][1-9][\.][0-9]{2}))$/,
-                   "dateFormat": "TTMMJJJJ,TTMMJJ,T.M.JJ,T.M.JJJJ",
+                   "dateFormat": ["TTMMJJJJ","TTMMJJ","T.M.JJ","T.M.JJJJ"],
                    "dateFormatOutput": "TTMMJJJJ",
                    "alertText": "* Please enter valid date in correct format"
                 },
                 // DAT00006 DATUM  EIN=(MMJJ,M.JJ),AUS='MMJJ'
                 "DAT00006": {
                    // "regex": /^(((0[1-9]|1[012])([0-9]{2}))|([1-9][\.][0-9]{2}))$/,
-                   "dateFormat": "MMJJ,M.JJ",
+                   "dateFormat": ["MMJJ","M.JJ"],
                    "dateFormatOutput": "MMJJ",
                    "alertText": "* Please enter valid date in correct format"
                 },
                 //DAT00008 DATUM EIN=(MM.JJ,MM.JJJJ),AUS='MM.JJJJ'
                 "DAT00008": {
                   // "regex": /^(((0[1-9]|1[012])[\.]([0-9]{2}))|((0[1-9]|1[012])[\.][0-9]{4}))$/,
-                   "dateFormat": "MM.JJ,MM.JJJJ",
+                   "dateFormat": ["MM.JJ","MM.JJJJ"],
                    "dateFormatOutput": "MM.JJJJ",
                    "alertText": "* Please enter valid date in correct format"
                 },
                 // DAT00007 DATUM EIN=(M/JJ,M/JJJJ),AUS='MM/JJJJ',ZEIT=(199001:HEUTM)
                 "DAT00007": {
                   // "regex": /^(([1-9][\/][0-9]{2})|([1-9][\/][0-9]{4}))$/,
-                   "dateFormat": "M/JJ,M/JJJJ",
+                   "dateFormat": ["M/JJ","M/JJJJ"],
                    "dateFormatOutput": "MM/JJJJ",
                    "dateRange": "199001:TODAYM",
                    "alertText": "* Please enter valid date in correct format",
@@ -182,7 +182,7 @@
                 //DAT00009 DATUM  EIN=(TTMMJJJJ,TTMMJJ,T.M.JJ,T.M.JJJJ),AUS=TT.MM.JJJJ,  ZEIT=(<=HEUTE)
                 "DAT00009": {
                   // "regex": /^(((0[1-9]|[12][0-9]|3[01])(0[1-9]|1[012])([0-9]{4}))|((0[1-9]|[12][0-9]|3[01])(0[1-9]|1[012])([0-9]{2}))|([1-9][\.][1-9][\.][0-9]{4})|([1-9][\.][1-9][\.][0-9]{2}))$/,
-                   "dateFormat": "TTMMJJJJ,TTMMJJ,T.M.JJ,T.M.JJJJ",
+                   "dateFormat": ["TTMMJJJJ","TTMMJJ","T.M.JJ","T.M.JJJJ"],
                    "dateFormatOutput": "TT.MM.JJJJ",
                    "dateRange": "<=TODAYE",
                    "alertText": "* Please enter valid date in correct format",
@@ -192,7 +192,7 @@
                 // DAT00011 DATUM  EIN=(TTMMJJJJ,TTMMJJ,T.M.JJ,T.M.JJJJ),AUS=TT.MM.JJJJ, ZEIT=(HEUTE:HEUTE+6M)
                  "DAT00011": {
                   // "regex": /^(((0[1-9]|[12][0-9]|3[01])(0[1-9]|1[012])([0-9]{4}))|((0[1-9]|[12][0-9]|3[01])(0[1-9]|1[012])([0-9]{2}))|([1-9][\.][1-9][\.][0-9]{4})|([1-9][\.][1-9][\.][0-9]{2}))$/,
-                   "dateFormat": "TTMMJJJJ,TTMMJJ,T.M.JJ,T.M.JJJJ",
+                   "dateFormat": ["TTMMJJJJ","TTMMJJ","T.M.JJ","T.M.JJJJ"],
                    "dateFormatOutput": "TT.MM.JJJJ",
                    "dateRange": "TODAYE:TODAYE+6M",
                    "alertText": "* Please enter valid date between today  and six months from today",
@@ -202,7 +202,7 @@
                 // DAT00012 DATUM  EIN=(TTMMJJJJ,T.M.JJJJ,TT.MM.JJJJ),AUS=TT.MM.JJJJ
                 "DAT00012": {
                   // "regex": /^(((0[1-9]|[12][0-9]|3[01])(0[1-9]|1[012])([0-9]{4}))|([1-9][\.][1-9][\.][0-9]{4})|((0[1-9]|[12][0-9]|3[01])[\.](0[1-9]|1[012])[\.][0-9]{4}))$/,
-                   "dateFormat": "TTMMJJJJ,T.M.JJJJ,TT.MM.JJJJ",
+                   "dateFormat": ["TTMMJJJJ","T.M.JJJJ","TT.MM.JJJJ"],
                    "dateFormatOutput": "TT.MM.JJJJ",
                    "dateRange": "",
                    "alertText": "* Please enter valid date in correct format"
@@ -210,7 +210,7 @@
                 // DAT00013 DATUM  EIN=(TTMM,T.M.,T.MM.,TT.M.),AUS=TT.MM.
                 "DAT00013": {
                   // "regex": /^((0[1-9]|[12][0-9]|3[01])(0[1-9]|1[012])|([1-9][\.][1-9][\.])|(([1-9])[\.](0[1-9]|1[012])[\.])|((0[1-9]|[12][0-9]|3[01])[\.][1-9][\.]))$/,
-                   "dateFormat": "TTMM,T.M.,T.MM.,TT.M.",
+                   "dateFormat": ["TTMM","T.M.","T.MM.","TT.M."],
                    "dateFormatOutput": "TT.MM.",
                    "alertText": "* Please enter valid date in correct format"
                 },
@@ -219,6 +219,27 @@
                         "regex": /^[\+\-]?(([0-9]{1,3})([.][0-9]{3})*)?([\,]([0-9]{2}))$/,
                                     "alertText": "* Enter valid amount"
                 },
+                "CUSERRMSGAMT": {
+                    "ruleNotFound": "jqv:custom rule not found ",
+                    "propBeforCommaNotFound" : "The property 'beforeComma' is not defined.",
+                    "propPlusErrMsg" : "The value of the property 'plus' should be '+'.",
+                    "propMinusErrMsg" : "The value of the property 'minus' should be '-'.",
+                    "cusParFunNotFound" : "jqv:custom parameter 'function' is no function", 
+                    "cusTypeNotAllowed" : "jqv:custom type not allowed"
+
+                },
+                
+                // VSPBTG02 BETRAG NACHK=0,VORK=2,LEER=(' ','0',' '),WERT=(0,1)
+                "VSPBTG02":{
+                     "beforeComma": 2,
+                     "afterComma":0,
+                     "plus": "+",
+                     "minus": "-",
+                     "amountRange": "0:1",
+                     "emptyFormat": " ,0, ",
+                     "alertText": "* Enter valid amount in '99' format.",
+                     "alertTextRange": "* Enter valid amount between 0 and 1"
+                },
                 "LDC0200": {
                      "beforeComma": 2,
                      "afterComma":0,
@@ -226,7 +247,7 @@
                      "minus": "-",
                      "plusLeadVal": "C",
                      "minusLeadVal": "D",
-                     "alertText": "* Enter valid amount in '99' format.",
+                     "alertText": "* Enter valid amount in '99' format."
                 },
                 "LDC0402": {
                      "beforeComma": 4,
@@ -235,7 +256,7 @@
                      "minus": "-",
                      "plusLeadVal": "C",
                      "minusLeadVal": "D",
-                     "alertText": "* Enter valid amount in '9999,99' format.",
+                     "alertText": "* Enter valid amount in '9999,99' format."
                 },
                 "ADV0200": {
                   //   "regex": /^(([1-9]{1,2}))$/,
@@ -272,7 +293,7 @@
                      "alertText": "* Enter valid amount in '9,9' format"
                 },
                 "BTRM0102": {
-                      "regex": /^[\+]?((([0-9]{1}))|([0-9]{1}))?(([\,]([0-9]{1,2})))?$/,
+                 //     "regex": /^[\+]?((([0-9]{1}))|([0-9]{1}))?(([\,]([0-9]{1,2})))?$/,
                      "beforeComma": 1,
                      "afterComma":2,
                      "plus": "+",
@@ -314,7 +335,7 @@
                      "alertText": "* Enter valid amount in '99,9' format"
                 },
                 "BTRM0202": {
-                     "regex": /^[\+]?(([1-9]{1,2})(([\.][0-9]{1})*))?(([\,][0-9]{1,2}))?$/,
+                //     "regex": /^[\+]?(([1-9]{1,2})(([\.][0-9]{1})*))?(([\,][0-9]{1,2}))?$/,
                      "beforeComma": 2,
                      "afterComma":2,
                      "plus": "+",
