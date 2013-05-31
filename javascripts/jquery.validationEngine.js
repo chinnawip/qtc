@@ -984,7 +984,8 @@
 		* @return an error string if validation failed
 		*/
 		_validateAmountRange: function(fieldValueAmount, amountRangeFormat, options,ruleName){
-			var amountRange ;
+			var amountRange,
+				resultPass = "pass" ;
 			if(amountRangeFormat.indexOf(":")>=0){
 				var amountRangeArray = amountRangeFormat.split(":");
 				var rangeStart = amountRangeArray[0];
@@ -997,29 +998,45 @@
 				{
 					fieldValueAmount = fieldValueAmount.replace(/\,/g,'.');
 				}
-				if (!(parseInt(fieldValueAmount) >= parseInt(rangeStart) && parseInt(fieldValueAmount) <= parseInt(rangeEnd)))
+				if ((parseInt(fieldValueAmount,10) >= parseInt(rangeStart,10) && parseInt(fieldValueAmount,10) <= parseInt(rangeEnd,10)))
 				{
-					return options.allrules[ruleName].alertTextRange ;
+					return resultPass ;
 				}
 			}else if (amountRangeFormat.indexOf("<=") >=0){
-				amountRange = parseInt(amountRangeFormat.substr(2));
-				if(!(parseInt(fieldValueAmount) <= amountRange)){
-					return options.allrules[ruleName].alertTextRange ;
+				amountRange = parseInt(amountRangeFormat.substr(2),10);
+				if((parseInt(fieldValueAmount,10) <= amountRange)){
+					return resultPass ;
 				}
 			}else if (amountRangeFormat.indexOf("<") >=0){
-				amountRange = parseInt(amountRangeFormat.substr(1));
-				if(!(parseInt(fieldValueAmount) < amountRange)){
-					return options.allrules[ruleName].alertTextRange ;
+				amountRange = parseInt(amountRangeFormat.substr(1),10);
+				if((parseInt(fieldValueAmount,10) < amountRange)){
+					return resultPass ;
 				}
 			}else if (amountRangeFormat.indexOf(">=") >=0){
-				amountRange = parseInt(amountRangeFormat.substr(2));
-				if(!(parseInt(fieldValueAmount) >= amountRange)){
-					return options.allrules[ruleName].alertTextRange ;
+				amountRange = parseInt(amountRangeFormat.substr(2),10);
+				if((parseInt(fieldValueAmount,10) >= amountRange)){
+					return resultPass ;
 				}
 			}else if (amountRangeFormat.indexOf(">") >=0){
-				amountRange = parseInt(amountRangeFormat.substr(1));
-				if(!(parseInt(fieldValueAmount) > amountRange)){
-					return options.allrules[ruleName].alertTextRange ;
+				amountRange = parseInt(amountRangeFormat.substr(1),10);
+				if((parseInt(fieldValueAmount,10) > amountRange)){
+					return resultPass ;
+				}
+			}else if(amountRangeFormat.indexOf(",")>=0){
+				var amountRangeVal = amountRangeFormat;
+				amountRangeVal = amountRangeVal.replace(/\,/g,'.');
+				if(fieldValueAmount.indexOf(",") >= 0 )
+				{
+					fieldValueAmount = fieldValueAmount.replace(/\,/g,'.');
+				}
+				if (parseInt(fieldValueAmount,10) == parseInt(amountRangeVal,10))
+				{
+					return resultPass ;
+				}
+			}else{
+				if (parseInt(fieldValueAmount,10) == parseInt(amountRangeFormat,10))
+				{
+					return resultPass ;
 				}
 			}
 
@@ -1041,6 +1058,8 @@
 			var fn;
 			var input = $('input','#opfieldDivId')[0];
 			var custErrMsgRule = options.allrules["CUSERRMSGAMT"];
+			jQuery.data(input,"resultString","No Data Found");
+			jQuery.data(input,"resultErrorText","No Data Found");
 
 			if(!rule) {
 				alert(custErrMsgRule.ruleNotFound + " - "+customRule);
@@ -1056,7 +1075,6 @@
 					regEx = beforeCommaRegEx + rule.beforeComma +"})";
 				}else{
 					jQuery.data(input,"resultErrorText",custErrMsgRule.propBeforCommaNotFound);
-					//alert(custErrMsgRule.propBeforCommaNotFound);
 					return custErrMsgRule.propBeforCommaNotFound;
 				}
 				if(rule["afterComma"] && rule.afterComma > 0 ){
@@ -1068,7 +1086,6 @@
 					operatorRegEx = "[\\+";
 					}else{
 						jQuery.data(input,"resultErrorText",custErrMsgRule.propPlusErrMsg);
-						//alert(custErrMsgRule.propPlusErrMsg);
 						return custErrMsgRule.propPlusErrMsg;
 					}
 				}
@@ -1078,7 +1095,6 @@
 				  	operatorRegEx = operatorRegEx + "\\-"
 				  }else{
 				  	jQuery.data(input,"resultErrorText",custErrMsgRule.propMinusErrMsg);
-						//alert(custErrMsgRule.propMinusErrMsg);
 					return custErrMsgRule.propMinusErrMsg;
 					}
 				}
@@ -1107,10 +1123,10 @@
 						return options.allrules[customRule].alertText;
 					} 
 
-					var strArrayValue;
-					var beforeCommaValue = "";
-					var afterCommaValue = "";
-					var minusLeadVal = "",
+					var strArrayValue,
+						beforeCommaValue = "",
+						afterCommaValue = "",
+						minusLeadVal = "",
 						plusLeadVal = options.allrules[customRule].plusLeadVal;
 
 					if (field.val().indexOf(',') >= 0 )
@@ -1127,24 +1143,28 @@
 					{
 						beforeCommaValue = beforeCommaValue.substr(beforeCommaValue.indexOf("+")+1);
 					}else if(beforeCommaValue.indexOf("-") >= 0 ){
-				//		beforeCommaValue = parseInt(beforeCommaValue) + "";
-						if (parseInt(beforeCommaValue) == 0 ){
+						if (parseInt(beforeCommaValue,10) == 0 ){
 							minusLeadVal = options.allrules[customRule].plusLeadVal;	
 						}else{
 							minusLeadVal = options.allrules[customRule].minusLeadVal;	
 						}
-						
 					}
-					if(rule["amountRange"]){
-						var amountRangeFormat = options.allrules[customRule].amountRange;
-						var errMsg = methods._validateAmountRange(beforeCommaValue, amountRangeFormat, options,customRule);
-						if(errMsg != undefined){
-							jQuery.data(input,"resultErrorText",errMsg);
-							return errMsg;
+					
+					if(rule.amountRange != undefined ){
+						var amountRangeFormat = options.allrules[customRule].amountRange,
+							errMsg;
+						for(var i= 0; i< amountRangeFormat.length;i++){
+							errMsg = methods._validateAmountRange(beforeCommaValue, amountRangeFormat[i], options,customRule);
+							if(errMsg != undefined && errMsg == "pass"){
+							break;
+							}
+						}
+						if(errMsg == undefined  || (errMsg != undefined && errMsg != "pass")){
+								jQuery.data(input,"resultErrorText",options.allrules[customRule].alertTextRange);
+								return options.allrules[customRule].alertTextRange;
 						}
 					}
-
-				
+	
 					var minusSuffixValue = "",
 						firstPosChar = "0";
 					while (beforeCommaValue.indexOf(".") >= 0 ){
@@ -1153,79 +1173,10 @@
 					 if (beforeCommaValue.indexOf("-") >= 0 )
 					 {
 					 	beforeCommaValue = beforeCommaValue.substr(beforeCommaValue.indexOf("-")+1);
-					// 	var valueTobeFoundSuffix = "",
-					// 		targetBeforeAfterCommaVal;
-					// 	if(options.allrules[customRule].afterComma == 0 ){
-					// 		valueTobeFoundSuffix = beforeCommaValue;
-					// 		targetBeforeAfterCommaVal = options.allrules[customRule].beforeComma;
-					// 	}else{
-					// 		valueTobeFoundSuffix = afterCommaValue;
-					// 		targetBeforeAfterCommaVal = options.allrules[customRule].afterComma;
-					// 	}
-					// 	// if (valueTobeFoundSuffix.length >=0 && valueTobeFoundSuffix.length <targetBeforeAfterCommaVal)
-					// 	// {
-					// 	// 	minusSuffixValue = 'A';
-					// 	// 	firstPosChar = '0';
-					// 	// }else
-					// 	// {
-							
-					// 		switch (valueTobeFoundSuffix.substr((valueTobeFoundSuffix.length-1),1)) {
-					// 			 case '0': 
-					// 		    	minusSuffixValue = 'A';
-					// 		    	break;
-					// 		    case '1': 
-					// 		    	minusSuffixValue = 'B';
-					// 		    	break;
-					// 		    case '2': 
-					// 		    	minusSuffixValue = 'C';
-					// 		    	break;
-					// 		    case '3': 
-					// 		    	minusSuffixValue = 'D';
-					// 		    	break;
-					// 			case '4': 
-					// 		    	minusSuffixValue = 'E';
-					// 		    	break;				
-					// 			case '5': 
-					// 		    	minusSuffixValue = 'F';
-					// 		    	break;				
-					// 			case '6': 
-					// 		    	minusSuffixValue = 'G';
-					// 		    	break;				
-					// 			case '7': 
-					// 		    	minusSuffixValue = 'H';
-					// 		    	break;
-					// 		    case '8': 
-					// 		    	minusSuffixValue = 'I';
-					// 		    	break;
-					// 		    case '9': 
-					// 		    	minusSuffixValue = 'J';
-					// 		    	break;	
-					// 		    default :
-					// 		    	minusSuffixValue = 'A';
-					// 		    	break;	
-					// 	//	}
-					// 		firstPosChar = valueTobeFoundSuffix.substr(0,1);
-					// 		valueTobeFoundSuffix = valueTobeFoundSuffix.substr(0,(valueTobeFoundSuffix.length - 1));
-					// 	}
-					// 	if(options.allrules[customRule].afterComma != 0){
-					// 		afterCommaValue = valueTobeFoundSuffix;
-					// 		for (var i=afterCommaValue.length+1; i<options.allrules[customRule].afterComma; i++)
-		  	// 				{
-		  	// 					afterCommaValue = afterCommaValue + '0';
-		  	// 				}
-		  	// 				afterCommaValue = afterCommaValue +minusSuffixValue;
-		  	// 			}else{
-		  	// 				beforeCommaValue = valueTobeFoundSuffix;
-					// 		for (var i=beforeCommaValue.length+1; i<options.allrules[customRule].beforeComma; i++)
-		  	// 				{
-		  	// 					beforeCommaValue = '0'+ beforeCommaValue ;
-		  	// 				}
-		  	// 				beforeCommaValue = beforeCommaValue + minusSuffixValue;
-		  	// 			}
 					}
 
 					 var beforeCommaValueStr = "";
-					 if(beforeCommaValue.length > options.allrules[customRule].beforeComma)
+					 if(beforeCommaValue.length > parseInt(options.allrules[customRule].beforeComma,10))
 					{
 						jQuery.data(input,"resultErrorText",options.allrules[customRule].alertText);
 						return options.allrules[customRule].alertText;
@@ -1233,16 +1184,15 @@
 					 	//beforeCommaValue = beforeCommaValueStr.substr(0,options.allrules[customRule].beforeComma);
 					}else
 					{
-						for (var i=beforeCommaValue.length; i<options.allrules[customRule].beforeComma; i++)
+						for (var i=beforeCommaValue.length; i<parseInt(options.allrules[customRule].beforeComma,10); i++)
 	  					{
 	  						beforeCommaValue = "0" + beforeCommaValue;
 	  					}
 	  				}
-					for (var i=afterCommaValue.length; i<options.allrules[customRule].afterComma; i++)
+					for (var i=afterCommaValue.length; i<parseInt(options.allrules[customRule].afterComma,10); i++)
   					{
   						afterCommaValue = afterCommaValue + "0";
   					}
-  					//var $input = $("input")[0],
   					var finalResultString = beforeCommaValue + afterCommaValue;
   					if (field.val().indexOf('-') >= 0 )
   					{
@@ -1281,6 +1231,7 @@
 							    	minusSuffixValue = 'A';
 							    	break;	
 							}
+							firstPosChar = finalResultString.substr(0,1);
 							finalResultString = finalResultString.substr(0,(finalResultString.length - 1)) + minusSuffixValue;
   					}
   					if(plusLeadVal != "" && plusLeadVal != undefined)
@@ -1301,10 +1252,10 @@
   						finalResultString = plusMinusLeadStr;
   						//alert("plusMinusLeadStr : "+ plusMinusLeadStr);
   					}
-  					if(rule["emptyFormat"]){
+  					if(rule.emptyFormat != undefined){
 						var emptyFormatVal = options.allrules[customRule].emptyFormat;
 						var emptyFormatArray = emptyFormatVal.split(',');
-  						if(parseInt(finalResultString) == emptyFormatArray[0] || parseInt(finalResultString) == emptyFormatArray[1])
+  						if(parseInt(finalResultString,10) == emptyFormatArray[0] || parseInt(finalResultString,10) == emptyFormatArray[1])
   						{
   							var len = finalResultString.length;
   							for(var i = 0; i<len; i++){
@@ -1315,11 +1266,7 @@
   					}
   					
   					jQuery.data(input,"resultString",finalResultString);
-  					alert("Final Value :"  + finalResultString +' , '+finalResultString.length);
-  				//	for(var i = 0; i<finalResultString.length; i++){
-  				//		alert("Final :"+ finalResultString[i]);
-  				//	}
-
+  				//	alert("Final Value :"  + finalResultString +' , '+finalResultString.length);
 			} else if(rule["func"]) {
 				fn = rule["func"];
 
@@ -1377,7 +1324,7 @@
 						addMonthStrTemp = addMonthStrTemp + addMonthStr[i]; 
 					}
 				}
-				var addMonthValue = parseInt(addMonthStrTemp);
+				var addMonthValue = parseInt(addMonthStrTemp,10);
 				if (dtRangeValue.indexOf("TODAYM") >= 0 || dtRangeValue.indexOf("HEUTM") >=0 ){
 					if(startEndFlag =='S'){
 						return  new Date(((todayDateTemp.getMonth()+1)+addMonthValue) + '.' + "01"+'.'+todayDateTemp.getFullYear());
@@ -1455,6 +1402,8 @@
 			var custErrMsgRule = options.allrules["CUSERRMSGAMT"];
 			var fn;
 			var finalResult = "";
+			jQuery.data(input,"resultString","No Data Found");
+			jQuery.data(input,"resultErrorText","No Data Found");
 			if(!rule) {
 				alert(custErrMsgRule.ruleNotFound+" - "+customRule);
 				return;
@@ -1463,66 +1412,87 @@
 
 				var dateFormatInputArray = rule["dateFormat"];
 				for (i = 0; i < dateFormatInputArray.length; i++) {  //parse the input date format defined
-					var dateFormatInputLength = parseInt(dateFormatInputArray[i].length),
+					var dateFormatInputLength = parseInt(dateFormatInputArray[i].length,10),
 						dateFormatTempOld = "",
 						dateFormatTemp = "",
 						inputDateFormatVal = "", 
 						inputMonthFormatVal = "",
-						inputYearFormatVal = "";
-
-					for (var j = 0; j < dateFormatInputLength; j++){
-				    	if (dateFormatInputArray[i].charAt(j) == dateFormatTempOld || dateFormatTempOld ==""){
-				    		dateFormatTempOld = dateFormatInputArray[i].charAt(j);
-				    		dateFormatTemp = dateFormatTemp + dateFormatInputArray[i].charAt(j);
-				    	}else{
-				    	 	dateFormatTempOld = dateFormatInputArray[i].charAt(j);
-				    	 	dateFormatTemp = dateFormatTemp +','+dateFormatInputArray[i].charAt(j);
-			    		}
-					}  //for j loop
-					var regex = "",
+						inputYearFormatVal = "",
+						regEx = "",
 						regexTemp = "",
 						inputInArray = new Object(),
-				  		dateFormatArrayTemp = dateFormatTemp.split(",");
-					regexTemp = "("; // for inner bracket start
-				   for( var k = 0; k < dateFormatArrayTemp.length; k++){  // forming regular expression
-				   		 switch (dateFormatArrayTemp[k]){
-					    	 	case "TT" :
-					    	 		regexTemp = regexTemp + "(0[1-9]|[12][0-9]|3[01])";
-					    	 		inputDateFormatVal = dateFormatArrayTemp[k];
-					    	 		break;
-					    	 	case "MM" :
-							 		regexTemp = regexTemp + "(0[1-9]|1[012])";
-							 		inputMonthFormatVal = dateFormatArrayTemp[k];
-					    	 		break;
-					    	 	case "T" :
-							 		regexTemp = regexTemp + "[1-9]";
-							 		inputDateFormatVal = dateFormatArrayTemp[k];
-					    	 		break;
-					    	 	case "M" :
-							 		regexTemp = regexTemp + "[1-9]";
-							 		inputMonthFormatVal = dateFormatArrayTemp[k];
-					    	 		break;
-								case "JJJJ" :
-							 		regexTemp = regexTemp + "[0-9]{4}";
-							 		inputYearFormatVal = dateFormatArrayTemp[k];
-					    	 		break;
-					    	 	case "JJ" :
-							 		regexTemp = regexTemp + "[0-9]{2}";
-							 		inputYearFormatVal = dateFormatArrayTemp[k];
-					    	 		break;	
-					    	 	case "." :
-							 		regexTemp = regexTemp + "[\\.]";
-					    	 		break;	
-					    	 	case "/" :
-							 		regexTemp = regexTemp + "[\\/]";
-					    	 		break;	
-					    	 }
-				   }
-					regex = '^(' + regex + regexTemp + '))$';
-					var pattern = new RegExp(regex);
+						regExInCache = options.allrules[customRule].regEx;
+						if(regExInCache == undefined)
+						{
+							regExInCache = [];
+						}
+					 if(regExInCache[customRule+"regEx"+dateFormatInputArray[i]] == undefined)
+					  {
+
+						for (var j = 0; j < dateFormatInputLength; j++){
+					    	if (dateFormatInputArray[i].charAt(j) == dateFormatTempOld || dateFormatTempOld ==""){
+					    		dateFormatTempOld = dateFormatInputArray[i].charAt(j);
+					    		dateFormatTemp = dateFormatTemp + dateFormatInputArray[i].charAt(j);
+					    	}else{
+					    	 	dateFormatTempOld = dateFormatInputArray[i].charAt(j);
+					    	 	dateFormatTemp = dateFormatTemp +','+dateFormatInputArray[i].charAt(j);
+				    		}
+						}  //for j loop
+					  	var dateFormatArrayTemp = dateFormatTemp.split(",");
+						regexTemp = "("; // for inner bracket start
+					   for( var k = 0; k < dateFormatArrayTemp.length; k++){  // forming regular expression
+					   		 switch (dateFormatArrayTemp[k]){
+						    	 	case "TT" :
+						    	 		regexTemp = regexTemp + "(0[1-9]|[12][0-9]|3[01])";
+						    	 		inputDateFormatVal = dateFormatArrayTemp[k];
+						    	 		break;
+						    	 	case "MM" :
+								 		regexTemp = regexTemp + "(0[1-9]|1[012])";
+								 		inputMonthFormatVal = dateFormatArrayTemp[k];
+						    	 		break;
+						    	 	case "T" :
+								 		regexTemp = regexTemp + "[1-9]";
+								 		inputDateFormatVal = dateFormatArrayTemp[k];
+						    	 		break;
+						    	 	case "M" :
+								 		regexTemp = regexTemp + "[1-9]";
+								 		inputMonthFormatVal = dateFormatArrayTemp[k];
+						    	 		break;
+									case "JJJJ" :
+								 		regexTemp = regexTemp + "[0-9]{4}";
+								 		inputYearFormatVal = dateFormatArrayTemp[k];
+						    	 		break;
+						    	 	case "JJ" :
+								 		regexTemp = regexTemp + "[0-9]{2}";
+								 		inputYearFormatVal = dateFormatArrayTemp[k];
+						    	 		break;	
+						    	 	case "." :
+								 		regexTemp = regexTemp + "[\\.]";
+						    	 		break;	
+						    	 	case "/" :
+								 		regexTemp = regexTemp + "[\\/]";
+						    	 		break;	
+						    	 }
+					   }
+						regEx = '^(' + regEx + regexTemp + '))$';
+						regExInCache[customRule+"regEx"+dateFormatInputArray[i]] = regEx;
+						regExInCache[customRule+"inputDateVal"+dateFormatInputArray[i]] = inputDateFormatVal;
+						regExInCache[customRule+"inputMonthVal"+dateFormatInputArray[i]] = inputMonthFormatVal;
+						regExInCache[customRule+"inputYearVal"+dateFormatInputArray[i]] = inputYearFormatVal;
+						regExInCache[customRule+"dateFormatArray"+dateFormatInputArray[i]] = dateFormatArrayTemp;
+						options.allrules[customRule].regEx = regExInCache;
+					}else{
+						regExInCache = options.allrules[customRule].regEx;
+						regEx = regExInCache[customRule+"regEx"+dateFormatInputArray[i]];  
+						inputDateFormatVal = regExInCache[customRule+"inputDateVal"+dateFormatInputArray[i]];  
+						inputMonthFormatVal = regExInCache[customRule+"inputMonthVal"+dateFormatInputArray[i]];  
+						inputYearFormatVal = regExInCache[customRule+"inputYearVal"+dateFormatInputArray[i]];
+						dateFormatArrayTemp = regExInCache[customRule+"dateFormatArray"+dateFormatInputArray[i]];
+					}
+					var pattern = new RegExp(regEx);
 					if (pattern.test(field.val())){  //  if pattern check with the input value is passed, the forming the output value.
 							var startPos = 0;
-							 for( var k = 0; k < dateFormatArrayTemp.length; k++){
+							 for( var k = 0; k < dateFormatArrayTemp.length; k++){  //storing the input value based on the dateformat defined.
 					  		 inputInArray[dateFormatArrayTemp[k]] = field.val().substr(startPos,dateFormatArrayTemp[k].length);
 					  		 startPos = startPos + dateFormatArrayTemp[k].length;
 					  		}
@@ -1535,7 +1505,7 @@
 								var finalResultDate = new Date(inputInArray[inputMonthFormatVal]+'.'+inputDateFormatValTemp+"."+inputInArray[inputYearFormatVal]);
 								var errMsg = methods._validateDateRange(finalResultDate, dateRangeFormat, options,customRule);
 								if (errMsg != undefined){
-									jQuery.data(input,"resultString",errMsg);
+									jQuery.data(input,"resultErrorText",errMsg);
 									return errMsg;
 								}
 							}
@@ -1581,7 +1551,7 @@
 									if(inputYearFormatVal == "JJ" && dateFormatOutputArrayTemp[k] == "JJJJ" )
 									{
 										inputInArray[inputYearFormatVal]
-										if(parseInt(inputInArray[inputYearFormatVal])>49){
+										if(parseInt(inputInArray[inputYearFormatVal],10)>49){
 											yearOutputString = "19";
 										}else{
 											yearOutputString = "20";
@@ -1598,12 +1568,13 @@
 					    	 }
 					}
 			   		jQuery.data(input,"resultString",finalOutputString);
-					alert("Final Result :"+finalOutputString);
+					//alert("Final Result :"+finalOutputString );
+
 					return;
 					} //if (pattern.test...	
 
 				} //for i loop
-				jQuery.data(input,"resultString",options.allrules[customRule].alertText + ' ' + (options.allrules[customRule].dateFormat+'').replace(/,/g," or "));
+				jQuery.data(input,"resultErrorText",options.allrules[customRule].alertText + ' ' + (options.allrules[customRule].dateFormat+'').replace(/,/g," or "));
 				return options.allrules[customRule].alertText + ' ' + (options.allrules[customRule].dateFormat+'').replace(/,/g," or ") ;
 			} else if(rule["func"]) {
 				fn = rule["func"];
