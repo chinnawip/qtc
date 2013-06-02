@@ -219,7 +219,7 @@
                         "regex": /^[\+\-]?(([0-9]{1,3})([.][0-9]{3})*)?([\,]([0-9]{2}))$/,
                                     "alertText": "* Enter valid amount"
                 },
-                "CUSERRMSGAMT": {
+                "CUSERRMSG": {
                     "ruleNotFound": "jqv:custom rule not found ",
                     "propBeforCommaNotFound" : "The property 'beforeComma' is not defined.",
                     "propPlusErrMsg" : "The value of the property 'plus' should be '+'.",
