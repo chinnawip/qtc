@@ -1057,7 +1057,7 @@
 			var rule = options.allrules[customRule];
 			var fn;
 			var input = $('input','#opfieldDivId')[0];
-			var custErrMsgRule = options.allrules["CUSERRMSGAMT"];
+			var custErrMsgRule = options.allrules["CUSERRMSG"];
 			jQuery.data(input,"resultString","No Data Found");
 			jQuery.data(input,"resultErrorText","No Data Found");
 
@@ -1399,7 +1399,7 @@
 			var input = $('input','#opfieldDivId')[0];
 			var customRule = rules[i + 1];
 			var rule = options.allrules[customRule];
-			var custErrMsgRule = options.allrules["CUSERRMSGAMT"];
+			var custErrMsgRule = options.allrules["CUSERRMSG"];
 			var fn;
 			var finalResult = "";
 			jQuery.data(input,"resultString","No Data Found");
