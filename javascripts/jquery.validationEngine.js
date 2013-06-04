@@ -1053,232 +1053,230 @@
 		* @return an error string if validation failed
 		*/
 	_amount: function(field, rules, i, options) {
-			var customRule = rules[i + 1];
-			var rule = options.allrules[customRule];
-			var fn;
-			var input = $('input','#opfieldDivId')[0];
-			var custErrMsgRule = options.allrules["CUSERRMSG"];
+			var customRule = rules[i + 1],
+				rule = options.allrules[customRule],
+				fn,
+				input = $('input','#opfieldDivId')[0],
+				custErrMsgRule = options.allrules["CUSERRMSG"];
 			jQuery.data(input,"resultString","No Data Found");
 			jQuery.data(input,"resultErrorText","No Data Found");
 
-			if(!rule) {
-				alert(custErrMsgRule.ruleNotFound + " - "+customRule);
+			if (!rule) {
+				jQuery.data(input,"resultErrorText",custErrMsgRule.ruleNotFound + " - "+customRule);
 				return;
 			}
-			if(options.allrules[customRule].regEx == undefined){
-				var beforeCommaRegEx = "([0-9]{1,3}\\.([0-9]{3}\\.)*[0-9]{3}|[0-9]{1,";
-				var afterCommaRegEx = "(([\\,][0-9]{1,"; 
-	            var regEx ="";
-	            var operatorRegEx = "";
-				if(rule["beforeComma"] && rule.beforeComma > 0){
-					//regEx = beforeCommaRegEx.replace(/#/g,rule.beforeComma); // to be removed later
-					regEx = beforeCommaRegEx + rule.beforeComma +"})";
-				}else{
+			if (options.allrules[customRule].regEx == undefined) {
+				var beforeCommaRegEx = "([0-9]{1,3}\\.([0-9]{3}\\.)*[0-9]{3}|[0-9]{1,",
+					afterCommaRegEx = "(([\\,][0-9]{1,", 
+	            	regEx ="	",
+	            	operatorRegEx = "	";
+				if(rule["beforeComma"] && rule.beforeComma > 0) {
+					regEx = beforeCommaRegEx + rule.beforeComma + "})";
+				} else {
 					jQuery.data(input,"resultErrorText",custErrMsgRule.propBeforCommaNotFound);
-					return custErrMsgRule.propBeforCommaNotFound;
+					return;
 				}
-				if(rule["afterComma"] && rule.afterComma > 0 ){
-					//regEx = regEx + afterCommaRegEx.replace(/#/g,rule.afterComma); // to be removed later
+				if (rule["afterComma"] && rule.afterComma > 0 ) {
 					regEx = regEx + afterCommaRegEx + rule.afterComma + "}))?"; 
 				}
-				if(rule.plus != undefined)
-				{ if(rule.plus == "+"){
-					operatorRegEx = "[\\+";
-					}else{
+				if (rule.plus != undefined) {
+					if (rule.plus == "+") {
+						operatorRegEx = "[\\+";
+					} else {
 						jQuery.data(input,"resultErrorText",custErrMsgRule.propPlusErrMsg);
-						return custErrMsgRule.propPlusErrMsg;
+						return;
 					}
 				}
-				if(rule.minus != undefined)
-				{
-				  if(rule.minus == "-"){
-				  	operatorRegEx = operatorRegEx + "\\-"
-				  }else{
-				  	jQuery.data(input,"resultErrorText",custErrMsgRule.propMinusErrMsg);
-					return custErrMsgRule.propMinusErrMsg;
+				if (rule.minus != undefined) {
+				  	if (rule.minus == "-") {
+				  		operatorRegEx = operatorRegEx + "\\-";
+				  	} else {
+				  		jQuery.data(input,"resultErrorText",custErrMsgRule.propMinusErrMsg);
+						return ;
 					}
 				}
-				if (operatorRegEx!=""){
+				if (operatorRegEx != "") {
 					operatorRegEx = operatorRegEx + "]?";	
 				}
 				
-				regEx = "^"+operatorRegEx+ regEx+"$";
+				regEx = "^" + operatorRegEx + regEx + "$";
 				options.allrules[customRule].regEx = regEx;  // Save the regEx for next time.
-			}else{
+			} else {
 				regEx = options.allrules[customRule].regEx;
 			}
-			//if(rule["regex"]) {
-		    if(rule["beforeComma"]) {
-				// var ex=rule.regex;
-				var ex=regEx;
+		    if (rule["beforeComma"]) {
+			
+				if (!regEx) {
+					jQuery.data(input,"resultErrorText",custErrMsgRule.ruleNotFound + " - "+customRule);
+					return;
+				}
+				var pattern = new RegExp(regEx);
+
+				if (!pattern.test(field.val())) {
+					jQuery.data(input,"resultErrorText",options.allrules[customRule].alertText);
+					return options.allrules[customRule].alertText;
+				} 
+
+				var strArrayValue,
+					beforeCommaValue = "",
+					afterCommaValue = "",
+					minusLeadVal = "",
+					plusLeadVal = options.allrules[customRule].plusLeadVal;
+
+				if (field.val().indexOf(',') >= 0 ) {
+					strArrayValue = field.val().split(',');
+					beforeCommaValue = strArrayValue[0];
+					afterCommaValue = strArrayValue[1];
+				} else {
+					beforeCommaValue = field.val();
+					afterCommaValue = "";
+				}
+				if (beforeCommaValue.indexOf("+") >= 0 ) {
+					beforeCommaValue = beforeCommaValue.substr(beforeCommaValue.indexOf("+")+1);
+				} else if(beforeCommaValue.indexOf("-") >= 0 ) {
+					if (parseInt(beforeCommaValue,10) == 0 ) {
+						minusLeadVal = options.allrules[customRule].plusLeadVal;	
+					} else {
+						minusLeadVal = options.allrules[customRule].minusLeadVal;	
+					}
+				}
 				
-					if(!ex) {
-						alert(custErrMsgRule.ruleNotFound + " - "+customRule);
-						return;
-					}
-					var pattern = new RegExp(ex);
+				if (rule.amountRange != undefined ) {  // For validating amount in range .
+					var amountRangeFormat = options.allrules[customRule].amountRange,
+						errMsg = "	",
+						amountRangeFormatLength = (amountRangeFormat.length - 1);
 
-					if (!pattern.test(field.val())){
-						jQuery.data(input,"resultErrorText",options.allrules[customRule].alertText);
-						return options.allrules[customRule].alertText;
-					} 
-
-					var strArrayValue,
-						beforeCommaValue = "",
-						afterCommaValue = "",
-						minusLeadVal = "",
-						plusLeadVal = options.allrules[customRule].plusLeadVal;
-
-					if (field.val().indexOf(',') >= 0 )
-					{
-						strArrayValue = field.val().split(',');
-						beforeCommaValue = strArrayValue[0];
-						afterCommaValue = strArrayValue[1];
-					}else
-					{
-						beforeCommaValue = field.val();
-						afterCommaValue = "";
-					}
-					if (beforeCommaValue.indexOf("+") >= 0 )
-					{
-						beforeCommaValue = beforeCommaValue.substr(beforeCommaValue.indexOf("+")+1);
-					}else if(beforeCommaValue.indexOf("-") >= 0 ){
-						if (parseInt(beforeCommaValue,10) == 0 ){
-							minusLeadVal = options.allrules[customRule].plusLeadVal;	
-						}else{
-							minusLeadVal = options.allrules[customRule].minusLeadVal;	
-						}
+					while (errMsg != "pass" && amountRangeFormatLength >= 0) {
+						errMsg = methods._validateAmountRange(beforeCommaValue, amountRangeFormat[amountRangeFormatLength--], options,customRule);	
 					}
 					
-					if(rule.amountRange != undefined ){
-						var amountRangeFormat = options.allrules[customRule].amountRange,
-							errMsg;
-						for(var i= 0; i< amountRangeFormat.length;i++){
-							errMsg = methods._validateAmountRange(beforeCommaValue, amountRangeFormat[i], options,customRule);
-							if(errMsg != undefined && errMsg == "pass"){
-							break;
-							}
-						}
-						if(errMsg == undefined  || (errMsg != undefined && errMsg != "pass")){
-								jQuery.data(input,"resultErrorText",options.allrules[customRule].alertTextRange);
-								return options.allrules[customRule].alertTextRange;
-						}
+					if (errMsg != "pass") {
+							jQuery.data(input,"resultErrorText",options.allrules[customRule].alertTextRange);
+							return options.allrules[customRule].alertTextRange;
 					}
-	
-					var minusSuffixValue = "",
-						firstPosChar = "0";
-					while (beforeCommaValue.indexOf(".") >= 0 ){
-							beforeCommaValue = beforeCommaValue.substr(0,beforeCommaValue.indexOf(".")) + beforeCommaValue.substr(beforeCommaValue.indexOf(".")+1);	
-					}	
-					 if (beforeCommaValue.indexOf("-") >= 0 )
-					 {
-					 	beforeCommaValue = beforeCommaValue.substr(beforeCommaValue.indexOf("-")+1);
+				}
+
+				var minusSuffixValue = "",
+					firstPosChar = "0";
+				while (beforeCommaValue.indexOf(".") >= 0 ){
+						beforeCommaValue = beforeCommaValue.substr(0,beforeCommaValue.indexOf(".")) + beforeCommaValue.substr(beforeCommaValue.indexOf(".")+1);	
+				}	
+				 if (beforeCommaValue.indexOf("-") >= 0 ) {
+				 	beforeCommaValue = beforeCommaValue.substr(beforeCommaValue.indexOf("-")+1);
+				}
+
+				 var beforeCommaValueStr = "",
+				 	 beforeCommaValueLength = beforeCommaValue.length,
+				 	 beforeCommaValFromRule = parseInt(options.allrules[customRule].beforeComma,10),
+				 	 afterCommaValueLength = afterCommaValue.length,
+				 	 afterCommaValFromRule = parseInt(options.allrules[customRule].afterComma,10);
+
+				 if (beforeCommaValueLength > beforeCommaValFromRule) {
+					jQuery.data(input,"resultErrorText",options.allrules[customRule].alertText);
+					return options.allrules[customRule].alertText;
+				 	//beforeCommaValueStr = beforeCommaValue;
+				 	//beforeCommaValue = beforeCommaValueStr.substr(0,options.allrules[customRule].beforeComma);
+				} else {
+					for (var i = beforeCommaValueLength; i < beforeCommaValFromRule; i++) {
+  						beforeCommaValue = "0" + beforeCommaValue;  // For prefixing with zero(s) accordiong to the defined format in the rule.
+  					}
+  				}
+				for (var i = afterCommaValueLength; i < afterCommaValFromRule; i++) {
+						afterCommaValue = afterCommaValue + "0";  // For suffing with zero(s) accordiong to the defined format in the rule.
 					}
 
-					 var beforeCommaValueStr = "";
-					 if(beforeCommaValue.length > parseInt(options.allrules[customRule].beforeComma,10))
-					{
-						jQuery.data(input,"resultErrorText",options.allrules[customRule].alertText);
-						return options.allrules[customRule].alertText;
-					 	//beforeCommaValueStr = beforeCommaValue;
-					 	//beforeCommaValue = beforeCommaValueStr.substr(0,options.allrules[customRule].beforeComma);
-					}else
-					{
-						for (var i=beforeCommaValue.length; i<parseInt(options.allrules[customRule].beforeComma,10); i++)
-	  					{
-	  						beforeCommaValue = "0" + beforeCommaValue;
-	  					}
-	  				}
-					for (var i=afterCommaValue.length; i<parseInt(options.allrules[customRule].afterComma,10); i++)
-  					{
-  						afterCommaValue = afterCommaValue + "0";
-  					}
-  					var finalResultString = beforeCommaValue + afterCommaValue;
-  					if (field.val().indexOf('-') >= 0 )
-  					{
-  						switch (finalResultString.substr((finalResultString.length-1),1)) {
-								 case '0': 
-							    	minusSuffixValue = 'A';
-							    	break;
-							    case '1': 
-							    	minusSuffixValue = 'B';
-							    	break;
-							    case '2': 
-							    	minusSuffixValue = 'C';
-							    	break;
-							    case '3': 
-							    	minusSuffixValue = 'D';
-							    	break;
-								case '4': 
-							    	minusSuffixValue = 'E';
-							    	break;				
-								case '5': 
-							    	minusSuffixValue = 'F';
-							    	break;				
-								case '6': 
-							    	minusSuffixValue = 'G';
-							    	break;				
-								case '7': 
-							    	minusSuffixValue = 'H';
-							    	break;
-							    case '8': 
-							    	minusSuffixValue = 'I';
-							    	break;
-							    case '9': 
-							    	minusSuffixValue = 'J';
-							    	break;	
-							    default :
-							    	minusSuffixValue = 'A';
-							    	break;	
-							}
-							firstPosChar = finalResultString.substr(0,1);
-							finalResultString = finalResultString.substr(0,(finalResultString.length - 1)) + minusSuffixValue;
-  					}
-  					if(plusLeadVal != "" && plusLeadVal != undefined)
-  					{
-  						
-  						if(minusLeadVal != "" && minusLeadVal != undefined){
-  							beforeCommaValue = beforeCommaValue.replace(beforeCommaValue[0],firstPosChar);
-  						}else{
-  							minusLeadVal = plusLeadVal;
-  						}
-  						var finalResultStringTemp  = beforeCommaValue + afterCommaValue,
-  							plusMinusLeadStr = "";
-  						for (var i = 0; i< (finalResultStringTemp.length - 1);i++)
-  						{
-  							plusMinusLeadStr = plusMinusLeadStr + plusLeadVal + finalResultStringTemp[i];
-  						}
-  						plusMinusLeadStr = plusMinusLeadStr + minusLeadVal + finalResultStringTemp[finalResultStringTemp.length-1];
-  						finalResultString = plusMinusLeadStr;
-  						//alert("plusMinusLeadStr : "+ plusMinusLeadStr);
-  					}
-  					if(rule.emptyFormat != undefined){
-						var emptyFormatVal = options.allrules[customRule].emptyFormat;
-						var emptyFormatArray = emptyFormatVal.split(',');
-  						if(parseInt(finalResultString,10) == emptyFormatArray[0] || parseInt(finalResultString,10) == emptyFormatArray[1])
-  						{
-  							var len = finalResultString.length;
-  							for(var i = 0; i<len; i++){
-  								finalResultString  = finalResultString.replace(finalResultString[i],emptyFormatArray[2]);
-  							}
-  						}
-  						
-  					}
-  					
-  					jQuery.data(input,"resultString",finalResultString);
-  				//	alert("Final Value :"  + finalResultString +' , '+finalResultString.length);
+				var finalResultString = beforeCommaValue + afterCommaValue;
+				if (field.val().indexOf('-') >= 0 ) {
+					switch (finalResultString.substr((finalResultString.length-1),1)) {
+						 case '0': 
+					    	minusSuffixValue = 'A';
+					    	break;
+					    case '1': 
+					    	minusSuffixValue = 'B';
+					    	break;
+					    case '2': 
+					    	minusSuffixValue = 'C';
+					    	break;
+					    case '3': 
+					    	minusSuffixValue = 'D';
+					    	break;
+						case '4': 
+					    	minusSuffixValue = 'E';
+					    	break;				
+						case '5': 
+					    	minusSuffixValue = 'F';
+					    	break;				
+						case '6': 
+					    	minusSuffixValue = 'G';
+					    	break;				
+						case '7': 
+					    	minusSuffixValue = 'H';
+					    	break;
+					    case '8': 
+					    	minusSuffixValue = 'I';
+					    	break;
+					    case '9': 
+					    	minusSuffixValue = 'J';
+					    	break;	
+					    default :
+					    	minusSuffixValue = 'A';
+					    	break;	
+					}
+					firstPosChar = finalResultString.substr(0,1);
+					finalResultString = finalResultString.substr(0,(finalResultString.length - 1)) + minusSuffixValue;
+				}
+				// The following 'if..' is used for this kind of rule.
+				// for example:  12  result: C0C0C1C2C0C0
+				// 				-12  result: C0C0C1C2C0D0
+				if (plusLeadVal != "" && plusLeadVal != undefined) {
+					
+					if (minusLeadVal != "" && minusLeadVal != undefined) {
+						beforeCommaValue = beforeCommaValue.replace(beforeCommaValue[0],firstPosChar);
+					} else {
+						minusLeadVal = plusLeadVal;
+					}
+					var finalResultStringTemp  = beforeCommaValue + afterCommaValue,
+						plusMinusLeadStr = "",
+						finalResultStringTempLength = (finalResultStringTemp.length - 1);
+					
+					for (var i = 0; i < finalResultStringTempLength; i++) {
+						plusMinusLeadStr = plusMinusLeadStr + plusLeadVal + finalResultStringTemp[i];
+					}
+					plusMinusLeadStr = plusMinusLeadStr + minusLeadVal + finalResultStringTemp[finalResultStringTempLength];
+					finalResultString = plusMinusLeadStr;
+				}
+
+				//The following 'if..' is used for this kind of rule
+				//for example : LEER=(' ','0',' ') value 0 or empty results in empty
+				//				LEER=(' ','0','0') value 0 or empty results in 0000000
+				//				LEER=('0','0','0') value 0 results in 0000000
+				
+				if (rule.emptyFormat != undefined) {
+					var emptyFormatVal = options.allrules[customRule].emptyFormat,
+						emptyFormatArray = emptyFormatVal.split(',');
+					
+					if (parseInt(finalResultString,10) == emptyFormatArray[0] || parseInt(finalResultString,10) == emptyFormatArray[1]) {
+						var len = finalResultString.length;
+						for (var i = 0; i < len; i++){
+							finalResultString  = finalResultString.replace(finalResultString[i],emptyFormatArray[2]);
+						}
+					}
+				}
+				
+				jQuery.data(input,"resultString",finalResultString);
+			//	alert("Final Value :"  + finalResultString +' , '+finalResultString.length);
 			} else if(rule["func"]) {
 				fn = rule["func"];
 
 				if (typeof(fn) !== "function") {
-					alert(custErrMsgRule.cusParFunNotFound+ " - "+customRule);
-						return;
+					jQuery.data(input,"resultErrorText",custErrMsgRule.cusParFunNotFound+ " - "+customRule);
+					return;
 				}
 
 				if (!fn(field, rules, i, options))
 					return options.allrules[customRule].alertText;
 			} else {
-				alert(custErrMsgRule.cusTypeNotAllowed + customRule);
+					jQuery.data(input,"resultErrorText",custErrMsgRule.cusTypeNotAllowed + customRule);
 					return;
 			}
 		},
