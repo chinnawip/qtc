@@ -1106,7 +1106,7 @@
 				
 			}   // if (!rule.regEx) 
 			
-			value = value.replace(regExpSpDo, "");
+			value = String(value).replace(regExpSpDo, "");
 
 			if	(!rule.regEx.test(value))	{
 				jQuery.data(input,"resultErrorText",rule.alertText);
