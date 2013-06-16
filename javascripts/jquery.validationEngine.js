@@ -1040,7 +1040,6 @@
 	_amount: function(field, rules, i, options) {
 			var	customRule	=	rules[i + 1],
 				rule = options.allrules[customRule],
-				fn,
 				value = field.val(),
 				input = $('input','#opfieldDivId')[0],
 				regExpSpDo = new RegExp("[\\s\\.]", "g"),
@@ -1053,19 +1052,21 @@
 				jQuery.data(input,"resultErrorText","Rule not found - "+customRule);
 				return;
 			}
-			var	beforeCommaInRule	=	(rule.beforeComma	==	undefined)	?	1	:	rule.beforeComma,
-				afterCommaInRule	=	(rule.afterComma	==	undefined)	?	0	:	rule.afterComma;
 			
 			//if regular expression of the rule selected is not exist.
 			 if (!rule.regEx) {
 				var	plus	=	(rule.plus	==	undefined)	?	"+"	:	rule.plus,      
 					minus	=	(rule.minus	==	undefined)	?	""	:	rule.minus,
 					plusMinus = (minus) ? "[\\" + plus + "\\" + minus + "]?" : "[\\" + plus + "]?",
+					beforeCommaInRule	=	(rule.beforeComma	==	undefined)	?	1	:	rule.beforeComma,
+					afterCommaInRule	=	(rule.afterComma	==	undefined)	?	0	:	rule.afterComma,
 					regEx = (beforeCommaInRule) ? "(\\d{1," + beforeCommaInRule + "})" : "";
 					regEx += (afterCommaInRule) ? "([\\,](\\d{1," + afterCommaInRule + "}))?" : "?";
-				
+					rule.beforeComma	=	beforeCommaInRule;
+					rule.afterComma	=	afterCommaInRule;
 				// save the Regular Expression object for the next time.					
 				rule.regEx	=	new	RegExp("^"	+	plusMinus + regEx	+	"$");
+				//rule.regEx	=	new	RegExp(plusMinus + regEx);
 				
 				if	(rule.amountRange	!=	undefined)	{
 				// function for checking amount in range
@@ -1114,16 +1115,12 @@
 			}
 
 			var arrValue = value.split(",");
-			(!arrValue[0]) ? arrValue[0] = "" :  ((arrValue[0]).indexOf('+') >= 0 || (arrValue[0]).indexOf('-') >= 0) ? arrValue[0] = parseInt((arrValue[0]).substr(1), 10)	: parseInt(arrValue[0], 10);
-			(!arrValue[1]) ? arrValue[1] = "" : parseInt(arrValue[1], 10);
+
+			(!arrValue[0]) ? arrValue[0] = "" :  ((arrValue[0]).indexOf('+') >= 0 || (arrValue[0]).indexOf('-') >= 0) ? arrValue[0] = (arrValue[0]).substr(1)	: arrValue[0];
+			(!arrValue[1]) ? arrValue[1] = "" : arrValue[1];
 
 			// For validating amount in range .
 			if	(rule.amountRange	!=	undefined)	{	
-				// if value is Not-a-Number and the amount range is defined, then the error text is as below.
-				if	(isNaN(arrValue[0]))	{
-						jQuery.data(input,"resultErrorText",rule.alertTextRange);
-						return	rule.alertTextRange;
-				}
 
 				value = parseFloat(value.replace(regExpRange, "$1.$2"));
 				// Restore the saved function of amount range checking.
@@ -1134,58 +1131,15 @@
 				 }
 			}
 			
-			// if value is Not-a-Number and the amount range is defined, then the error text is as below.
+			// if value is Not-a-Number, then the error text is as below.
 			// this if is executed while the amount range is not defined.
-			if	(isNaN(arrValue[0]))	{
-					jQuery.data(input,"resultErrorText",rule.alertText);
-					return	rule.alertText;
-				}
-
-			var finalResultString = stringZeros.substr(0,(parseInt(beforeCommaInRule,10) - String(arrValue[0]).length)) + arrValue[0]	+ arrValue[1] + stringZeros.substr(0, (parseInt(afterCommaInRule,10) - String(arrValue[1]).length)),
-				minusSuffixValue	=	"";
-			
-			//The following 'if...' is used in case of only - value to give the result 
-			// like this. for example:	-333,12 >>> 003331C
-			//							-33334 >>> 333340A
-			value = parseFloat(String(value).replace(regExpRange, "$1.$2"));
-			if	(value <	0)	{
-				switch (finalResultString.substr((finalResultString.length-1),1))	{
-					case	'0'	: 
-						minusSuffixValue	=	'A';
-						break;
-					case	'1'	:
-						minusSuffixValue	=	'B';
-						break;
-				    case	'2'	: 
-						minusSuffixValue	=	'C';
-						break;
-					case	'3'	: 
-						minusSuffixValue	=	'D';
-						break;
-					case	'4'	: 
-						minusSuffixValue	=	'E';
-						break;				
-					case	'5'	: 
-						minusSuffixValue	=	'F';
-						break;				
-					case	'6'	: 
-						minusSuffixValue	=	'G';
-						break;				
-					case	'7'	: 
-						minusSuffixValue	=	'H';
-						break;
-				    case	'8'	: 
-						minusSuffixValue	=	'I';
-						break;
-				    case	'9'	: 
-						minusSuffixValue	=	'J';
-						break;
-				    default :
-				    	minusSuffixValue = 'A';
-				    	break;	
-				}
-				finalResultString	=	finalResultString.substr(0,(finalResultString.length	-	1))	+	minusSuffixValue;
+			 if	(!arrValue[0])	{
+			 		jQuery.data(input,"resultErrorText",rule.alertText);
+			 		return	rule.alertText;
 			}
+
+			var finalResultString = stringZeros.substr(0,(parseInt(rule.beforeComma,10) - arrValue[0].length)) + arrValue[0]	+ arrValue[1] + stringZeros.substr(0, (parseInt(rule.afterComma,10) - arrValue[1].length));
+			
 			// The following 'if..' is used for this kind of rule.
 			// for example:  12  result: C0C0C1C2C0C0
 			// 				-12  result: C0C0C1C2C0D0
@@ -1195,8 +1149,8 @@
 			while(i < j)	{
 				hexResult += "C"+finalResultString[i++];
 			}
-			var hexLen = hexResult.length;
-			(value < 0) ? hexResult = hexResult.substring(0,(hexLen-2))+"D" +hexResult.substring(hexLen-1) : ""; 
+			value = parseFloat((value+"").replace(regExpRange, "$1.$2"));
+			(value < 0) ? hexResult = hexResult.substring(0,(j-1)*2)+"D" +hexResult.substring(((j-1)*2)+1) : ""; 
 			
 			finalResultString	=	hexResult;
 			
