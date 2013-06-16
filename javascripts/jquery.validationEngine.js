@@ -1161,7 +1161,7 @@
 			value = parseFloat((value+"").replace(regExpRange, "$1.$2"));
 			(value < 0) ? hexResult = hexResult.substring(0,(j-1)*2)+"D" +hexResult.substring(((j-1)*2)+1) : ""; 
 			
-			finalResultString	=	hexResult;
+			
 			
 			//The following 'if..' is used for this kind of rule
 			//for example : LEER=(' ','0',' ') value 0 or empty results in empty
@@ -1182,7 +1182,7 @@
 			// 	}
 			// }
 			
-			jQuery.data(input,"resultString",finalResultString);
+			jQuery.data(input,"resultString",hexResult);
 			//	alert("Final Value :"  + finalResultString +' , '+finalResultString.length);
 		},
 		/**
