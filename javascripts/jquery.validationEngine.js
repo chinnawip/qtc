@@ -1041,15 +1041,14 @@
 			var	customRule	=	rules[i + 1],
 				rule = options.allrules[customRule],
 				value = field.val(),
-				input = $('input','#opfieldDivId')[0],
 				regExpSpDo = new RegExp("[\\s\\.]", "g"),
 				regExpRange = new RegExp("([\\d]+)[\\,]?([\\d]*)", "g");
-				jQuery.data(input,"resultString","No Data Found");
-				jQuery.data(input,"resultErrorText","No Data Found");
+				jQuery.data(field,"resultString","No Data Found");
+				jQuery.data(field,"resultErrorText","No Data Found");
 			
 			// if rule is not found	
 			if (!rule) {
-				jQuery.data(input,"resultErrorText","Rule not found - "+customRule);
+				jQuery.data(field,"resultErrorText","Rule not found - "+customRule);
 				return;
 			}
 			
@@ -1062,20 +1061,19 @@
 					afterCommaInRule	=	(rule.afterComma	==	undefined)	?	0	:	rule.afterComma,
 					regEx = (beforeCommaInRule) ? "(\\d{1," + beforeCommaInRule + "})" : "";
 					regEx += (afterCommaInRule) ? "([\\,](\\d{1," + afterCommaInRule + "}))?" : "?";
-					
+
 					// save it  for subsequent referrence below.
 					rule.beforeComma	=	beforeCommaInRule;
 					rule.afterComma	=	afterCommaInRule;
-				
 				// save the Regular Expression object for the next time.
-				
 				// "^" and "$" are added to match exact number of digits as defined in the definition.
 				// Otherwise, it will allow digit than the defined length
 				// for example : if beforeComma = 2 and
-				//		 afterComma = 0, the input '123' is allowed without these special charactors ("^" & "$").
+				//				 afterComma = 0, the input '123' is allowed without these special charactors ("^" & "$").
 				//but , only maximum two digits input is allowed as per definition.
-				
+
 				rule.regEx	=	new	RegExp("^"	+	plusMinus + regEx	+	"$");
+
 				
 				if	(rule.amountRange	!=	undefined)	{
 				// function for checking amount in range
@@ -1119,7 +1117,7 @@
 			value = value.replace(regExpSpDo, "");
 
 			if	(!rule.regEx.test(value))	{
-				jQuery.data(input,"resultErrorText",rule.alertText);
+				jQuery.data(field,"resultErrorText",rule.alertText);
 				return rule.alertText;
 			}
 
@@ -1135,7 +1133,7 @@
 				// Restore the saved function of amount range checking.
 				var fnRange	=	rule.range;
 				if (!fnRange(value)) {
-				 	jQuery.data(input, "resultErrorText", rule.alertTextRange);
+				 	jQuery.data(field, "resultErrorText", rule.alertTextRange);
 				 	return rule.alertTextRange;
 				 }
 			}
@@ -1143,7 +1141,7 @@
 			// if value is Not-a-Number, then the error text is as below.
 			// this if is executed while the amount range is not defined.
 			 if	(!arrValue[0])	{
-			 		jQuery.data(input,"resultErrorText",rule.alertText);
+			 		jQuery.data(field,"resultErrorText",rule.alertText);
 			 		return	rule.alertText;
 			}
 
@@ -1161,7 +1159,7 @@
 			value = parseFloat((value+"").replace(regExpRange, "$1.$2"));
 			(value < 0) ? hexResult = hexResult.substring(0,(j-1)*2)+"D" +hexResult.substring(((j-1)*2)+1) : ""; 
 			
-			
+			//finalResultString	=	hexResult;
 			
 			//The following 'if..' is used for this kind of rule
 			//for example : LEER=(' ','0',' ') value 0 or empty results in empty
@@ -1182,7 +1180,7 @@
 			// 	}
 			// }
 			
-			jQuery.data(input,"resultString",hexResult);
+			jQuery.data(field,"resultString",hexResult);
 			//	alert("Final Value :"  + finalResultString +' , '+finalResultString.length);
 		},
 		/**
