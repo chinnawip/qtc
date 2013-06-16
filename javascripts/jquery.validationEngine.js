@@ -1062,11 +1062,20 @@
 					afterCommaInRule	=	(rule.afterComma	==	undefined)	?	0	:	rule.afterComma,
 					regEx = (beforeCommaInRule) ? "(\\d{1," + beforeCommaInRule + "})" : "";
 					regEx += (afterCommaInRule) ? "([\\,](\\d{1," + afterCommaInRule + "}))?" : "?";
+					
+					// save it  for subsequent referrence below.
 					rule.beforeComma	=	beforeCommaInRule;
 					rule.afterComma	=	afterCommaInRule;
-				// save the Regular Expression object for the next time.					
+				
+				// save the Regular Expression object for the next time.
+				
+				// "^" and "$" are added to match exact number of digits as defined in the definition.
+				// Otherwise, it will allow digit than the defined length
+				// for example : if beforeComma = 2 and
+				//		 afterComma = 0, the input '123' is allowed without these special charactors ("^" & "$").
+				//but , only maximum two digits input is allowed as per definition.
+				
 				rule.regEx	=	new	RegExp("^"	+	plusMinus + regEx	+	"$");
-				//rule.regEx	=	new	RegExp(plusMinus + regEx);
 				
 				if	(rule.amountRange	!=	undefined)	{
 				// function for checking amount in range
