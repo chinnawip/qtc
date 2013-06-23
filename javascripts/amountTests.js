@@ -14,6 +14,9 @@ module("Amount Validation");
          //$(field).validationEngine("validateField");
 
          equal(jQuery.data(field,"resultString"),"C0C1","Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultString"));
+         field.val("07");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultString"),"C0C7","Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultString"));
          field.val("99");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultString"),"C9C9","Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultString"));
@@ -6281,7 +6284,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertTextRange,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
          field.val("77");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertTextRange,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         equal(jQuery.data(field,"resultString"),"C7C7","Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
          field.val("+1");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultString"),"C0C1","Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultString"));
@@ -6290,7 +6293,7 @@ test("Rule : BTR00106", function() {
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertTextRange,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
          field.val("+77");
          $.methodAmount(field, rules, i, options);
-         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertTextRange,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         equal(jQuery.data(field,"resultString"),"C7C7","Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
          field.val("123");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
