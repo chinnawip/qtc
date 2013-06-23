@@ -174,7 +174,7 @@
                   // "regex": /^(([1-9][\/][0-9]{2})|([1-9][\/][0-9]{4}))$/,
                    "dateFormat": ["M/JJ","M/JJJJ"],
                    "dateFormatOutput": "MM/JJJJ",
-                   "dateRange": "199001:TODAYM",
+                   "dateRange": ["199001:TODAYM"],
                    "alertText": "* Please enter valid date in correct format",
                    "alertTextRange": " Please enter valid date range between 01.01.1990 and Today",
                    "alertTextRangeFormat": " Please define valid date range format like [YYYYMM]:[TODAYM|TODAYE|[TODAYE+N month(s)]] or [<=|<|>|>=][TODAYE|TODAYM|[TODAYE+N month(s)]]"
@@ -184,7 +184,7 @@
                   // "regex": /^(((0[1-9]|[12][0-9]|3[01])(0[1-9]|1[012])([0-9]{4}))|((0[1-9]|[12][0-9]|3[01])(0[1-9]|1[012])([0-9]{2}))|([1-9][\.][1-9][\.][0-9]{4})|([1-9][\.][1-9][\.][0-9]{2}))$/,
                    "dateFormat": ["TTMMJJJJ","TTMMJJ","T.M.JJ","T.M.JJJJ"],
                    "dateFormatOutput": "TT.MM.JJJJ",
-                   "dateRange": "<=TODAYE",
+                   "dateRange": ["<=TODAYE"],
                    "alertText": "* Please enter valid date in correct format",
                    "alertTextRange": " Please enter valid date <= Today",
                    "alertTextRangeFormat": " Please define valid date range format like [YYYYMM]:[TODAYM|TODAYE|[TODAYE+N month(s)]] or [<=|<|>|>=][TODAYE|TODAYM|[TODAYE+N month(s)]]"
@@ -194,7 +194,7 @@
                   // "regex": /^(((0[1-9]|[12][0-9]|3[01])(0[1-9]|1[012])([0-9]{4}))|((0[1-9]|[12][0-9]|3[01])(0[1-9]|1[012])([0-9]{2}))|([1-9][\.][1-9][\.][0-9]{4})|([1-9][\.][1-9][\.][0-9]{2}))$/,
                    "dateFormat": ["TTMMJJJJ","TTMMJJ","T.M.JJ","T.M.JJJJ"],
                    "dateFormatOutput": "TT.MM.JJJJ",
-                   "dateRange": "TODAYE:TODAYE+6M",
+                   "dateRange": ["TODAYE:TODAYE+6M"],
                    "alertText": "* Please enter valid date between today  and six months from today",
                    "alertTextRange": " Please enter valid date range between TODAYE:TODAYE+6M",
                    "alertTextRangeFormat": " Please define valid date range format like [YYYYMM]:[TODAYM|TODAYE|[TODAYE+N month(s)]] or [<=|<|>|>=][TODAYE|TODAYM|[TODAYE+N month(s)]]"
@@ -204,7 +204,7 @@
                   // "regex": /^(((0[1-9]|[12][0-9]|3[01])(0[1-9]|1[012])([0-9]{4}))|([1-9][\.][1-9][\.][0-9]{4})|((0[1-9]|[12][0-9]|3[01])[\.](0[1-9]|1[012])[\.][0-9]{4}))$/,
                    "dateFormat": ["TTMMJJJJ","T.M.JJJJ","TT.MM.JJJJ"],
                    "dateFormatOutput": "TT.MM.JJJJ",
-                   "dateRange": "",
+                  // "dateRange": "",
                    "alertText": "* Please enter valid date in correct format"
                 },
                 // DAT00013 DATUM  EIN=(TTMM,T.M.,T.MM.,TT.M.),AUS=TT.MM.
@@ -255,8 +255,8 @@
                      "afterComma":0,
                      "plus": "+",
                      "minus": "-",
-                     "plusLeadVal": "C",
-                     "minusLeadVal": "D",
+                     //"plusLeadVal": "C",
+                    // "minusLeadVal": "D",
                      "alertText": "* Enter valid amount in '99' format."
                 },
                 "LDC0402": {
@@ -264,8 +264,8 @@
                      "afterComma":2,
                      "plus": "+",
                      "minus": "-",
-                     "plusLeadVal": "C",
-                     "minusLeadVal": "D",
+                 //    "plusLeadVal": "C",
+                 //    "minusLeadVal": "D",
                      "alertText": "* Enter valid amount in '9999,99' format."
                 },
                 "ADV0200": {
@@ -847,7 +847,7 @@
                      "afterComma":0,
                      "plus": "+",
                      "minus": "-",
-                     "alertText": "* Enter valid amount in '9999'  format"
+                     "alertText": "* Enter valid amount in '9999' format"
                 },
                 "BTR00401": {
                     // "regex": /^[\+\-]?([0-9]{1,3}\.([0-9]{3}\.)*[0-9]{3}|[0-9]{1,4})(([\,][1-9]{1}))?$/,
@@ -1159,7 +1159,7 @@
                     // "regex": /^(([0-9]{1,2}))$/,
                      "beforeComma": 2,
                      "afterComma":0,
-                     "amountRange": ["0:23"],
+                     "amountRange": ["0:23","70:90"],
                      "plus": "+",
                      "minus": "-",
                      "alertText": "* Enter valid amount in '99' format.",
