@@ -1441,7 +1441,7 @@
 							if	(inputFormatYearLength	>	2)	
 								year	=	datestrInNewFormat.substr(outputFormat.indexOf("y"),yearFmt.length	+	2);
 							else	if(inputFormatYearLength	==	2)	{
-								year	=	datestrInNewFormat.substr(outputFormat.indexOf("y")	+	2,	yearFmt.length);
+					//			year	=	datestrInNewFormat.substr(outputFormat.indexOf("y")	+	2,	yearFmt.length);
 								year	=	(parseInt(year,10)>49)?	year	=	"19"	+	year	: "20"	+	year;
 							}
 						// just replacing the output format with the corresponding values.	
