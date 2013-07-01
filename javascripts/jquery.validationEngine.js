@@ -13,7 +13,7 @@
  (function($) {
 
 	"use strict";
-	var stringZeros	=	"000000000000000000000000000";
+	
 	var methods = {
 
 		/**
@@ -1042,7 +1042,7 @@
 				rule = options.allrules[customRule],
 				value = field.val(),
 				regExpSpDo = new RegExp("[\\s\\.]", "g"),
-				regExpRange = new RegExp("([\\d]+)[\\,]?([\\d]*)", "g");
+				regExpComma = new RegExp("[,]");
 				jQuery.data(field,"resultString","No Data Found");
 				jQuery.data(field,"resultErrorText","No Data Found");
 			
@@ -1052,61 +1052,59 @@
 				return;
 			}
 			
+			//The following 'if..' is used for this kind of rule
+			//for example : LEER=(' ','0',' ') value 0 or empty results in empty
+			//				LEER=(' ','0','0') value 0 or empty results in 0000000
+			//				LEER=('0','0','0') value 0 results in 0000000
+
+			if	(rule.emptyFormat	!=	undefined)	{
+				((value+"")	==	rule.emptyFormat[0]	||	(value+"")	==	rule.emptyFormat[1])?	value	=	rule.emptyFormat[2]	: ""
+			}
+
 			//if regular expression of the rule selected is not exist.
 			 if (!rule.regEx) {
-				var	plus	=	(rule.plus	==	undefined)	?	"+"	:	rule.plus,      
-					minus	=	(rule.minus	==	undefined)	?	""	:	rule.minus,
-					plusMinus = (minus) ? "[\\" + plus + "\\" + minus + "]?" : "[\\" + plus + "]?",
-					beforeCommaInRule	=	(rule.beforeComma	==	undefined)	?	1	:	rule.beforeComma,
-					afterCommaInRule	=	(rule.afterComma	==	undefined)	?	0	:	rule.afterComma,
-					regEx = (beforeCommaInRule) ? "(\\d{1," + beforeCommaInRule + "})" : "";
-					regEx += (afterCommaInRule) ? "([\\,](\\d{1," + afterCommaInRule + "}))?" : "?";
+				rule.beforeComma = (rule.beforeComma == undefined) ? 1 : parseInt(rule.beforeComma, 10);
+				rule.afterComma = (rule.afterComma == undefined) ? 0 : parseInt(rule.afterComma, 10);
+				var plusMinus = (rule.minus) ? "^[+|-]?" : "^[+]?",  
+					regEx = plusMinus + "\\d{1," + rule.beforeComma + "}";
+				regEx += (rule.afterComma) ? "([.]\\d{0," + rule.afterComma + "})?$" : "$";
+				rule.regEx	= new RegExp(regEx);
 
-					// save it  for subsequent referrence below.
-					rule.beforeComma	=	beforeCommaInRule;
-					rule.afterComma	=	afterCommaInRule;
-				// save the Regular Expression object for the next time.
-				// "^" and "$" are added to match exact number of digits as defined in the definition.
-				// Otherwise, it will allow digit than the defined length
-				// for example : if beforeComma = 2 and
-				//				 afterComma = 0, the input '123' is allowed without these special charactors ("^" & "$").
-				//but , only maximum two digits input is allowed as per definition.
-
-				rule.regEx	=	new	RegExp("^"	+	plusMinus + regEx	+	"$");
-
+				rule.range	=	[]; 
 				
-				if	(rule.amountRange	!=	undefined)	{
 				// function for checking amount in range
-					rule.range	=	(!rule.range)?	[]	: rule.range; 
+				if (rule.amountRange == undefined) {
+          			rule.range[0] = function(){return true;};
+				}	else	{
 					var	index	=	0;
 					rule.amountRange.forEach( function(_range){
 					var _op1, _op2;
-					_range = _range.replace(regExpSpDo, "");
+					_range = _range.replace(regExpSpDo, "").replace(regExpComma, ".");
 					if (_range[0] === '<'){
 						if (_range[1] === '=') {
-						_op1 = parseFloat(_range.substr(2).replace(regExpRange, "$1.$2"));
+						_op1 = parseFloat(_range.substr(2));
 						_range	=	function (value) {return (value <= _op1) ? true : false;};
 						} else {
-						_op1 = parseFloat(_range.substr(1).replace(regExpRange, "$1.$2"));
+						_op1 = parseFloat(_range.substr(1));
 						_range	=	function (value) {return (value < _op1) ? true : false;};
 						}
 					} else if (_range[0] === '>'){
 						if (_range[1] === '=') {
-						_op1 = parseFloat(_range.substr(2).replace(regExpRange, "$1.$2"));
+						_op1 = parseFloat(_range.substr(2));
 						_range	=	function (value) {return (value >= _op1) ? true : false;};
 						} else {
-						_op1 = parseFloat(_range.substr(1).replace(regExpRange, "$1.$2"));
+						_op1 = parseFloat(_range.substr(1));
 						_range = function (value) {return (value > _op1) ? true : false;};
 						}
 					}else if (_range.indexOf(":") >= 0){
 						_range = _range.split(":");
-						_op1 = parseFloat(_range[0].replace(regExpRange, "$1.$2"));
-						_op2 = parseFloat(_range[1].replace(regExpRange, "$1.$2"));
+						_op1 = parseFloat(_range[0]);
+						_op2 = parseFloat(_range[1]);
 						_range	= function (value) {return (value >= _op1 && value <= _op2)
 						? true : false;};
 					}
 					else {
-						_op1 = parseFloat(_range.replace(regExpRange, "$1.$2"));
+						_op1 = parseFloat(_range);
 						_range	=	function (value) {return (value === _op1) ? true : false;};
 					}
 					// save the function for the next time.
@@ -1116,36 +1114,29 @@
 				
 			}   // if (!rule.regEx) 
 			
-			value = value.replace(regExpSpDo, "");
+			value = value.replace(regExpSpDo, "").replace(regExpComma, ".");
 
 			if	(!rule.regEx.test(value))	{
 				jQuery.data(field,"resultErrorText",rule.alertText);
 				return rule.alertText;
 			}
 
-			var arrValue = value.split(",");
-
-			(!arrValue[0]) ? arrValue[0] = "" :  ((arrValue[0]).indexOf('+') >= 0 || (arrValue[0]).indexOf('-') >= 0) ? arrValue[0] = (arrValue[0]).substr(1)	: arrValue[0];
-			(!arrValue[1]) ? arrValue[1] = "" : arrValue[1];
+			var arrValue = [];
+			arrValue = value.split(".", 2);
+			value = parseFloat(value);
 
 			// For validating amount in range .
-			if	(rule.amountRange	!=	undefined)	{	
 
-				value = parseFloat(value.replace(regExpRange, "$1.$2"));
-				// Restore the saved function of amount range checking.
-				var i	=	0,	fnRangeSize	=	rule.range.length,	found	=	false;
-				while(i	<	fnRangeSize){
-					var fnRange	=	rule.range[i++];	
-					if (fnRange(value)) {
-						found	=	true;
-					 	break;
-					 }
-				}
-				if	(!found)	{
-					jQuery.data(field,"resultErrorText",rule.alertTextRange);
-			 		return	rule.alertTextRange;
-			 	}
+			// Restore the saved function of amount range checking.
+			var	i	=	0,	len	=	rule.range.length,	found	=	false;
+			while(len--	&&	!found){
+				found = rule.range[i++](value);
 			}
+			if	(!found)	{
+				jQuery.data(field,"resultErrorText",rule.alertTextRange);
+		 		return	rule.alertTextRange;
+		 	}
+
 			
 			// if value is Not-a-Number, then the error text is as below.
 			// this if is executed while the amount range is not defined.
@@ -1154,8 +1145,13 @@
 			 		return	rule.alertText;
 			}
 
-			var finalResultString = stringZeros.substr(0,(parseInt(rule.beforeComma,10) - arrValue[0].length)) + arrValue[0]	+ arrValue[1] + stringZeros.substr(0, (parseInt(rule.afterComma,10) - arrValue[1].length));
-			
+			(arrValue[0] && (arrValue[0].indexOf('+') >= 0 || arrValue[0].indexOf('-') >= 0)) ? arrValue[0] = arrValue[0].substr(1) : "";
+			var	finalResultString	=	$.validationEngine.defaults.stringZeros.substr(0, rule.beforeComma - arrValue[0].length)	+	arrValue[0];
+
+			(!arrValue[1] && rule.afterComma) ? arrValue[1]	=	$.validationEngine.defaults.stringZeros.substr(0, rule.afterComma) : "";
+			finalResultString	+=	(arrValue[1]) ? arrValue[1]	+	$.validationEngine.defaults.stringZeros.substr(0, rule.afterComma - arrValue[1].length) : "";
+		
+
 			// The following 'if..' is used for this kind of rule.
 			// for example:  12  result: C0C0C1C2C0C0
 			// 				-12  result: C0C0C1C2C0D0
@@ -1165,29 +1161,9 @@
 			while(i < j)	{
 				hexResult += "C"+finalResultString[i++];
 			}
-			value = parseFloat((value+"").replace(regExpRange, "$1.$2"));
 			(value < 0) ? hexResult = hexResult.substring(0,(j-1)*2)+"D" +hexResult.substring(((j-1)*2)+1) : ""; 
 			
 			//finalResultString	=	hexResult;
-			
-			//The following 'if..' is used for this kind of rule
-			//for example : LEER=(' ','0',' ') value 0 or empty results in empty
-			//				LEER=(' ','0','0') value 0 or empty results in 0000000
-			//				LEER=('0','0','0') value 0 results in 0000000
-
-			// Still to be tested.
-			
-			// if (rule.emptyFormat != undefined) {
-			// 	var emptyFormatVal = options.allrules[customRule].emptyFormat,
-			// 		emptyFormatArray = emptyFormatVal.split(',');
-				
-			// 	if (parseInt(finalResultString,10) == emptyFormatArray[0] || parseInt(finalResultString,10) == emptyFormatArray[1]) {
-			// 		var len = finalResultString.length;
-			// 		for (var i = 0; i < len; i++){
-			// 			finalResultString  = finalResultString.replace(finalResultString[i],emptyFormatArray[2]);
-			// 		}
-			// 	}
-			// }
 			
 			jQuery.data(field,"resultString",hexResult);
 			//	alert("Final Value :"  + finalResultString +' , '+finalResultString.length);
@@ -1441,7 +1417,7 @@
 							if	(inputFormatYearLength	>	2)	
 								year	=	datestrInNewFormat.substr(outputFormat.indexOf("y"),yearFmt.length	+	2);
 							else	if(inputFormatYearLength	==	2)	{
-					//			year	=	datestrInNewFormat.substr(outputFormat.indexOf("y")	+	2,	yearFmt.length);
+							//	year	=	datestrInNewFormat.substr(outputFormat.indexOf("y")	+	2,	yearFmt.length);
 								year	=	(parseInt(year,10)>49)?	year	=	"19"	+	year	: "20"	+	year;
 							}
 						// just replacing the output format with the corresponding values.	
@@ -2571,7 +2547,10 @@
 	 // Custom ID uses suffix
 	 useSuffix: "",
 	 // Only show one message per error prompt
-	 showOneMessage: false
+	 showOneMessage: false,
+	 //	String Zeros used for prefixing and suffing with entered value.
+	 stringZeros:	"000000000000000000000000000"
+
 	}};
 	$(function(){$.validationEngine.defaults.promptPosition = methods.isRTL()?'topLeft':"topRight"});
 })(jQuery);
