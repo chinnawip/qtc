@@ -230,14 +230,14 @@
                 },
                 // VSPBTG01 BETRAG NACHK=2,VORK=5,LEER=(' ','0',' '),DEZ=',',         WERT=('0:10','99,99')   
                 "VSPBTG01":{
-                     "beforeComma": 2,
-                     "afterComma":0,
+                     "beforeComma": 5,
+                     "afterComma":2,
                      "plus": "+",
                      "minus": "-",
                      "amountRange": ["0:10","99,99"],
-                     "emptyFormat": " ,0, ",
+                     "emptyFormat": ["" ,0, ""],
                      "alertText": "* Enter valid amount in '99' format.",
-                     "alertTextRange": "* Enter valid amount between 0 and 1"
+                     "alertTextRange": "* Enter valid amount among the range ['0:10','99,99']"
                 },
                 // VSPBTG02 BETRAG NACHK=0,VORK=2,LEER=(' ','0',' '),WERT=(0,1)
                 "VSPBTG02":{
@@ -246,10 +246,292 @@
                      "plus": "+",
                      "minus": "-",
                      "amountRange": ["0","1"],
-                     "emptyFormat": " ,0, ",
+                     "emptyFormat": ["" ,0, ""],
                      "alertText": "* Enter valid amount in '99' format.",
                      "alertTextRange": "* Enter valid amount between 0 and 1"
                 },
+                //VSPV0101 BETRAG NACHK=1,VORK=1,LEER=(' ','0',' '),MINUS='-',DEZ=','
+                "VSPV0101":{
+                     "beforeComma": 1,
+                     "afterComma":1,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '9,9' format."
+                },
+                "VSPV0106":{
+                     "beforeComma": 1,
+                     "afterComma":6,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '9,999999' format."
+                },
+                "VSPV0402":{
+                     "beforeComma": 4,
+                     "afterComma":2,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '9999,99' format."
+                },
+                "VSPV0403":{
+                     "beforeComma": 4,
+                     "afterComma":3,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '9999,999' format."
+                },
+                "VSPV0500":{
+                     "beforeComma": 5,
+                     "afterComma":0,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '99999' format."
+                },
+                "VSPV0501":{
+                     "beforeComma": 5,
+                     "afterComma":1,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '99999,9' format."
+                },
+                "VSPV0502":{
+                     "beforeComma": 5,
+                     "afterComma":2,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '99999,99' format."
+                },
+                "VSPV0600":{
+                     "beforeComma": 6,
+                     "afterComma":0,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '999999' format."
+                },
+                "VSPV0602":{
+                     "beforeComma": 6,
+                     "afterComma":2,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '999999,99' format."
+                },
+                
+                "VSPV0700":{
+                     "beforeComma": 7,
+                     "afterComma":0,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '9999999' format."
+                },
+                "VSPV0701":{
+                     "beforeComma": 7,
+                     "afterComma":1,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '9999999,9' format."
+                },
+                "VSPV0702":{
+                     "beforeComma": 7,
+                     "afterComma":2,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '9999999,99' format."
+                },
+                "VSP00100":{
+                     "beforeComma": 1,
+                     "afterComma":0,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '9' format."
+                },
+                  "VSP00200":{
+                     "beforeComma": 2,
+                     "afterComma":0,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '99' format."
+                },
+                  "VSP00201":{
+                     "beforeComma": 2,
+                     "afterComma":1,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '99,9' format."
+                },
+                "VSP00300":{
+                     "beforeComma": 3,
+                     "afterComma":0,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '999' format."
+                },
+                  "VSP00302":{
+                     "beforeComma": 3,
+                     "afterComma":2,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '999,99' format."
+                },
+                  "VSP00400":{
+                     "beforeComma": 4,
+                     "afterComma":0,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '9999' format."
+                },
+                  "VSP00402":{
+                     "beforeComma": 4,
+                     "afterComma":2,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '9999,99' format."
+                },
+                  "VSP00500":{
+                     "beforeComma": 5,
+                     "afterComma":0,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '99999' format."
+                },
+                  "VSP00501":{
+                     "beforeComma": 5,
+                     "afterComma":1,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '99999,9' format."
+                },
+                 "VSP00502":{
+                     "beforeComma": 5,
+                     "afterComma":2,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '99999,99' format."
+                },
+                  "VSP00600":{
+                     "beforeComma": 6,
+                     "afterComma":0,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '999999' format."
+                },
+                  "VSP00601":{
+                     "beforeComma": 6,
+                     "afterComma":1,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '999999,9' format."
+                },
+                 "VSP00602":{
+                     "beforeComma": 6,
+                     "afterComma":2,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '999999,99' format."
+                },
+                 "VSP00603":{
+                     "beforeComma": 6,
+                     "afterComma":3,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '999999,999' format."
+                },
+                 "VSP00700":{
+                     "beforeComma": 7,
+                     "afterComma":0,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '9999999' format."
+                },
+                "VSP00701":{
+                     "beforeComma": 7,
+                     "afterComma":1,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '9999999,9' format."
+                },
+                 "VSP00702":{
+                     "beforeComma": 7,
+                     "afterComma":2,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '9999999,99' format."
+                },
+                "VSP00800":{
+                     "beforeComma": 8,
+                     "afterComma":0,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '99999999' format."
+                },
+                "VSP00802":{
+                     "beforeComma": 8,
+                     "afterComma":2,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '99999999,99' format."
+                
+                },
+                "VSP00902":{
+                     "beforeComma": 9,
+                     "afterComma":2,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '999999999,99' format."
+                
+                },
+                "VSP01000":{
+                     "beforeComma": 10,
+                     "afterComma":0,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '9999999999' format."
+                
+                },
+                "VSP01200":{
+                     "beforeComma": 12,
+                     "afterComma":0,
+                     "plus": "+",
+                     "minus": "-",
+                     "emptyFormat": ["" ,0, ""],
+                     "alertText": "* Enter valid amount in '999999999999' format."
+                
+                },
+                
+                
+                
+
                 "LDC0200": {
                      "beforeComma": 2,
                      "afterComma":0,
