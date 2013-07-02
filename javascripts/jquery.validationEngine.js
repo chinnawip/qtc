@@ -974,57 +974,7 @@
 		  return options.allrules[rules[i]].alertText;
 		}
 		},
-		/**
-		* Validate amount range 
-		*
-		* @param {String} fieldValueAmount
-		* @param {String} amountRangeFormat
-		* @param {Map}
-		*            user options
-		* @param {String} ruleName
-		* @return an error string if validation failed
-		*/
-		_validateAmountRange:	function(fieldValueAmount, amountRangeFormat, options,ruleName){
-			var	amountRange,
-				resultPass	=	"pass" ;
-			if	(amountRangeFormat.indexOf(":")	>=	0)	{
-				var	amountRangeArray	=	amountRangeFormat.split(":"),
-					rangeStart = amountRangeArray[0],
-					rangeEnd	=	amountRangeArray[1];
-				
-				if	(rangeEnd.indexOf(",")	>=	0)	rangeEnd = rangeEnd.replace(/\,/g,'.');
-				if	(fieldValueAmount.indexOf(",")	>=	0)	fieldValueAmount	=	fieldValueAmount.replace(/\,/g,'.');
-				if	((parseInt(fieldValueAmount,10)	>=	parseInt(rangeStart,10)	&&	parseInt(fieldValueAmount,10)	<=	parseInt(rangeEnd,10)))	return resultPass ;
-
-			}	else if	(amountRangeFormat.indexOf("<=")	>=	0)	{
-				amountRange	=	parseInt(amountRangeFormat.substr(2),10);
-				if	((parseInt(fieldValueAmount,10)	<=	amountRange))	return resultPass ;
-
-			}	else if	(amountRangeFormat.indexOf("<")	>=	0)	{
-				amountRange	=	parseInt(amountRangeFormat.substr(1),10);
-				if	((parseInt(fieldValueAmount,10)	<	amountRange))	return resultPass ;
-
-			}	else if	(amountRangeFormat.indexOf(">=")	>=	0)	{
-				amountRange	=	parseInt(amountRangeFormat.substr(2),10);
-				if	((parseInt(fieldValueAmount,10)	>=	amountRange))	return resultPass ;
-
-			}	else if	(amountRangeFormat.indexOf(">")	>=	0)	{
-				amountRange = parseInt(amountRangeFormat.substr(1),10);
-				if	((parseInt(fieldValueAmount,10) > amountRange))	return resultPass ;
-
-			}	else if(amountRangeFormat.indexOf(",")	>=	0)	{
-				var	amountRangeVal	=	amountRangeFormat;
-				amountRangeVal	=	amountRangeVal.replace(/\,/g,'.');
-				if	(fieldValueAmount.indexOf(",")	>=	0)
-					fieldValueAmount = fieldValueAmount.replace(/\,/g,'.');
-
-				if	(parseInt(fieldValueAmount,10)	==	parseInt(amountRangeVal,10))
-					return resultPass ;
-
-			}	else	{
-				if (parseInt(fieldValueAmount,10) == parseInt(amountRangeFormat,10))	return resultPass ;
-			}
-		},
+		
 
 		
 		/**
@@ -1168,110 +1118,7 @@
 			jQuery.data(field,"resultString",hexResult);
 			//	alert("Final Value :"  + finalResultString +' , '+finalResultString.length);
 		},
-		/**
-		* Get start Range and end range date
-		*
-		* @param {String} dtRangeValue
-		* @param {String} startEndFlag
-		* @return an error string if validation failed, otherwise returns the oppropriate value.
-		*/
-		_getDateRange: function(dtRangeValue,startEndFlag){
-			var dateRangeOut;
-			var date = new Date();
-			var todayDateTemp = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-			var pattern = new RegExp("^[0-9]{6}$");
-
-			if (pattern.test(dtRangeValue)){
-				if(dtRangeValue.length == 6){
-					if(startEndFlag =='S'){
-						return  new Date(dtRangeValue.substr(4,2) +"."+"01." + dtRangeValue.substr(0,4));
-						//return  new Date(dtRangeValue.substr(0,4),dtRangeValue.substr(4,2),1);
-					}else{
-						return  new Date(dtRangeValue.substr(4,2) +"."+todayDateTemp.getDate()+'.'+dtRangeValue.substr(0,4));
-						//return  new Date(dtRangeValue.substr(0,4),dtRangeValue.substr(4,2),0);
-					}
-				}else{
-					return "formatError";
-				}
-			}else if (dtRangeValue == "TODAYM" || dtRangeValue == "HEUTM"){
-					if(startEndFlag =='S'){
-						return  new Date((todayDateTemp.getMonth()+1) + '.' + "01"+'.'+todayDateTemp.getFullYear());
-					}else{
-						return  new Date((todayDateTemp.getMonth()+1)+'.'+todayDateTemp.getDate()+'.' + todayDateTemp.getFullYear());
-					}
-			}else if (dtRangeValue == "TODAYE" || dtRangeValue == "HEUTE"){
-					var todayDate = new Date();
-					return new Date((todayDate.getMonth()+1) + '.' +todayDate.getDate()+'.'+ todayDate.getFullYear());
-			}else if(dtRangeValue.indexOf("+") >=0 ){
-				var addMonthStr = dtRangeValue.substr(dtRangeValue.indexOf('+')+1);
-				var addMonthStrTemp ="";
-				for(var i= 0;i< addMonthStr.length;i++){
-					if(addMonthStr[i] >0 && addMonthStr[i] <=9){
-						addMonthStrTemp = addMonthStrTemp + addMonthStr[i]; 
-					}
-				}
-				var addMonthValue = parseInt(addMonthStrTemp,10);
-				if (dtRangeValue.indexOf("TODAYM") >= 0 || dtRangeValue.indexOf("HEUTM") >=0 ){
-					if(startEndFlag =='S'){
-						return  new Date(((todayDateTemp.getMonth()+1)+addMonthValue) + '.' + "01"+'.'+todayDateTemp.getFullYear());
-					}else{
-						return  new Date(((todayDateTemp.getMonth()+1)+addMonthValue)+'.'+todayDateTemp.getDate()+'.' + todayDateTemp.getFullYear());
-					}
-				}else if (dtRangeValue.indexOf("TODAYE") >= 0 || dtRangeValue.indexOf("HEUTE")>=0){
-					var todayDate1 = new Date();
-					return new Date(((todayDate1.getMonth()+1)+addMonthValue) + '.' +todayDate1.getDate()+'.'+ todayDate1.getFullYear());
-				}
-			}else{
-				return "formatError";
-			}
-		},
-		/**
-		* Validate date range 
-		*
-		* @param {String} fieldValueDate
-		* @param {String} dtRangeFormat
-		* @param {Map}
-		*            user options
-		* @param {String} ruleName
-		* @return an error string if validation failed
-		*/
-		_validateDateRange: function(fieldValueDate, dtRangeFormat, options,ruleName){
-			var todayDate = new Date();
-			if(dtRangeFormat.indexOf(":")>=0){
-				var dateRangeArray = dtRangeFormat.split(":");
-				var rangeStart = methods._getDateRange(dateRangeArray[0],'S');
-				var rangeEnd = methods._getDateRange(dateRangeArray[1],'E');
-				if(rangeStart == "formatError" || rangeEnd == "formatError"){
-					return options.allrules[ruleName].alertTextRangeFormat;
-				}
-
-				if (!(fieldValueDate >= rangeStart && fieldValueDate <= rangeEnd))
-				{
-					return options.allrules[ruleName].alertTextRange ;
-				}
-			}else if(dtRangeFormat == "<=HEUTE" || dtRangeFormat == "<HEUTE" || dtRangeFormat == ">=HEUTE" || dtRangeFormat == ">HEUTE"  ||
-					dtRangeFormat == "<=TODAYE" || dtRangeFormat == "<TODAYE" || dtRangeFormat == ">=TODAYE" || dtRangeFormat == ">TODAYE"  )
-			{
-					if (dtRangeFormat.indexOf("<=") >=0){
-						if(!(fieldValueDate <= todayDate)){
-							return options.allrules[ruleName].alertTextRange ;
-						}
-					}else if (dtRangeFormat.indexOf("<") >=0){
-						if(!(fieldValueDate < todayDate)){
-							return options.allrules[ruleName].alertTextRange ;
-						}
-					}else if (dtRangeFormat.indexOf(">=") >=0){
-						if(!(fieldValueDate >= todayDate)){
-							return options.allrules[ruleName].alertTextRange ;
-						}
-					}else if (dtRangeFormat.indexOf(">") >=0){
-						if(!(fieldValueDate > todayDate)){
-								return options.allrules[ruleName].alertTextRange ;
-						}
-					}
-			}
-			
-		},
+		
 		/**
 		* Validate date rules
 		*
@@ -1290,8 +1137,7 @@
 				regExpSl = new RegExp("[\/]", "g"),
 				regExpSpDo = new RegExp("[\\s\\.]", "g"),
 				dateFormatInputArray = rule.dateFormat,
-				dateFormatInputArrayLength	=	dateFormatInputArray.length,
-				index	=	0;
+				dateFormatInputArrayLength	=	dateFormatInputArray.length;
 			jQuery.data(field,"resultString","No Data Found");
 			jQuery.data(field,"resultErrorText","No Data Found");
 
@@ -1305,22 +1151,26 @@
 			rule.inputFormat	=	(!rule.inputFormat)?	[]	: rule.inputFormat;
 			
 			for (i = 0; i < dateFormatInputArrayLength; i++) {  //parse the input date format defined
-				var	regexTemp	=	"";
-
-				 if(!(rule.regEx[dateFormatInputArray[i]]))
-				  {
-				  	regexTemp	=	dateFormatInputArray[i].replace(/TT/g,"(0[1-9]|[12][0-9]|3[01])").replace(/MM/g,"(0[1-9]|1[012])").replace(/T/g,"[1-9]").replace(/M/g,"[1-9]").replace(/JJJJ/g,"[0-9]{4}").replace(/JJ/g,"[0-9]{2}").replace(regExpDo,"[\\.]").replace(regExpSl,"[\\/]");
+				 if	(!(rule.regEx[dateFormatInputArray[i]]))	{
+				  	var	regexTemp	=	dateFormatInputArray[i].replace(/TT/g,"(0[1-9]|[12][0-9]|3[01])").replace(/MM/g,"(0[1-9]|1[012])").replace(/T/g,"[1-9]").replace(/M/g,"[1-9]").replace(/JJJJ/g,"[0-9]{4}").replace(/JJ/g,"[0-9]{2}").replace(regExpDo,"[\\.]").replace(regExpSl,"[\\/]");
 					rule.regEx[dateFormatInputArray[i]]	=	new RegExp('^(' + regexTemp + ')$');
 					rule.outputFormat	=	rule.dateFormatOutput.replace(/T/g,"d").replace(/M/g,"m").replace(/JJJJ/g,"yy").replace(/JJ/g,"yy");
 					rule.inputFormat[dateFormatInputArray[i]]	=	dateFormatInputArray[i].replace(/T/g,"d").replace(/M/g,"m").replace(/JJJJ/g,"yy").replace(/JJ/g,"yy");
-				if	(rule.dateRange	!=	undefined && !rule.range[index])	{
-
-				// function for checking amount in range
+			
+				// function for checking date in range
+				rule.range	=	[]; 
+				
+				if (rule.dateRange == undefined) {
+    	    		rule.range[0] = function(){return true;};
+				}	else	{
+					//if	(rule.dateRange	!=	undefined && !rule.range[index])	{
+				
 					var	todayDate	=	new Date(),
 						todaymonthStart	=	new Date(todayDate.getFullYear(),	todayDate.getMonth(), 1),
 						todaymonthEnd	=	new Date(todayDate.getFullYear(),	(todayDate.getMonth()	+	1), 0),
 						staticRange	= new RegExp("^[0-9]{6}$"),
 						regExGetNumber	=	new RegExp("([A-Z]+)([\\+]?)([\\d]+)([A-Z]+)", "g"),
+						index	=	0,
 						fnStaticRangeCheck	=	function(_staticRange)	{
 							//To check the literal value like "199001:TODAYM" or "19900101:TODAYM"
 							if	(staticRange.test(_staticRange))	{
@@ -1344,46 +1194,47 @@
 							}	else	
 							return	_staticRange;
 						};
+
 					rule.dateRange.forEach( function(_range){
 						var	_op1,	_op2;
 						_range	=	_range.replace(regExpSpDo, "");
 						if	(_range[0]	===	'<')	{
 							if	(_range[1]	===	'=')	{
-								_op1	=	new Date(_range.substr(2).replace(_range.substr(2),fnStaticRangeCheck(_range.substr(2))).replace("TODAYE", todayDate).replace("TODAYM", todaymonthEnd));
+								_op1	=	new Date(_range.substr(2).replace(_range.substr(2),fnStaticRangeCheck(_range.substr(2))).replace("TODAYE", todayDate).replace("TODAYM", todaymonthEnd).replace("HEUTE", todayDate).replace("HEUTM", todaymonthEnd));
 								_range	=	function (value) {return (value	<=	_op1) ? true : false;};
 							}	else	{
-								_op1	=	new Date(_range.substr(1).replace(_range.substr(1),fnStaticRangeCheck(_range.substr(1))).replace("TODAYE", todayDate).replace("TODAYM", todaymonthEnd));
+								_op1	=	new Date(_range.substr(1).replace(_range.substr(1),fnStaticRangeCheck(_range.substr(1))).replace("TODAYE", todayDate).replace("TODAYM", todaymonthEnd).replace("HEUTE", todayDate).replace("HEUTM", todaymonthEnd));
 								_range	=	function (value) {return (value	<	_op1) ? true : false;};
 							}
 						}	else if	(_range[0]	===	'>')	{
 							if	(_range[1]	===	'=')	{
-								_op1	=	new Date(_range.substr(2).replace(_range.substr(2),fnStaticRangeCheck(_range.substr(2))).replace("TODAYE", todayDate).replace("TODAYM", todaymonthStart));
+								_op1	=	new Date(_range.substr(2).replace(_range.substr(2),fnStaticRangeCheck(_range.substr(2))).replace("TODAYE", todayDate).replace("TODAYM", todaymonthStart).replace("HEUTE", todayDate).replace("HEUTM", todaymonthStart));
 								_range	=	function (value) {return (value	>=	_op1) ? true : false;};
 							}	else	{
-								_op1	=	new Date(_range.substr(1).replace(_range.substr(1),fnStaticRangeCheck(_range.substr(1))).replace("TODAYE", todayDate).replace("TODAYM", todaymonthStart));
+								_op1	=	new Date(_range.substr(1).replace(_range.substr(1),fnStaticRangeCheck(_range.substr(1))).replace("TODAYE", todayDate).replace("TODAYM", todaymonthStart).replace("HEUTE", todayDate).replace("HEUTM", todaymonthStart));
 								_range	=	function (value) {return (value	>	_op1) ? true : false;};
 							}
 						}	else if	(_range.indexOf(":")	>=	0)	{
 								_range	=	_range.split(":");
-								_op1	=	new Date(_range[0].replace(_range[0],fnStaticRangeCheck(_range[0].replace("TODAYE", todayDate).replace("TODAYM", todaymonthStart))));
-								_op2	=	new Date(_range[1].replace(_range[1],fnStaticRangeCheck(_range[1])).replace("TODAYE", todayDate).replace("TODAYM", todaymonthEnd));
+								_op1	=	new Date(_range[0].replace(_range[0],fnStaticRangeCheck(_range[0].replace("TODAYE", todayDate).replace("TODAYM", todaymonthStart).replace("HEUTE", todayDate).replace("HEUTM", todaymonthStart))));
+								_op2	=	new Date(_range[1].replace(_range[1],fnStaticRangeCheck(_range[1])).replace("TODAYE", todayDate).replace("TODAYM", todaymonthEnd).replace("HEUTE", todayDate).replace("HEUTM", todaymonthEnd));
 								// To set last date	of current month in the 'To' range, in case of "TODAYM".
-								((_range[1].match(/TODAYM/g)||[]).length >=	0)? _op2.setDate(todaymonthEnd.getDate())	: _op2;
+								(((_range[1].match(/TODAYM/g)||[]).length >=	0	||	(_range[1].match(/HEUTM/g)||[]).length >=	0))? _op2.setDate(todaymonthEnd.getDate())	: _op2;
 								_range	=	function (value) {return (value	>=	_op1 && value	<=	_op2)? true : false;};
 						}
 						else	{
-							_op1	=	new Date(_range.replace("TODAYE", todayDate).replace("TODAYM", todaymonthEnd).replace(_range,fnStaticRangeCheck(_range.substr(1))));
+							_op1	=	new Date(_range.replace("TODAYE", todayDate).replace("TODAYM", todaymonthEnd).replace("HEUTE", todayDate).replace("HEUTM", todaymonthEnd).replace(_range,fnStaticRangeCheck(_range.substr(1))));
 							_range	=	function (value) {return (value	===	_op1) ? true : false;};
 						}
 						// save the function for the next time to check range.
 						rule.range[index++]	=	_range;
 						});
-					}
- 				}
+					} // if	(rule.dateRange	!=	undefined && !rule.range[index])
+ 				}	// if	(!(rule.regEx[dateFormatInputArray[i]]))
  	
 				//  if pattern check with the input value is passed, the forming the output value.
 				if (rule.regEx[dateFormatInputArray[i]].test(value)){  
-						// formaing input value in the DD.MM.YYYY format
+						// forming input value in the DD.MM.YYYY format
 						var	inputFormat	=	rule.inputFormat[dateFormatInputArray[i]],
 							seperator	=	(inputFormat.indexOf(".")	>=	0)?		"."	:	(inputFormat.indexOf("/")	>=	0)?	"/"	:	"";
 							if	(inputFormat.indexOf("d")	<	0	)	{
@@ -1395,7 +1246,6 @@
 									value	=	"01"	+	seperator	+	value;
 								}
 							}	
-
 
 						//	Forming the output format with input value							
 						var	parseDateValue	=	$.datepicker.parseDate(inputFormat,  value),
@@ -1412,6 +1262,7 @@
 							year	=	datestrInNewFormat.substr(outputFormat.indexOf("y")	+	2,	yearFmt.length),
 							outputFormatYearLength	=	(rule.dateFormatOutput.match(/J/g)||[]).length,
 							inputFormatYearLength	=	(dateFormatInputArray[i].match(/J/g)||[]).length;
+
 						// Based on the year format, getting the full year.
 						if	(outputFormatYearLength	>	2)
 							if	(inputFormatYearLength	>	2)	
@@ -1426,13 +1277,9 @@
 						if	(rule.dateRange	!=	undefined)	{ 
 							var	dayTemp	=	(day	==	"")?	"01"	: day,
 								finalResultDate = new Date(month+'.'+dayTemp+"."+year),
-								i	=	0,	fnRangeSize	=	rule.range.length,	found	=	false;
-							while(i	<	fnRangeSize){
-								var fnRange	=	rule.range[i++];	
-								if (fnRange(finalResultDate)) {
-									found	=	true;
-								 	break;
-								 }
+						 		i	=	0,	len	=	rule.range.length,	found	=	false;
+							while(len--	&&	!found){
+								found = rule.range[i++](finalResultDate);
 							}
 							if	(!found)	{
 								jQuery.data(field,"resultErrorText",rule.alertTextRange);
