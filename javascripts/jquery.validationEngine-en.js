@@ -195,7 +195,7 @@
                    "dateFormat": ["TTMMJJJJ","TTMMJJ","T.M.JJ","T.M.JJJJ"],
                    "dateFormatOutput": "TT.MM.JJJJ",
                    "dateRange": ["TODAYE:TODAYE+6M"],
-                   "alertText": "* Please enter valid date between today  and six months from today",
+                   "alertText": "* Please enter valid date in correct format",
                    "alertTextRange": " Please enter valid date range between TODAYE:TODAYE+6M",
                    "alertTextRangeFormat": " Please define valid date range format like [YYYYMM]:[TODAYM|TODAYE|[TODAYE+N month(s)]] or [<=|<|>|>=][TODAYE|TODAYM|[TODAYE+N month(s)]]"
                  },
