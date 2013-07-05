@@ -1259,7 +1259,7 @@ _date: function (field, rules, i, options) {
             month = $.validationEngine.defaults.stringZeros.substr(0, (monthFmt.length - month.length)) + month;
 
             // convert to fullyear.
-            fullYear = (inputFormatYearLength === 2) ? ((parseInt(year, 10) > 49) ? "19" + year : "20" + year) : "";
+            fullYear = (inputFormatYearLength === 2) ? ((parseInt(year, 10) > 49) ? "19" + year : "20" + year) : year;
 
             // Based on the output year format, getting the full year.
             if (outputFormatYearLength > 2) {
