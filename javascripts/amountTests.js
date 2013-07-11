@@ -4,6 +4,7 @@ module("Amount Validation");
              i=0;
          options.allrules = $.validationEngineLanguage.allRules;
 
+
   test("Rule : ADV0200", function() {
         //var input = $('input','#opfieldDivId')[0];
         var field = $('#amountid');
@@ -47,7 +48,13 @@ module("Amount Validation");
          field.val("-");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         
 });
   test("Rule : ADV0500", function() {
         //var input = $('input','#opfieldDivId')[0];
@@ -93,6 +100,13 @@ module("Amount Validation");
          field.val("+");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         
    });
 
 test("Rule : BTRM0100", function() {
@@ -136,7 +150,14 @@ test("Rule : BTRM0100", function() {
          field.val("-");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         
+});
   test("Rule : BTRM0101", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid3');
@@ -181,7 +202,14 @@ test("Rule : BTRM0100", function() {
          field.val("-");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         
+});
 
   test("Rule : BTRM0102", function() {
 
@@ -228,7 +256,14 @@ test("Rule : BTRM0100", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         
+});
 
 test("Rule : BTRM0104", function() {
     //var input = $('input','#opfieldDivId')[0];
@@ -274,7 +309,14 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         
+});
     test("Rule : BTRM0106", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp5');
@@ -319,7 +361,14 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         
+});
    test("Rule : BTRM0107", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp6');
@@ -364,7 +413,14 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+  
+field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
  test("Rule : BTRM0200", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid5');
@@ -409,7 +465,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+           field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
     test("Rule : BTRM0201", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid6');
@@ -454,7 +516,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+           field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
    test("Rule : BTRM0202", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid7');
@@ -499,7 +567,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+           field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
    test("Rule : BTRM0205", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid8');
@@ -544,7 +618,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+           field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
    test("Rule : BTRM0207", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid9');
@@ -589,7 +669,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+           field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
    test("Rule : BTRM0208", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid10');
@@ -634,7 +720,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+           field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
    test("Rule : BTRM0300", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid11');
@@ -679,7 +771,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+           field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
    test("Rule : BTRM0301", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid12');
@@ -724,7 +822,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+           field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
    test("Rule : BTRM0302", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid13');
@@ -769,7 +873,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+           field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
 
    test("Rule : BTRM0303", function() {
       //var input = $('input','#opfieldDivId')[0];
@@ -815,7 +925,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+          field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
 
    test("Rule : BTRM0304", function() {
       //var input = $('input','#opfieldDivId')[0];
@@ -861,7 +977,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
    test("Rule : BTRM0305", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid16');
@@ -906,7 +1028,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM0308", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid17');
@@ -951,7 +1079,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM0309", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid18');
@@ -996,7 +1130,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
    test("Rule : BTRM0400", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-19');
@@ -1041,7 +1181,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM0402", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid-20');
@@ -1086,7 +1232,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM0404", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid21');
@@ -1131,7 +1283,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
    test("Rule : BTRM0407", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid22');
@@ -1176,7 +1334,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
    test("Rule : BTRM0500", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid23');
@@ -1221,7 +1385,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
    test("Rule : BTRM0502", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid24');
@@ -1266,7 +1436,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM0503", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid25');
@@ -1311,7 +1487,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
    test("Rule : BTRM0504", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid26');
@@ -1356,7 +1538,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
    test("Rule : BTRM0600", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid27');
@@ -1401,7 +1589,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
    test("Rule : BTRM0602", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid28');
@@ -1446,7 +1640,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM0604", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid29');
@@ -1491,7 +1691,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM0605", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid30');
@@ -1536,7 +1742,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM0608", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid31');
@@ -1581,7 +1793,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM0700", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid32');
@@ -1626,7 +1844,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM0702", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid33');
@@ -1671,7 +1895,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM0800", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid34');
@@ -1716,7 +1946,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM0801", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid35');
@@ -1761,7 +1997,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM0802", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid36');
@@ -1806,7 +2048,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM0807", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid37');
@@ -1851,7 +2099,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM0900", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid38');
@@ -1896,7 +2150,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM0902", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid39');
@@ -1941,7 +2201,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM0905", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid40');
@@ -1986,7 +2252,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM0906", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid41');
@@ -2031,7 +2303,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM1000", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid42');
@@ -2076,7 +2354,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM1002", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid43');
@@ -2121,7 +2405,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM1005", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid44');
@@ -2166,7 +2456,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM1100", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid45');
@@ -2211,7 +2507,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM1102", function() {
        //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid46');
@@ -2256,7 +2558,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM1300", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid47');
@@ -2301,7 +2609,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRM1400", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid48');
@@ -2346,7 +2660,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00100", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid-2');
@@ -2388,7 +2708,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
    test("Rule : BTR00101", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid-3');
@@ -2433,7 +2759,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00102", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid-4');
@@ -2478,7 +2810,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00103", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-5');
@@ -2523,7 +2861,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00104", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-6');
@@ -2589,7 +2933,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
  test("Rule : BTR00105", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-7');
@@ -2655,7 +3005,13 @@ test("Rule : BTRM0104", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
 test("Rule : BTR00106", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-8');
@@ -2721,7 +3077,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00112", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-9');
@@ -2787,7 +3149,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00200", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid-5');
@@ -2850,7 +3218,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00201", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid-6');
@@ -2916,7 +3290,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00202", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid-7');
@@ -2982,7 +3362,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00203", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid-81');
@@ -3048,7 +3434,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00205", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid-9');
@@ -3117,7 +3509,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00300", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid-11');
@@ -3183,7 +3581,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00301", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid-12');
@@ -3252,7 +3656,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00302", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid-13');
@@ -3321,7 +3731,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });;
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
    test("Rule : BTR00303", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid-14');
@@ -3390,7 +3806,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00304", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid-15');
@@ -3459,7 +3881,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00306", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid-16');
@@ -3528,7 +3956,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00308", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid-17');
@@ -3597,7 +4031,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00400", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid19');
@@ -3660,7 +4100,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00401", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid20');
@@ -3729,7 +4175,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00402", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-20');
@@ -3798,7 +4250,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00403", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid-p-20');
@@ -3867,7 +4325,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00404", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid-21');
@@ -3936,7 +4400,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00405", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-21');
@@ -4005,7 +4475,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00407", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid-22');
@@ -4074,7 +4550,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00500", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-22');
@@ -4137,7 +4619,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00501", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-23');
@@ -4206,7 +4694,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00502", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-24');
@@ -4275,7 +4769,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00503", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-25');
@@ -4344,7 +4844,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00600", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid-p-25');
@@ -4407,7 +4913,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00601", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-26');
@@ -4476,7 +4988,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00602", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-27');
@@ -4545,7 +5063,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00603", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-28');
@@ -4615,7 +5139,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00608", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid-29');
@@ -4685,7 +5215,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00700", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-29');
@@ -4749,7 +5285,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00701", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-30');
@@ -4819,7 +5361,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00702", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-31');
@@ -4889,7 +5437,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00703", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid-32');
@@ -4958,7 +5512,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00800", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-32');
@@ -5022,7 +5582,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00801", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-33');
@@ -5092,7 +5658,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00802", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-34');
@@ -5162,7 +5734,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00803", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-35');
@@ -5232,7 +5810,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00805", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-36');
@@ -5302,7 +5886,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00807", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid-37');
@@ -5372,7 +5962,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00900", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-37');
@@ -5436,7 +6032,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00901", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-38');
@@ -5506,7 +6108,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00902", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-39');
@@ -5576,7 +6184,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00903", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-40');
@@ -5646,7 +6260,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR00905", function() {
      //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid-41');
@@ -5716,7 +6336,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR01000", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-41');
@@ -5780,7 +6406,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR01001", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-42');
@@ -5850,7 +6482,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR01002", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-43');
@@ -5920,7 +6558,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR01003", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-44');
@@ -5990,7 +6634,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR01004", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-45');
@@ -6060,7 +6710,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR01005", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-46');
@@ -6130,7 +6786,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR01102", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-47');
@@ -6200,7 +6862,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTR01302", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountidp-48');
@@ -6270,7 +6938,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRLVE01", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amount-rangeid');
@@ -6315,7 +6989,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRLVE02", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amount-rangeid1');
@@ -6360,7 +7040,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRLVE03", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amount-rangeid2');
@@ -6405,7 +7091,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRLVF01", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amount-rangeid3');
@@ -6450,7 +7142,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRN0700", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amount-rangeid4');
@@ -6513,7 +7211,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : BTRW0202", function() {
       ////var input = $('input','#opfieldDivId')[0];
       var field = $('#amount-rangeid5');
@@ -6584,7 +7288,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
    test("Rule : VSPBTG01 LEER('',0,'')", function() {
          var field = $('#amountid52');
          rules = ["","VSPBTG01"];
@@ -6643,7 +7353,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSPBTG02 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid51-1');
@@ -6686,7 +7402,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSPV0101 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid53');
@@ -6738,7 +7460,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSPV0106 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid54');
@@ -6790,7 +7518,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSPV0402 LEER('',0,'')", function() {
       var field = $('#amountid55');
          rules = ["","VSPV0402"];
@@ -6850,7 +7584,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSPV0403 LEER('',0,'')", function() {
       var field = $('#amountid56');
          rules = ["","VSPV0403"];
@@ -6909,7 +7649,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSPV0500 LEER('',0,'')", function() {
       var field = $('#amountid57');
          rules = ["","VSPV0500"];
@@ -6977,7 +7723,13 @@ test("Rule : BTR00106", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
 
 test("Rule : VSPV0501 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
@@ -7053,7 +7805,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSPV0502 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid59');
@@ -7128,7 +7886,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
 
   test("Rule : VSPV0600 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
@@ -7198,7 +7962,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSPV0602 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid61');
@@ -7273,7 +8043,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSPV0700 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid62');
@@ -7345,7 +8121,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSPV0701 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid63');
@@ -7423,7 +8205,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSPV0702 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid64');
@@ -7499,7 +8287,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSP00100 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid65');
@@ -7550,7 +8344,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSP00200 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid66');
@@ -7624,7 +8424,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSP00201 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid67');
@@ -7699,7 +8505,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSP00300 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid68');
@@ -7773,7 +8585,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   
   test("Rule : VSP00302 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
@@ -7850,7 +8668,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });;
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
    test("Rule : VSP00400 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid70');
@@ -7921,7 +8745,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   
   test("Rule : VSP00402 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
@@ -7999,7 +8829,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSP00500 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid72');
@@ -8070,7 +8906,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSP00501 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid73');
@@ -8147,7 +8989,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSP00502 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid74');
@@ -8224,7 +9072,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSP00600 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid75');
@@ -8295,7 +9149,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSP00601 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid76');
@@ -8372,7 +9232,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSP00602 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid77');
@@ -8449,7 +9315,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSP00603 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid78');
@@ -8527,7 +9399,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSP00700 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid79');
@@ -8599,7 +9477,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSP00701 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid80');
@@ -8677,7 +9561,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSP00702 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid81');
@@ -8753,7 +9643,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSP00800 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid82');
@@ -8823,7 +9719,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   
   test("Rule : VSP00802 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
@@ -8900,7 +9802,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSP00902 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid84');
@@ -8977,7 +9885,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
   test("Rule : VSP01000 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid85');
@@ -9048,7 +9962,13 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
    test("Rule : VSP01200 LEER('',0,'')", function() {
       //var input = $('input','#opfieldDivId')[0];
       var field = $('#amountid86');
@@ -9101,4 +10021,10 @@ test("Rule : VSPV0501 LEER('',0,'')", function() {
          field.val("- ");
          $.methodAmount(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
-  });
+         field.val("1a");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodAmount(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
