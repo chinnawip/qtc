@@ -1,13 +1,14 @@
-module("Date Validation");
-		var rules = new Object(),
-             options = new Object(),
-             i=0;
-         options.allrules = $.validationEngineLanguage.allRules; 
+
+ module("Date Validation");
+ //options = $.methodLoadCustomRules(options);
+   
+	
 test("Rule : DAT00003", function() {
+
 		//var input = $("input")[0];
         var field = $('#date1');
          rules = ["","DAT00003"];
-         
+
          field.val("1212");
          $.methodDate(field, rules, i, options);
          equal(jQuery.data(field,"resultString"),"1212","Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultString")); 
@@ -59,7 +60,13 @@ test("Rule : DAT00003", function() {
          field.val("1213");
          $.methodDate(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText")); 
-});
+         field.val("1a");
+         $.methodDate(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodDate(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
 test("Rule : DAT00004", function() {
 		//var input = $("input")[0];
         var field = $('#date2');
@@ -130,7 +137,13 @@ test("Rule : DAT00004", function() {
          equal(jQuery.data(field,"resultString"),"290212","Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultString")); 
          
 
-});
+         field.val("1a");
+         $.methodDate(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodDate(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
 test("Rule : DAT00005", function() {
 		//var input = $("input")[0];
         var field = $('#date3');
@@ -245,7 +258,13 @@ test("Rule : DAT00005", function() {
          $.methodDate(field, rules, i, options);
          equal(jQuery.data(field,"resultString"),"29022012","Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultString")); 
    
-});
+        field.val("1a");
+         $.methodDate(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodDate(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
 
  	test("Rule : DAT00006", function() {
  		//var input = $("input")[0];
@@ -282,7 +301,13 @@ test("Rule : DAT00005", function() {
          field.val("100");
          $.methodDate(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));  
-});
+        field.val("1a");
+         $.methodDate(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodDate(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
 test("Rule : DAT00008", function() {
  		//var input = $("input")[0];
         var field = $('#date5');
@@ -330,7 +355,13 @@ test("Rule : DAT00008", function() {
          field.val("13.00");
          $.methodDate(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));  
-});
+        field.val("1a");
+         $.methodDate(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodDate(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
  	test("Rule : DAT00013", function() {
  		//var input = $("input")[0];
         var field = $('#date7');
@@ -375,7 +406,13 @@ test("Rule : DAT00008", function() {
          field.val("32.7.");
          $.methodDate(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));  
-});
+        field.val("1a");
+         $.methodDate(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodDate(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
 
 
  	test("Rule : DAT00007", function() {
@@ -432,7 +469,13 @@ test("Rule : DAT00008", function() {
          $.methodDate(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertTextRange ,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));  
 
-});
+        field.val("1a");
+         $.methodDate(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodDate(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
 
  	test("Rule : DAT00009", function() {
  		//var input = $("input")[0];
@@ -545,7 +588,13 @@ test("Rule : DAT00008", function() {
          $.methodDate(field, rules, i, options);
          equal(jQuery.data(field,"resultString"),"29.02.2012","Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultString")); 
   
-});
+        field.val("1a");
+         $.methodDate(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodDate(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
     test("Rule : DAT00011", function() {
  		//var input = $("input")[0];
         var field = $('#date9');
@@ -648,7 +697,13 @@ test("Rule : DAT00008", function() {
          $.methodDate(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertTextRange,"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText")); 
  
-});
+        field.val("1a");
+         $.methodDate(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodDate(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
 
 
  	test("Rule : DAT00012", function() {
@@ -700,5 +755,11 @@ test("Rule : DAT00008", function() {
 		   field.val("12.13.2000");
          $.methodDate(field, rules, i, options);
          equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));  
-});
+        field.val("1a");
+         $.methodDate(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         field.val("#(");
+         $.methodDate(field, rules, i, options);
+         equal(jQuery.data(field,"resultErrorText"),options.allrules[rules[1]].alertText + ' ' + (options.allrules[rules[1]].dateFormat+'').replace(/,/g," or "),"Input : "+field.val()+ ", Result : "+jQuery.data(field,"resultErrorText"));
+         });
 
