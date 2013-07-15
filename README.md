@@ -1,7 +1,10 @@
 Main purpose of this project is that to add new validation for amount and date. The validation rule is been defined in the resource file (jquery.validationEngine-en.js)
 
 How to use validation for those fields?
+
+
 For amount:
+
 <input value="" class="validate[amount[ADV0500]] text-input" type="text" name="amountid53" id="amountid53" />
 Rule definition:
  "ADV0500": {
