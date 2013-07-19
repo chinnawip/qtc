@@ -1,7 +1,6 @@
 
  module("Date Validation");
- //options = $.methodLoadCustomRules(options);
-   
+ 
 	
 test("Rule : DAT00003", function() {
 
