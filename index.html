@@ -32,9 +32,9 @@
 			// binds form submission and fields to the validation engine
 //			$( ".datepicker" ).datepicker();
 			jQuery("#formID").validationEngine();
-			loadCustomRules1();
+			loadCustomRules();
 		});
-         function loadCustomRules1() {
+         function loadCustomRules() {
               var customRules = {
 	            'DAT00003': {
 	                'dateFormat': ['TTMM', 'T.M.'],
@@ -386,6 +386,15 @@
 					'minus': '-',
 					'emptyFormat': ['', 0, ''],
 					'alertText': '* Enter valid amount in "999999999999" format.'
+				},
+				'ADV0200': {
+					'beforeComma': 2,
+					'afterComma': 0,
+					'amountRange': ['>0'],
+					'plus': '+',
+					'minus': '-',
+					'alertText': '* Enter valid amount in "99" format.',
+					'alertTextRange': ' Please enter valid amount range >0'
 				},
                                 'ADV0500': {
 					'beforeComma': 5,
