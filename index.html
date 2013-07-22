@@ -61,7 +61,7 @@
 						'dateFormatOutput': 'MM.JJJJ',
 						'alertText': '* Please enter valid date in correct format'
 					},
- 'DAT00007': {
+                                 'DAT00007': {
 					'dateFormat': ['M/JJ', 'M/JJJJ'],
 					'dateFormatOutput': 'MM/JJJJ',
 					'dateRange': ['199001:TODAYM'],
@@ -90,10 +90,38 @@
 					'dateFormatOutput': 'TT.MM.JJJJ',
 					'alertText': '* Please enter valid date in correct format'
 				},
-			'DAT00013': {
+			       'DAT00013': {
 					'dateFormat': ['TTMM', 'T.M.', 'T.MM.', 'TT.M.'],
 					'dateFormatOutput': 'TT.MM.',
 					'alertText': '* Please enter valid date in correct format'
+				},
+	                       'VSPBTG01':{
+					'beforeComma': 5,
+					'afterComma':2,
+					'plus': '+',
+					'minus': '-',
+					'amountRange': ['0:10',"99,99"],
+					'emptyFormat': ['' ,0, ''],
+					'alertText': '* Enter valid amount in "99" format.',
+					'alertTextRange': '* Enter valid amount among the range ["0:10","99,99"]'
+				},
+				'VSPBTG02':{
+					'beforeComma': 2,
+					'afterComma':0,
+					'plus': '+',
+					'minus': '-',
+					'amountRange': ['0','1'],
+					'emptyFormat': ['' ,0, ''],
+					'alertText': '* Enter valid amount in "99" format.',
+					'alertTextRange': '* Enter valid amount between 0 and 1'
+				},
+				'VSPV0101':{
+					'beforeComma': 1,
+					'afterComma':1,
+					'plus': '+',
+					'minus': '-',
+					'emptyFormat': ['' ,0, ''],
+					'alertText': '* Enter valid amount in "9,9" format.'
 				}
 		},  keys , len;
 				/** To support all browsers */
