@@ -1241,6 +1241,19 @@
 					}                  
 
 				},
+				keys , len;
+				
+				/** To support all browsers */
+				if (typeof Object.keys != 'function') {
+					Object.keys = function(obj) {
+					if (typeof obj != "object" && typeof obj != "function" || obj == null) {
+					    throw TypeError("Object.keys called on non-object");
+					} 
+					var keys = [];
+					for (var p in obj) obj.hasOwnProperty(p) &&keys.push(p);
+					return keys;
+					}
+				}
 				keys = Object.keys(customRules), len = keys.length;
 				while(len--) {
 					options.allrules[keys[len]] = customRules[keys[len]];
