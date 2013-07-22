@@ -1054,7 +1054,7 @@ _amount:  function(field, rules, i, options) {
 						op1 = parseFloat(range.substr(1));
 						range = function (value) {return (value > op1) ? true : false; };
 				 	}
-				/** range is 1990:TODAYE */
+				/** range is ["0:23","70:90"] */
 				} else if (range.indexOf(':') >= 0) {
 					range = range.split(':');
 					op1 = parseFloat(range[0]);
@@ -1131,19 +1131,6 @@ _amount:  function(field, rules, i, options) {
 
 	jQuery.data(field, 'resultString', hexResult);
 },
-
-// testing for building dynamic rule.
-_loadCustomRules: function(options){
-
-	 var DAT00003 = {
-                   "dateFormat": ["TTMM","T.M."],
-                   "dateFormatOutput": "TTMM",
-                   "alertText": "* Please enter valid date in one of these formats"
-                },
-        ruleName = 'DAT00003';
-    options.allrules[ruleName] = DAT00003;
-    return options;
-},		
 
 		/**
 		* Validate date rules
