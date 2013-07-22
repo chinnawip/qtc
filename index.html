@@ -32,8 +32,1229 @@
 			// binds form submission and fields to the validation engine
 //			$( ".datepicker" ).datepicker();
 			jQuery("#formID").validationEngine();
+			loadCustomRules();
 		});
+                 /* function to load custom rules */
+		function loadCustomRules() {
+			
+			var customRules = {
+					'DAT00003': {
+						'dateFormat': ['TTMM', 'T.M.'],
+						'dateFormatOutput': 'TTMM',
+						'alertText': '* Please enter valid date in one of these formats'
+					},
+					'DAT00004': {
+						'dateFormat': ['TTMMJJ', 'T.M.JJ', 'TT.MM.JJ'],
+						'dateFormatOutput': 'TTMMJJ',
+						'alertText': '* Please enter valid date in correct format'
+					},
+					'DAT00005': {
+						'dateFormat': ['TTMMJJJJ', 'TTMMJJ', 'T.M.JJ', 'T.M.JJJJ'],
+						'dateFormatOutput': 'TTMMJJJJ',
+						'alertText': '* Please enter valid date in correct format'
+					},
+					'DAT00006': {
+						'dateFormat': ['MMJJ', 'M.JJ'],
+						'dateFormatOutput': 'MMJJ',
+						'alertText': '* Please enter valid date in correct format'
+					},
+					'DAT00008': {
+						'dateFormat': ['MM.JJ', 'MM.JJJJ'],
+						'dateFormatOutput': 'MM.JJJJ',
+						'alertText': '* Please enter valid date in correct format'
+					},
+					'DAT00007': {
+						'dateFormat': ['M/JJ', 'M/JJJJ'],
+						'dateFormatOutput': 'MM/JJJJ',
+						'dateRange': ['199001:TODAYM'],
+						'alertText': '* Please enter valid date in correct format',
+						'alertTextRange': ' Please enter valid date range between 01.01.1990 and Today',
+						'alertTextRangeFormat': ' Please define valid date range format like [YYYYMM]:[TODAYM|TODAYE|[TODAYE+N month(s)]] or [<=|<|>|>=][TODAYE|TODAYM|[TODAYE+N month(s)]]'
+					},
+					'DAT00009': {
+						'dateFormat': ['TTMMJJJJ', 'TTMMJJ', 'T.M.JJ', 'T.M.JJJJ'],
+						'dateFormatOutput': 'TT.MM.JJJJ',
+						'dateRange': ['<=TODAYE'],
+						'alertText': '* Please enter valid date in correct format',
+						'alertTextRange': ' Please enter valid date <= Today',
+						'alertTextRangeFormat': ' Please define valid date range format like [YYYYMM]:[TODAYM|TODAYE|[TODAYE+N month(s)]] or [<=|<|>|>=][TODAYE|TODAYM|[TODAYE+N month(s)]]'
+					},
+					'DAT00011': {
+						'dateFormat': ['TTMMJJJJ', 'TTMMJJ', 'T.M.JJ', 'T.M.JJJJ'],
+						'dateFormatOutput': 'TT.MM.JJJJ',
+						'dateRange': ['TODAYE:TODAYE+6M'],
+						'alertText': '* Please enter valid date in correct format',
+						'alertTextRange': ' Please enter valid date range between TODAYE:TODAYE+6M',
+						'alertTextRangeFormat': ' Please define valid date range format like [YYYYMM]:[TODAYM|TODAYE|[TODAYE+N month(s)]] or [<=|<|>|>=][TODAYE|TODAYM|[TODAYE+N month(s)]]'
+					},
+					'DAT00012': {
+						'dateFormat': ['TTMMJJJJ', 'T.M.JJJJ', 'TT.MM.JJJJ'],
+						'dateFormatOutput': 'TT.MM.JJJJ',
+						'alertText': '* Please enter valid date in correct format'
+					},
+					'DAT00013': {
+						'dateFormat': ['TTMM', 'T.M.', 'T.MM.', 'TT.M.'],
+						'dateFormatOutput': 'TT.MM.',
+						'alertText': '* Please enter valid date in correct format'
+					},
+					'VSPBTG01':{
+						'beforeComma': 5,
+						'afterComma':2,
+						'plus': '+',
+						'minus': '-',
+						'amountRange': ['0:10',"99,99"],
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "99" format.',
+						'alertTextRange': '* Enter valid amount among the range ["0:10","99,99"]'
+					},
+					'VSPBTG02':{
+						'beforeComma': 2,
+						'afterComma':0,
+						'plus': '+',
+						'minus': '-',
+						'amountRange': ['0','1'],
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "99" format.',
+						'alertTextRange': '* Enter valid amount between 0 and 1'
+					},
+					'VSPV0101':{
+						'beforeComma': 1,
+						'afterComma':1,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "9,9" format.'
+					},
+					'VSPV0106':{
+						'beforeComma': 1,
+						'afterComma':6,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "9,999999" format.'
+					},
+					'VSPV0402':{
+						'beforeComma': 4,
+						'afterComma':2,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "9999,99" format.'
+					},
+					'VSPV0403':{
+						'beforeComma': 4,
+						'afterComma':3,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "9999,999" format.'
+					},
+					'VSPV0500':{
+						'beforeComma': 5,
+						'afterComma':0,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "99999" format.'
+					},
+					'VSPV0501':{
+						'beforeComma': 5,
+						'afterComma':1,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "99999,9" format.'
+					},
+					'VSPV0502':{
+						'beforeComma': 5,
+						'afterComma':2,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "99999,99" format.'
+					},
+					'VSPV0600':{
+						'beforeComma': 6,
+						'afterComma':0,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "999999" format.'
+					},
+					'VSPV0602':{
+						'beforeComma': 6,
+						'afterComma':2,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "999999,99" format.'
+					},
+					'VSPV0700':{
+						'beforeComma': 7,
+						'afterComma':0,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "9999999" format.'
+					},
+					'VSPV0701':{
+						'beforeComma': 7,
+						'afterComma':1,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "9999999,9" format.'
+					},
+					'VSPV0702':{
+						'beforeComma': 7,
+						'afterComma':2,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "9999999,99" format.'
+					},
+					'VSP00100':{
+						'beforeComma': 1,
+						'afterComma':0,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "9" format.'
+					},
+					  'VSP00200':{
+						'beforeComma': 2,
+						'afterComma':0,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "99" format.'
+					},
+					  'VSP00201':{
+						'beforeComma': 2,
+						'afterComma':1,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "99,9" format.'
+					},
+					'VSP00300':{
+						'beforeComma': 3,
+						'afterComma':0,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "999" format.'
+					},
+					  'VSP00302':{
+						'beforeComma': 3,
+						'afterComma':2,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "999,99" format.'
+					},
+					  'VSP00400':{
+						'beforeComma': 4,
+						'afterComma':0,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "9999" format.'
+					},
+					'VSP00402':{
+						'beforeComma': 4,
+						'afterComma':2,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "9999,99" format.'
+					},
+					'VSP00500':{
+						'beforeComma': 5,
+						'afterComma':0,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "99999" format.'
+					},
+					'VSP00501':{
+						'beforeComma': 5,
+						'afterComma':1,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "99999,9" format.'
+					},
+					'VSP00502':{
+						'beforeComma': 5,
+						'afterComma':2,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "99999,99" format.'
+					},
+					'VSP00600':{
+						'beforeComma': 6,
+						'afterComma':0,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "999999" format.'
+					},
+					'VSP00601':{
+						'beforeComma': 6,
+						'afterComma':1,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "999999,9" format.'
+					},
+					'VSP00602':{
+						'beforeComma': 6,
+						'afterComma':2,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "999999,99" format.'
+					},
+					'VSP00603':{
+						'beforeComma': 6,
+						'afterComma':3,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "999999,999" format.'
+					},
+					'VSP00700':{
+						'beforeComma': 7,
+						'afterComma':0,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "9999999" format.'
+					},
+					'VSP00701':{
+						'beforeComma': 7,
+						'afterComma':1,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "9999999,9" format.'
+					},
+					'VSP00702':{
+						'beforeComma': 7,
+						'afterComma':2,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "9999999,99" format.'
+					},
+					'VSP00800':{
+						'beforeComma': 8,
+						'afterComma':0,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "99999999" format.'
+					},
+					'VSP00802':{
+						'beforeComma': 8,
+						'afterComma':2,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "99999999,99" format.'
+					},
+					'VSP00902':{
+						'beforeComma': 9,
+						'afterComma':2,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "999999999,99" format.'
+					},
+					'VSP01000':{
+						'beforeComma': 10,
+						'afterComma':0,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "9999999999" format.'
+					},
+					'VSP01200':{
+						'beforeComma': 12,
+						'afterComma':0,
+						'plus': '+',
+						'minus': '-',
+						'emptyFormat': ['' ,0, ''],
+						'alertText': '* Enter valid amount in "999999999999" format.'
+					},
+					'ADV0200': {
+						'beforeComma': 2,
+						'afterComma':0,
+						'amountRange': ['>0'],
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99" format.',
+						'alertTextRange': ' Please enter valid amount range >0'
+					},
+					'ADV0500': {
+						'beforeComma': 5,
+						'afterComma':0,
+						'amountRange': ['>0'],
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99999" format.',
+						'alertTextRange': ' Please enter valid amount range >0'
+					},
+					'BTRM0100': {
+						'beforeComma': 1,
+						'afterComma':0,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "9" format'
+					},
+					'BTRM0101': {
+						'beforeComma': 1,
+						'afterComma':1,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "9,9" format'
+					},
+					'BTRM0102': {
+						'beforeComma': 1,
+						'afterComma':2,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "9,99" format'
+					},
+					'BTRM0104': {
+						'beforeComma': 1,
+						'afterComma':4,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "9,9999" format'
+					},
+					'BTRM0106': {
+						'beforeComma': 1,
+						'afterComma':6,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "9,999999" format'
+					},
+					'BTRM0107': {
+						'beforeComma': 1,
+						'afterComma':7,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "9,9999999" format'
+					},
+					'BTRM0200': {
+						'beforeComma': 2,
+						'afterComma':0,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "99" format'
+					},
+					'BTRM0201': {
+						'beforeComma': 2,
+						'afterComma':1,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "99,9" format'
+					},
+					'BTRM0202': {
+						'beforeComma': 2,
+						'afterComma':2,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "99,99" format'
+					}, 
+					'BTRM0205': {
+						'beforeComma': 2,
+						'afterComma':5,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "99,99999" format'
+					},
+					'BTRM0207': {
+						'beforeComma': 2,
+						'afterComma':7,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "99,9999999" format'
+					},
+					'BTRM0208': {
+						'beforeComma': 2,
+						'afterComma':8,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "99,99999999" format'
+					},
 
+					'BTRM0300': {
+						'beforeComma': 3,
+						'afterComma':0,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "999" format'
+					},
+					'BTRM0301': {
+						'beforeComma': 3,
+						'afterComma':1,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "999,9" format'
+					},
+					'BTRM0302': {
+						'beforeComma': 3,
+						'afterComma':2,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "999,99" format'
+					}, 
+					'BTRM0303': {
+						'beforeComma': 3,
+						'afterComma':3,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "999,999" format'
+					},
+					'BTRM0304': {
+						'beforeComma': 3,
+						'afterComma':4,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "999,9999" format'
+					},
+					'BTRM0305': {
+						'beforeComma': 3,
+						'afterComma':5,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "999,99999" format'
+					},                
+					'BTRM0308': {
+						'beforeComma': 3,
+						'afterComma':8,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "999,99999999" format'
+					},
+					'BTRM0309': {
+						'beforeComma': 3,
+						'afterComma':9,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "999,999999999" format'
+					},
+					'BTRM0400': {
+						'beforeComma': 4,
+						'afterComma':0,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "9999" format'
+					},
+					'BTRM0402': {
+						'beforeComma': 4,
+						'afterComma':2,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "9999,99" format'
+					}, 
+					'BTRM0404': {
+						'beforeComma': 4,
+						'afterComma':4,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "9999,9999" format'
+					},
+					'BTRM0407': {
+						'beforeComma': 4,
+						'afterComma':7,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "9999,9999999" format'
+					},   
+					'BTRM0500': {
+						'beforeComma': 5,
+						'afterComma':0,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "99999"format'
+					},
+					'BTRM0502': {
+						'beforeComma': 5,
+						'afterComma':2,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "99999,99" format'
+					}, 
+					'BTRM0503': {
+						'beforeComma': 5,
+						'afterComma':3,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "99999,999"  format'
+					}, 
+					'BTRM0504': {
+						'beforeComma': 5,
+						'afterComma':4,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "99999,9999" format'
+					},
+					'BTRM0600': {
+						'beforeComma': 6,
+						'afterComma':0,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "999999"  format'
+					},
+					'BTRM0602': {
+						'beforeComma': 6,
+						'afterComma':2,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "999999,99" format'
+					}, 
+
+					'BTRM0604': {
+						'beforeComma': 6,
+						'afterComma':4,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "999999,9999" format'
+					}, 
+					'BTRM0605': {
+						'beforeComma': 6,
+						'afterComma':5,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "999999,99999" format'
+					},
+					'BTRM0608': {
+						'beforeComma': 6,
+						'afterComma':8,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "999999,99999999" format'
+					}, 
+					'BTRM0700': {
+						'beforeComma': 7,
+						'afterComma':0,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "9999999" format'
+					},
+					'BTRM0702': {
+						'beforeComma': 7,
+						'afterComma':2,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "9999999,99" format'
+					}, 
+
+					'BTRM0800': {
+						'beforeComma': 8,
+						'afterComma':0,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "99999999" format'
+					}, 
+					'BTRM0801': {
+						'beforeComma': 8,
+						'afterComma':1,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "99999999,9" format'
+					}, 
+					'BTRM0802': {
+						'beforeComma': 8,
+						'afterComma':2,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "99999999,99" format'
+					},
+					'BTRM0807': {
+						'beforeComma': 8,
+						'afterComma':7,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "99999999,9999999" format'
+					},            
+					'BTRM0900': {
+						'beforeComma': 9,
+						'afterComma': 0,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "999999999" format'
+					},
+					'BTRM0902': {
+						'beforeComma': 9,
+						'afterComma': 2,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "999999999,99" format'
+					},
+					'BTRM0905': {
+						'beforeComma': 9,
+						'afterComma': 5,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "999999999,99999" format'
+					},
+					'BTRM0906': {
+						'beforeComma': 9,
+						'afterComma': 6,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "999999999,999999" format'
+					},
+					'BTRM1000': {
+						'beforeComma': 10,
+						'afterComma': 0,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "9999999999" format'
+					},
+					'BTRM1002': {
+						'beforeComma': 10,
+						'afterComma': 2,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "9999999999,99" format'
+					},
+					'BTRM1005': {
+						'beforeComma': 10,
+						'afterComma': 5,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "9999999999,99999" format'
+					},
+					'BTRM1100': {
+						'beforeComma': 11,
+						'afterComma': 0,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "99999999999" format'
+					},
+					'BTRM1102': {
+						'beforeComma': 11,
+						'afterComma': 2,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "99999999999,99" format'
+					},
+					'BTRM1300': {
+						'beforeComma': 13,
+						'afterComma': 0,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "9999999999999" format'
+					},
+					'BTRM1400': {
+						'beforeComma': 14,
+						'afterComma': 0,
+						'plus': '+',
+						'alertText': '* Enter valid amount in "99999999999999" format'
+					},
+					'BTR00100': {
+						'beforeComma': 1,
+						'afterComma':0,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9" format'
+					},
+					'BTR00101': {
+						'beforeComma': 1,
+						'afterComma':1,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9,9" format'
+					},
+					'BTR00102': {
+						'beforeComma': 1,
+						'afterComma':2,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9,99" format'
+					},
+					'BTR00103': {
+						'beforeComma': 1,
+						'afterComma':3,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9,999"  format'
+					},
+					'BTR00104': {
+						'beforeComma': 1,
+						'afterComma':4,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9,9999" format'
+					},
+					'BTR00105': {
+						'beforeComma': 1,
+						'afterComma':5,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9,99999" format'
+					},
+					'BTR00106': {
+						'beforeComma': 1,
+						'afterComma':6,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9,999999" format'
+					},
+					'BTR00112': {
+						'beforeComma': 1,
+						'afterComma':12,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9,999999999999" format'
+					},
+					'BTR00200': {
+						'beforeComma': 2,
+						'afterComma':0,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99" format'
+					},
+					'BTR00201': {
+						'beforeComma': 2,
+						'afterComma':1,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99,9" format'
+					},
+					'BTR00202': {
+						'beforeComma': 2,
+						'afterComma':2,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99,99"  format'
+					}, 
+
+					'BTR00203': {
+						'beforeComma': 2,
+						'afterComma':3,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99,999"  format'
+					}, 
+					'BTR00205': {
+						'beforeComma': 2,
+						'afterComma':5,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99,99999"  format'
+					},
+					'BTR00300': {
+						'beforeComma': 3,
+						'afterComma':0,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "999"   format'
+					},
+					'BTR00301': {
+						'beforeComma': 3,
+						'afterComma':1,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "999,9"  format'
+					},
+					'BTR00302': {
+						'beforeComma': 3,
+						'afterComma':2,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in  "999,99"  format'
+					}, 
+					'BTR00303': {
+						'beforeComma': 3,
+						'afterComma':3,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "999,999"  format'
+					},
+					'BTR00304': {
+						'beforeComma': 3,
+						'afterComma':4,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "999,9999"  format'
+					},
+					'BTR00306': {
+						'beforeComma': 3,
+						'afterComma':6,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "999,999999"  format'
+					},                
+					'BTR00308': {
+						'beforeComma': 3,
+						'afterComma':8,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "999,99999999"   format'
+					},
+					'BTR00400': {
+						'beforeComma': 4,
+						'afterComma':0,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9999" format'
+					},
+					'BTR00401': {
+						'beforeComma': 4,
+						'afterComma':1,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9999,9"  format'
+					},
+
+					'BTR00402': {
+						'beforeComma': 4,
+						'afterComma':2,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9999,99"  format'
+					},
+					'BTR00403': {
+						'beforeComma': 4,
+						'afterComma':3,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9999,999"  format'
+					},
+					'BTR00404': {
+						'beforeComma': 4,
+						'afterComma':4,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9999,9999"  format'
+					},
+					'BTR00405': {
+						'beforeComma': 4,
+						'afterComma':5,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9999,99999"  format'
+					},
+					'BTR00407': {
+						'beforeComma': 4,
+						'afterComma':7,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9999,9999999"  format'
+					}, 
+					'BTR00500': {
+						'beforeComma': 5,
+						'afterComma':0,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99999"  format'
+					},
+					'BTR00501': {
+						'beforeComma': 5,
+						'afterComma':1,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99999,9"  format'
+					}, 
+					'BTR00502': {
+						'beforeComma': 5,
+						'afterComma':2,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99999,99"  format'
+					}, 
+					'BTR00503': {
+						'beforeComma': 5,
+						'afterComma':3,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99999,999"  format'
+					},
+					'BTR00600': {
+						'beforeComma': 6,
+						'afterComma':0,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "999999"  format'
+					},
+					'BTR00601': {
+						'beforeComma': 6,
+						'afterComma':1,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "999999,9"  format'
+					},
+					'BTR00602': {
+						'beforeComma': 6,
+						'afterComma':2,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "999999,99" format'
+					}, 
+
+					'BTR00603': {
+						'beforeComma': 6,
+						'afterComma':3,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "999999,999" format'
+					}, 
+					'BTR00608': {
+						'beforeComma': 6,
+						'afterComma':8,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "999999,99999999" format'
+					},
+					'BTR00700': {
+						'beforeComma': 7,
+						'afterComma':0,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9999999" format'
+					},
+					'BTR00701': {
+						'beforeComma': 7,
+						'afterComma':1,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9999999,9" format'
+					}, 
+					'BTR00702': {
+						'beforeComma': 7,
+						'afterComma':2,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9999999,99" format'
+					},
+					'BTR00703': {
+						'beforeComma': 7,
+						'afterComma':3,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9999999,999" format'
+					},
+					'BTR00800': {
+						'beforeComma': 8,
+						'afterComma':0,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99999999" format'
+					}, 
+					'BTR00801': {
+						'beforeComma': 8,
+						'afterComma':1,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99999999,9" format'
+					}, 
+					'BTR00802': {
+						'beforeComma': 8,
+						'afterComma':2,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99999999,99" format'
+					},
+					'BTR00803': {
+						'beforeComma': 8,
+						'afterComma':3,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99999999,999" format'
+					},
+					'BTR00805': {
+						'beforeComma': 8,
+						'afterComma':5,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99999999,99999" format'
+					},
+					'BTR00807': {
+						'beforeComma': 8,
+						'afterComma':7,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99999999,9999999" format'
+					},
+					'BTR00900': {
+						'beforeComma': 9,
+						'afterComma': 0,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "999999999" format'
+					},
+					'BTR00901': {
+						'beforeComma': 9,
+						'afterComma': 1,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "999999999,9" format'
+					},
+					'BTR00902': {
+						'beforeComma': 9,
+						'afterComma': 2,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "999999999,99" format'
+					},
+					'BTR00903': {
+						'beforeComma': 9,
+						'afterComma': 3,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "999999999,999" format'
+					},
+					'BTR00905': {
+						'beforeComma': 9,
+						'afterComma': 5,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "999999999,99999" format'
+					}, 
+					'BTR01000': {
+						'beforeComma': 10,
+						'afterComma': 0,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9999999999" format'
+					},
+					'BTR01001': {
+						'beforeComma': 10,
+						'afterComma': 1,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9999999999,9" format'
+					},
+					'BTR01002': {
+						'beforeComma': 10,
+						'afterComma': 2,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9999999999,99" format'
+					},
+					'BTR01003': {
+						'beforeComma': 10,
+						'afterComma': 3,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9999999999,999" format'
+					},
+					'BTR01004': {
+						'beforeComma': 10,
+						'afterComma': 4,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9999999999,9999" format'
+					},                
+					'BTR01005': {
+						'beforeComma': 10,
+						'afterComma': 5,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9999999999,99999" format'
+					},
+					'BTR01102': {
+						'beforeComma': 11,
+						'afterComma': 2,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99999999999,99" format'
+					},
+					'BTR01302': {
+						'beforeComma': 13,
+						'afterComma': 2,
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9999999999999,99" format'
+					},
+					'BTRLVE01': {
+						'beforeComma': 2,
+						'afterComma':0,
+						'amountRange': ["0:23","70:90"],
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99" format.',
+						'alertTextRange': '* Enter valid amount between 0 and 23.'
+					},
+					'BTRLVE02': {
+						'beforeComma': 2,
+						'afterComma':0,
+						'amountRange': ["0:59"],
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99" format.',
+						'alertTextRange': '* Enter valid amount between 0 and 59.'
+					},     
+					'BTRLVE03': {
+						'beforeComma': 2,
+						'afterComma':0,
+						'amountRange': ['0:24'],
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99" format.',
+						'alertTextRange': '* Enter valid amount between 0 and 24.'
+					},  
+					'BTRLVF01': {
+						'beforeComma': 2,
+						'afterComma':0,
+						'amountRange': ['0:10'],
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99" format.',
+						'alertTextRange': '* Enter valid amount between 0 and 10.'
+					},
+					'BTRN0700': {
+						'beforeComma': 7,
+						'afterComma': 0,
+						'amountRange': ['<0'],
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9999999" format.',
+						'alertTextRange': '* Enter valid amount less than 0'                                            
+					},
+					'BTRW0202': {
+						'beforeComma': 2,
+						'afterComma': 2,
+						'amountRange': ["0:99,99"],
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99,99" format.',
+						'alertTextRange': '* Enter valid amount between 0 and 99,99'
+					},
+					'BTRLVE01': {
+						'beforeComma': 2,
+						'afterComma':0,
+						'amountRange': ['0:23','70:90'],
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99" format.',
+						'alertTextRange': '* Enter valid amount between 0 and 23.'
+					},
+					'BTRLVE02': {
+						'beforeComma': 2,
+						'afterComma':0,
+						'amountRange': ['0:59'],
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99" format.',
+						'alertTextRange': '* Enter valid amount between 0 and 59.'
+					},     
+					'BTRLVE03': {
+						'beforeComma': 2,
+						'afterComma':0,
+						'amountRange': ['0:24'],
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99" format.',
+						'alertTextRange': '* Enter valid amount between 0 and 24.'
+					},  
+					'BTRLVF01': {
+						'beforeComma': 2,
+						'afterComma':0,
+						'amountRange': ['0:10'],
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99" format.',
+						'alertTextRange': '* Enter valid amount between 0 and 10.'
+					},
+					'BTRN0700': {
+						'beforeComma': 7,
+						'afterComma': 0,
+						'amountRange': ['<0'],
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "9999999" format.',
+						'alertTextRange': '* Enter valid amount less than 0'                                            
+					},
+					'BTRW0202': {
+						'beforeComma': 2,
+						'afterComma': 2,
+						'amountRange': ['0:99,99'],
+						'plus': '+',
+						'minus': '-',
+						'alertText': '* Enter valid amount in "99,99" format.',
+						'alertTextRange': '* Enter valid amount between 0 and 99,99'
+					}                  
+
+				},
+				keys , len;
+				
+				/** To support all browsers */
+				if (typeof Object.keys != 'function') {
+					Object.keys = function(obj) {
+					if (typeof obj != "object" && typeof obj != "function" || obj == null) {
+					    throw TypeError("Object.keys called on non-object");
+					} 
+					var keys = [];
+					for (var p in obj) obj.hasOwnProperty(p) &&keys.push(p);
+					return keys;
+					}
+				}
+				keys = Object.keys(customRules), len = keys.length;
+				while(len--) {
+					options.allrules[keys[len]] = customRules[keys[len]];
+				}
+				jQuery("#formID").data('jqv', options);
+			};
 		/**
 		*
 		* @param {jqObject} the field where the validation applies
