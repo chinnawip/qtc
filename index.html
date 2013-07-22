@@ -122,9 +122,57 @@
 					'minus': '-',
 					'emptyFormat': ['' ,0, ''],
 					'alertText': '* Enter valid amount in "9,9" format.'
-				}
+				},
+                                'VSPV0106':{
+					'beforeComma': 1,
+					'afterComma':6,
+					'plus': '+',
+					'minus': '-',
+					'emptyFormat': ['' ,0, ''],
+					'alertText': '* Enter valid amount in "9,999999" format.'
+				},
+				'VSPV0402':{
+					'beforeComma': 4,
+					'afterComma':2,
+					'plus': '+',
+					'minus': '-',
+					'emptyFormat': ['' ,0, ''],
+					'alertText': '* Enter valid amount in "9999,99" format.'
+				},
+				'VSPV0403':{
+					'beforeComma': 4,
+					'afterComma':3,
+					'plus': '+',
+					'minus': '-',
+					'emptyFormat': ['' ,0, ''],
+					'alertText': '* Enter valid amount in "9999,999" format.'
+				},
+				'VSPV0500':{
+					'beforeComma': 5,
+					'afterComma':0,
+					'plus': '+',
+					'minus': '-',
+					'emptyFormat': ['' ,0, ''],
+					'alertText': '* Enter valid amount in "99999" format.'
+				},
+				'VSPV0501':{
+					'beforeComma': 5,
+					'afterComma':1,
+					'plus': '+',
+					'minus': '-',
+					'emptyFormat': ['' ,0, ''],
+					'alertText': '* Enter valid amount in "99999,9" format.'
+				},
+				'VSPV0502':{
+					'beforeComma': 5,
+					'afterComma':2,
+					'plus': '+',
+					'minus': '-',
+					'emptyFormat': ['' ,0, ''],
+					'alertText': '* Enter valid amount in "99999,99" format.'
+				}				
 		},  keys , len;
-				/** To support all browsers */
+		/** To support all browsers */
 				if (typeof Object.keys != 'function') {
 					Object.keys = function(obj) {
 					if (typeof obj != "object" && typeof obj != "function" || obj == null) {
