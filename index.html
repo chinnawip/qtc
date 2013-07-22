@@ -37,8 +37,20 @@
 			// binds form submission and fields to the validation engine
 //			$( ".datepicker" ).datepicker();
 			jQuery("#formID").validationEngine();
-			loadCustomRules();
+			loadCustomRules1();
 		});
+			function loadCustomRules1() {
+			
+			var customRules[ruleName] = {
+					'DAT00003': {
+						'dateFormat': ['TTMM', 'T.M.'],
+						'dateFormatOutput': 'TTMM',
+						'alertText': '* Please enter valid date in one of these formats'
+					}
+			}
+			var ruleName = 'DAT00003';
+			options.allrules[ruleName] = customRules[ruleName];
+			};
   		/* function to load custom rules */
 		function loadCustomRules() {
 			
