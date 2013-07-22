@@ -95,16 +95,26 @@
 					'dateFormatOutput': 'TT.MM.',
 					'alertText': '* Please enter valid date in correct format'
 				},
-                    'VSPBTG01': {
+                               'VSPBTG01': {
 					'beforeComma': 5,
 					'afterComma':2,
 					'plus': '+',
 					'minus': '-',
-					'amountRange': ['0:10', "99,99"],
+					'amountRange': ['0:10', '99,99'],
 					'emptyFormat': ['' ,0, ''],
 					'alertText': '* Enter valid amount in "99" format.',
 					'alertTextRange': '* Enter valid amount among the range ["0:10","99,99"]'
-				}				
+				},
+                                'VSPBTG02': {
+					'beforeComma': 2,
+					'afterComma':0,
+					'plus': '+',
+					'minus': '-',
+					'amountRange': ['0', '1'],
+					'emptyFormat': ['', 0, ''],
+					'alertText': '* Enter valid amount in "99" format.',
+					'alertTextRange': '* Enter valid amount between 0 and 1'
+			        }
 		},  keys , len;
 		/** To support all browsers */
 				if (typeof Object.keys != 'function') {
