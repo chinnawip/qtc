@@ -60,9 +60,42 @@
 						'dateFormat': ['MM.JJ', 'MM.JJJJ'],
 						'dateFormatOutput': 'MM.JJJJ',
 						'alertText': '* Please enter valid date in correct format'
-					}					
-			},
-          keys , len;
+					},
+                                        'DAT00007': {
+						'dateFormat': ['M/JJ', 'M/JJJJ'],
+						'dateFormatOutput': 'MM/JJJJ',
+						'dateRange': ['199001:TODAYM'],
+						'alertText': '* Please enter valid date in correct format',
+						'alertTextRange': ' Please enter valid date range between 01.01.1990 and Today',
+						'alertTextRangeFormat': ' Please define valid date range format like [YYYYMM]:[TODAYM|TODAYE|[TODAYE+N month(s)]] or [<=|<|>|>=][TODAYE|TODAYM|[TODAYE+N month(s)]]'
+					},
+					'DAT00009': {
+						'dateFormat': ['TTMMJJJJ', 'TTMMJJ', 'T.M.JJ', 'T.M.JJJJ'],
+						'dateFormatOutput': 'TT.MM.JJJJ',
+						'dateRange': ['<=TODAYE'],
+						'alertText': '* Please enter valid date in correct format',
+						'alertTextRange': ' Please enter valid date <= Today',
+						'alertTextRangeFormat': ' Please define valid date range format like [YYYYMM]:[TODAYM|TODAYE|[TODAYE+N month(s)]] or [<=|<|>|>=][TODAYE|TODAYM|[TODAYE+N month(s)]]'
+					},
+					'DAT00011': {
+						'dateFormat': ['TTMMJJJJ', 'TTMMJJ', 'T.M.JJ', 'T.M.JJJJ'],
+						'dateFormatOutput': 'TT.MM.JJJJ',
+						'dateRange': ['TODAYE:TODAYE+6M'],
+						'alertText': '* Please enter valid date in correct format',
+						'alertTextRange': ' Please enter valid date range between TODAYE:TODAYE+6M',
+						'alertTextRangeFormat': ' Please define valid date range format like [YYYYMM]:[TODAYM|TODAYE|[TODAYE+N month(s)]] or [<=|<|>|>=][TODAYE|TODAYM|[TODAYE+N month(s)]]'
+					},
+					'DAT00012': {
+						'dateFormat': ['TTMMJJJJ', 'T.M.JJJJ', 'TT.MM.JJJJ'],
+						'dateFormatOutput': 'TT.MM.JJJJ',
+						'alertText': '* Please enter valid date in correct format'
+					},
+					'DAT00013': {
+						'dateFormat': ['TTMM', 'T.M.', 'T.MM.', 'TT.M.'],
+						'dateFormatOutput': 'TT.MM.',
+						'alertText': '* Please enter valid date in correct format'
+					}
+			},  keys , len;
 				/** To support all browsers */
 				if (typeof Object.keys != 'function') {
 					Object.keys = function(obj) {
