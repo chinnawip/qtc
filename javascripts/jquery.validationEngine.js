@@ -990,133 +990,197 @@
 		*            user options
 		* @return an error string if validation failed
 		*/
-_strukt: function(field, rules, i, options) {
+_strukt : function (field, rules, i, options) {
 	var customRule = rules[i + 1],
 		rule = options.allrules[customRule],
-		regEx,
+		ipRegEx,
+		opRegExp,
 		value = field.val(),
 		struktFormat = rule.struktFormat,
 		struktIpFormat,
 		struktOpFormat,
 		ipfLen = struktFormat.length,
-		literalValueArray,
+		ipLiteralValueArray,
+		opLiteralValueArray,
 		rangeValueArray,
 		rangeValueRegExp = [],
-		literalValueLen,
+		ipLiteralValueLen,
+		opLiteralValueLen,
 		rangeValueLen,
 		rangeArray,
 		rangeTokenPos = [],
 		regExpToken,
 		regExpTokenLen,
 		ipRangeValue,
-		ipFormatRegExpen,
+		ipFormatRegExpLen,
 		opFormatTokenValue,
 		ipFormatTokenValue,
-		opFormatToken;
-		
-		/** Initializing regular expression */
-		(!rule.regEx) ? rule.regEx = [] : rule.regEx;
+		opFormatToken,
+		struktOpFormatOrg,
+		found,
+		opFmtTknLtrlNine,
+		opFmtTknLtrlNineRegExp = new RegExp('^([9]*)$'),
+		len,
+		opFmtTknNine;
 
-		while (ipfLen--) {
+	/** Initializing regular expression */
+	rule.ipRegEx = (!rule.ipRegEx) ?  [] : rule.ipRegEx;
+	rule.opRegExp = (!rule.opRegExp) ? [] : rule.opRegExp;
 
+	while (ipfLen--) {
+		/** Get the output-format of the corresponding input-format*/
+		struktOpFormat = (struktFormat[ipfLen][1] !== undefined) ? struktFormat[ipfLen][1] : '';
+		struktOpFormatOrg = struktOpFormat;
+		found = true;
+		/**
+		* if regular expression of the rule selected is not exist.
+		*/
+		if (!rule.ipRegEx[ipfLen]) {
+			/** Get the input-format */
+			struktIpFormat = struktFormat[ipfLen][0];
+
+			/** Get the output-format of the corresponding input-format*/
+			opLiteralValueArray = (struktOpFormat.match(/(\'\Nr\.\'[.%]|\'\Nr\.\'[9]*|\'[9]*\.\'[.%]|\'[9]*\.\'[9]*|[9]*)/g) || []);
+
+			/** Get the literal value in the input-format if any*/
+			ipLiteralValueArray = (struktIpFormat.match(/(\'\w+\.\')/g) || []);
+
+			/** Get the range value in the input-format if any*/
+			rangeValueArray = (struktIpFormat.match(/([0-9]*\:[0-9]*)/g) || []);
+
+			rule.rangeValueArray = (!rule.rangeValueArray) ? [] : rule.rangeValueArray;
+			//rule.rangeValueArray = [];
+			rule.rangeValueArray[ipfLen] = rangeValueArray;
+
+			rangeValueLen = rangeValueArray.length;
+			/** Replace the range value in the input-format with regular expression. */
+			while (rangeValueLen--) {
+				rangeArray = rangeValueArray[rangeValueLen].split(':');
+				rangeValueRegExp[rangeValueLen] = '([0-9]{' + rangeArray[0].length + ',' + rangeArray[1].length + '})';
+				struktIpFormat = struktIpFormat.replace(rangeValueArray[rangeValueLen], rangeValueRegExp[rangeValueLen]);
+			}
+			ipLiteralValueLen = ipLiteralValueArray.length;
 			/** 
-			* if regular expression of the rule selected is not exist.
+			* Replace the literal value in the input-format with a temporary value '$<n>',
+			* to  avoid conflicts between the period(.) in the literals and normal period(.), like ..GG%.
 			*/
-			if (!rule.regEx[ipfLen]) {
-				/** Get the input-format */
-				struktIpFormat = struktFormat[ipfLen][0];
-				/** Get the output-format of the corresponding input-format*/
-				struktOpFormat = (struktFormat[ipfLen][1] !== undefined)? struktFormat[ipfLen][1] : '';
-				/** Get the literal value in the input-format if any*/
-				literalValueArray = (struktIpFormat.match(/(\'\w+\.\')/g) || []);
-				/** Get the range value in the input-format if any*/
-				rangeValueArray = (struktIpFormat.match(/([0-9]*\:[0-9]*)/g) || []);
+			while (ipLiteralValueLen--) {
+				struktIpFormat = struktIpFormat.replace(ipLiteralValueArray[ipLiteralValueLen], '$' + ipLiteralValueLen);
+			}
 
-				rangeValueLen = rangeValueArray.length;
-				/** Replace the range value in the input-format with regular expression. */
-				while(rangeValueLen--) {
-					rangeArray = rangeValueArray[rangeValueLen].split(':');
-					rangeValueRegExp[rangeValueLen] = '([0-9]{' + rangeArray[0].length + ',' + rangeArray[1].length + '})';
-					struktIpFormat = struktIpFormat.replace(rangeValueArray[rangeValueLen], rangeValueRegExp[rangeValueLen]);
-				};
+			/** 'len' is used here because, the token order in the array 'opLiteralValueArray' is matter, in case of, for example, '99.'.9 */
+			opLiteralValueLen = opLiteralValueArray.length;
+			len = 0;
+			while (len < opLiteralValueLen) {
+				struktOpFormat = (opLiteralValueArray[len]) ? struktOpFormat.replace(opLiteralValueArray[len], '$' + len) : struktOpFormat;
+				len++;
+			}
 
-				literalValueLen = literalValueArray.length;
-				/** 
-				* Replace the literal value in the input-format with a temporary value '$<n>',
-				* to  avoid conflicts between the period(.) in the literals and normal period(.), like ..GG%.
-				*/
-				while(literalValueLen--) {
-					struktIpFormat = struktIpFormat.replace(literalValueArray[literalValueLen], '$' + literalValueLen);
-				};
-				/** Replace all the input token value with the respective regular expression. */
-				//TODO: need to check with more special characters.
-				regEx = struktIpFormat.replace(/A/g,'([A-Za-z])').replace(/\%/g,'([0-9A-Za-z,$!#%]*)')
-				.replace(/\./g, '([0-9A-Za-z,$!#%])').replace(/G/g,'([A-Z])').replace(/K/g,'([a-z])')
-				.replace(/N/g,'([0-9])').replace(/C/g,'([0-9A-Za-z])').replace(/H/g,'([0-9A-F])');
-			
-				literalValueLen = literalValueArray.length;
-				/** Put back the literal values that is been replaced with temporary value as above. */
-				while(literalValueLen--) {
-					regEx = regEx.replace('$' + literalValueLen, literalValueArray[literalValueLen].replace(/\'/g, ''));
-				};
+			opRegExp = struktOpFormat.replace(/G/g, '(G)').replace(/K/g, '(K)').
+									replace(/\-/g, '(\-)').replace(/\%/g, '(\%)').
+									replace(/\./g, '([\.])');
 
-				rangeValueLen = rangeValueArray.length;
+			/** Replace all the input token value with the respective regular expression. */
+			//TODO: need to check with more special characters.
+			ipRegEx = struktIpFormat.replace(/A/g, '([A-Za-z])').replace(/\%/g, '([0-9A-Za-z,$!#%]*)')
+									.replace(/\./g, '([0-9A-Za-z,$!#%])').replace(/G/g, '([A-Z])').replace(/K/g, '([a-z])')
+									.replace(/N/g, '([0-9])').replace(/C/g, '([0-9A-Za-z,$!#%])').replace(/H/g, '([0-9A-F])');
 
-				rangeTokenPos = [];
-				/**
-				* Split the regular expression into token for finding the position of the range value,
-				* to get the corresponding input value for checking the range.
-				*/
-				regExpToken = regEx.split(')');
+			ipLiteralValueLen = ipLiteralValueArray.length;
+			/** Put back the literal values that is been replaced with temporary value as above. */
+			while (ipLiteralValueLen--) {
+				ipRegEx = ipRegEx.replace('$' + ipLiteralValueLen, '(' + ipLiteralValueArray[ipLiteralValueLen].replace(/\'/g, '') + ')');
+			}
+
+			opLiteralValueLen = opLiteralValueArray.length;
+
+			/** Put back the output literal values that is been replaced with temporary value as above. */
+			while (opLiteralValueLen--) {
+				opRegExp = opRegExp.replace('$' + opLiteralValueLen, "(\'\Nr\.\'[.%]|\'\Nr\.\'[9]*|\'[9]*\.\'[.%]|\'[9]*\.\'[9]*|[9]*)");
+			}
+
+			/** create a Regular Expression object */
+			rule.opRegExp[ipfLen] = new RegExp('^' + opRegExp + '$');
+
+			rangeValueLen = rangeValueArray.length;
+
+			/**
+			* Split the regular expression into token for finding the position of the range value,
+			* to get the corresponding input value for checking the range.
+			*/
+			regExpToken = ipRegEx.split(')');
+			regExpTokenLen = regExpToken.length;
+
+			rangeTokenPos = [];
+			rule.rangeTokenPos = (!rule.rangeTokenPos) ? [] : rule.rangeTokenPos;
+
+			/** Loop to get the position of the range value in the regular expression. */
+			while (rangeValueLen--) {
 				regExpTokenLen = regExpToken.length;
+				while (regExpTokenLen--) {
+					if (rangeValueRegExp[rangeValueLen] === (regExpToken[regExpTokenLen].substring(regExpToken[regExpTokenLen].indexOf('(')) + ')')) {
+						rangeTokenPos[rangeValueLen] = regExpTokenLen + 1;
+						rule.rangeTokenPos[ipfLen] = rangeTokenPos;
+						regExpToken[regExpTokenLen] = '';
+						regExpTokenLen = 0;
+					}
+				}
+			}
+			/** create a Regular Expression object */
+			rule.ipRegEx[ipfLen] = new RegExp('^' + ipRegEx + '$');
 
-				/** Loop to get the position of the range value in the regular expression. */
-				while(rangeValueLen--) {
-					regExpTokenLen = regExpToken.length;
-					while(regExpTokenLen--){
-						if(rangeValueRegExp[rangeValueLen] === (regExpToken[regExpTokenLen].substring(regExpToken[regExpTokenLen].indexOf('('))+')') ){
-							rangeTokenPos[rangeValueLen] = regExpTokenLen+1;
-							regExpToken[regExpTokenLen] = '';
-							regExpTokenLen = 0;
-						};
-					};
-				};
-				/** create a Regular Expression object */
-				rule.regEx[ipfLen] = new RegExp('^'+regEx+'$');
+		}
 
-			};
-			/** Check the given input with Regular expression of the iput-format definied. */
-			if (rule.regEx[ipfLen].test(value)) {
+		/** Check the given input with Regular expression of the iput-format definied. */
+		if (rule.ipRegEx[ipfLen].test(value)) {
 
-				rangeValueLen = rangeValueArray.length;
-				/** Loop to check the range value is within the range defined. */
-				while(rangeValueLen--) {
-					ipRangeValue = value.replace(rule.regEx[ipfLen], ('$' + rangeTokenPos[rangeValueLen]));
-					rangeArray = rangeValueArray[rangeValueLen].split(':');
-					if(!(ipRangeValue >= parseFloat(rangeArray[0]) && ipRangeValue <= parseFloat(rangeArray[0]))) {
-						jQuery.data(field, 'resultErrorText', rule.alertText);
-						return rule.alertText;
-					};
-				};
+			rangeValueLen = rule.rangeValueArray[ipfLen].length;
+			/** Loop to check the range value is within the range defined. */
+			while (rangeValueLen--) {
+				ipRangeValue = value.replace(rule.ipRegEx[ipfLen], ('$' + rule.rangeTokenPos[ipfLen][rangeValueLen]));
+				rangeArray = rule.rangeValueArray[ipfLen][rangeValueLen].split(':');
+				if (!(parseFloat(ipRangeValue) >= parseFloat(rangeArray[0]) && parseFloat(ipRangeValue) <= parseFloat(rangeArray[1]))) {
+					found = false;
+				}
+			}
 
+			if (found) {
 				/** Find the number of regular expression token to get the corresponding value in the given input. */
-				ipFormatRegExpen = (!struktOpFormat)? 0 : (regEx.match(/\(/g) || []).length;
-				opFormatTokenValue = (!ipFormatRegExpen)? value : '';
+				ipFormatRegExpLen = (!struktOpFormatOrg) ? 0 : (String(rule.ipRegEx[ipfLen]).match(/\(/g) || []).length;
+				opFormatTokenValue = (!ipFormatRegExpLen) ? value : '';
 
 				/** Convert the given input into the defined output-formt.*/
-				while(ipFormatRegExpen--) {
+				while (ipFormatRegExpLen--) {
 					/** Get the corresponding value from the given input-value */
-					ipFormatTokenValue = value.replace(rule.regEx[ipfLen], ('$' + (ipFormatRegExpen + 1)));
-					opFormatToken = struktOpFormat.charAt((ipFormatRegExpen));
+					ipFormatTokenValue = value.replace(rule.ipRegEx[ipfLen], ('$' + (ipFormatRegExpLen + 1)));
+					opFormatToken = struktOpFormatOrg.replace(rule.opRegExp[ipfLen], ('$' + (ipFormatRegExpLen + 1)));
 
-					opFormatTokenValue = opFormatToken.replace(/A/g, ipFormatTokenValue).replace(/\%/g, ipFormatTokenValue)
-					.replace(/\./g, ipFormatTokenValue).replace(/G/g, ipFormatTokenValue.toUpperCase()).replace(/K/g, ipFormatTokenValue.toLowerCase())
-					.replace(/N/g, ipFormatTokenValue).replace(/C/g, ipFormatTokenValue).replace(/H/g, ipFormatTokenValue)
-					.replace(/\-/g, '') + opFormatTokenValue;
-				};
-				jQuery.data(field, 'resultString', opFormatTokenValue);
+					/** If 'opFormatToken' has the format like '9999' series, as part of output format.. */
+					opFmtTknNine = 'NONE';
+					if (opFmtTknLtrlNineRegExp.test(opFormatToken)) {
+						ipFormatTokenValue = ipFormatTokenValue.substr(0, opFormatToken.length);
+						opFmtTknNine = opFormatToken;
+					}
+
+					/** The dot(.) replacment with '@' is to differenciate the dot(.) in the output-format. */
+					ipFormatTokenValue = ipFormatTokenValue.replace(/\./g, '@');
+
+					/** The following condition is, in case, the output format is like '99.'99 */
+					opFormatToken = (opFormatToken.indexOf("'") < 0) ? opFormatToken : opFormatToken.replace(/\./, '@').replace(/\'/g, '');
+					opFmtTknLtrlNine =  (opFormatToken.indexOf('@') > 0 && opFormatToken.charAt(opFormatToken.indexOf('@') + 1) === '9') ? opFormatToken.substr(opFormatToken.indexOf('@') + 1) : 'NULL';
+					ipFormatTokenValue = (opFmtTknLtrlNine === 'NULL') ? ipFormatTokenValue : ipFormatTokenValue.substring(0, opFmtTknLtrlNine.length);
+
+					/** Convert the input value into corresponding output format (based on the 'opFormatToken' value */
+					opFormatTokenValue = opFormatToken.replace(/\%/, ipFormatTokenValue).replace(/\./, ipFormatTokenValue)
+									.replace(/G/g, ipFormatTokenValue.toUpperCase()).replace(/K/g, ipFormatTokenValue.toLowerCase())
+									.replace(/\-/g, '').replace('@' + opFmtTknLtrlNine, '.' + ipFormatTokenValue)
+									.replace(opFmtTknNine, ipFormatTokenValue) + opFormatTokenValue;
+				}
+
+				jQuery.data(field, 'resultString', opFormatTokenValue.replace(/\@/g, '.'));
 				return;
 			}
+		}
 	}
 	jQuery.data(field, 'resultErrorText', rule.alertText);
 	return rule.alertText;
