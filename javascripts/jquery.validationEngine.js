@@ -1008,7 +1008,7 @@ _strukt : function (field, rules, i, options) {
 		opLiteralValueLen,
 		rangeValueLen,
 		rangeArray,
-		rangeTokenPos = [],
+		rangeTokenPos,
 		regExpToken,
 		regExpTokenLen,
 		ipRangeValue,
@@ -1021,7 +1021,10 @@ _strukt : function (field, rules, i, options) {
 		opFmtTknLtrlNine,
 		opFmtTknLtrlNineRegExp = new RegExp('^([9]*)$'),
 		len,
-		opFmtTknNine;
+		opFmtTknNine,
+		opFrmtLtrlRegExpObj = /(\'\Nr\.\'[.%]|\'\Nr\.\'[9]*|\'[9]*\.\'[.%]|\'[9]*\.\'[9]*|[9]*)/g,
+		opFrmtLtrlRegExp = opFrmtLtrlRegExpObj.toString().substr(1, opFrmtLtrlRegExpObj.toString().lastIndexOf('/g') - 1);
+
 
 	/** Initializing regular expression */
 	rule.ipRegEx = (!rule.ipRegEx) ?  [] : rule.ipRegEx;
@@ -1040,7 +1043,7 @@ _strukt : function (field, rules, i, options) {
 			struktIpFormat = struktFormat[ipfLen][0];
 
 			/** Get the output-format of the corresponding input-format*/
-			opLiteralValueArray = (struktOpFormat.match(/(\'\Nr\.\'[.%]|\'\Nr\.\'[9]*|\'[9]*\.\'[.%]|\'[9]*\.\'[9]*|[9]*)/g) || []);
+			opLiteralValueArray = (struktOpFormat.match(opFrmtLtrlRegExpObj) || []);
 
 			/** Get the literal value in the input-format if any*/
 			ipLiteralValueArray = (struktIpFormat.match(/(\'\w+\.\')/g) || []);
@@ -1049,10 +1052,11 @@ _strukt : function (field, rules, i, options) {
 			rangeValueArray = (struktIpFormat.match(/([0-9]*\:[0-9]*)/g) || []);
 
 			rule.rangeValueArray = (!rule.rangeValueArray) ? [] : rule.rangeValueArray;
-			//rule.rangeValueArray = [];
+			
 			rule.rangeValueArray[ipfLen] = rangeValueArray;
 
 			rangeValueLen = rangeValueArray.length;
+
 			/** Replace the range value in the input-format with regular expression. */
 			while (rangeValueLen--) {
 				rangeArray = rangeValueArray[rangeValueLen].split(':');
@@ -1060,6 +1064,7 @@ _strukt : function (field, rules, i, options) {
 				struktIpFormat = struktIpFormat.replace(rangeValueArray[rangeValueLen], rangeValueRegExp[rangeValueLen]);
 			}
 			ipLiteralValueLen = ipLiteralValueArray.length;
+
 			/** 
 			* Replace the literal value in the input-format with a temporary value '$<n>',
 			* to  avoid conflicts between the period(.) in the literals and normal period(.), like ..GG%.
@@ -1096,7 +1101,7 @@ _strukt : function (field, rules, i, options) {
 
 			/** Put back the output literal values that is been replaced with temporary value as above. */
 			while (opLiteralValueLen--) {
-				opRegExp = opRegExp.replace('$' + opLiteralValueLen, "(\'\Nr\.\'[.%]|\'\Nr\.\'[9]*|\'[9]*\.\'[.%]|\'[9]*\.\'[9]*|[9]*)");
+				opRegExp = opRegExp.replace('$' + opLiteralValueLen, opFrmtLtrlRegExp);
 			}
 
 			/** create a Regular Expression object */
@@ -1109,7 +1114,6 @@ _strukt : function (field, rules, i, options) {
 			* to get the corresponding input value for checking the range.
 			*/
 			regExpToken = ipRegEx.split(')');
-			regExpTokenLen = regExpToken.length;
 
 			rangeTokenPos = [];
 			rule.rangeTokenPos = (!rule.rangeTokenPos) ? [] : rule.rangeTokenPos;
