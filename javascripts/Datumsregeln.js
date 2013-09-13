@@ -1,23 +1,20 @@
 module('Datumsregeln');
 
-  var field = $('<input></input>'),
-		result;
-
-	var _dateComment = function () { 
-			return 'Input: ' + field.val() + ' , Result: ' + result;
-		};
-
-	var _runDate = function(_rule, _value) {
-			field.val(_value);
-			$.methodDate(field, _rule, 0, $.customOptions);
-			return $.data(field, 'resultString'); 
-		};
-
-	var _runDatewithError = function(_rule, _value) {
-			field.val(_value);
-			$.methodDate(field, _rule, 0, $.customOptions);
-			return $.data(field, 'resultErrorText'); 
-		};
+var field = $('<input></input>'),
+	result;
+var _dateComment = function () { 
+		return 'Input: ' + field.val() + ' , Result: ' + result;
+	};
+var _runDate = function(_rule, _value) {
+		field.val(_value);
+		$.methodDate(field, _rule, 0, $.customOptions);
+		return $.data(field, 'resultString'); 
+	};
+var _runDatewithError = function(_rule, _value) {
+		field.val(_value);
+		$.methodDate(field, _rule, 0, $.customOptions);
+		return $.data(field, 'resultErrorText'); 
+	};
 
 test('DAT00003', function() {
 	$.customOptions.allrules['DAT00003'] = {
@@ -29,7 +26,7 @@ test('DAT00003', function() {
 		_alertText = $.customOptions.allrules[_rule[1]].alertText 
 					+ ' ' + ($.customOptions.allrules[_rule[1]].dateFormat+'').replace(/,/g, ' or ');
 
-		
+
     result = _runDate(_rule, '1212');
     strictEqual(result, '1212', _dateComment());
 
@@ -38,40 +35,40 @@ test('DAT00003', function() {
 
 	result = _runDate(_rule, '12.9.');
 	strictEqual(result, '1209', _dateComment()); 
-	
+
 	result = _runDate(_rule, '2.12.');
 	strictEqual(result, '0212', _dateComment()); 
-	
+
 	result = _runDate(_rule, '31.7.');
 	strictEqual(result, '3107', _dateComment()); 
-	
+
 	result = _runDate(_rule, '30.6.');
 	strictEqual(result, '3006', _dateComment()); 
-	
+
 	result = _runDate(_rule, '1209');
 	strictEqual(result, '1209', _dateComment()); 
 
 	result = _runDate(_rule, '0212');
 	strictEqual(result, '0212', _dateComment()); 
-	
+
 	result = _runDate(_rule, '3107');
 	strictEqual(result, '3107', _dateComment()); 
-	
+
 	result = _runDate(_rule, '3006');
 	strictEqual(result, '3006', _dateComment()); 
-	
+
 	result = _runDatewithError(_rule, '2902');
 	strictEqual(result, _alertText, _dateComment()); 
          
 	result = _runDatewithError(_rule, '3212');
 	strictEqual(result, _alertText, _dateComment()); 
-	
+
 	result = _runDatewithError(_rule, '1213');
 	strictEqual(result, _alertText, _dateComment()); 
-	
+
 	result = _runDatewithError(_rule, '1a');
 	strictEqual(result, _alertText, _dateComment());
-	
+
 	result = _runDatewithError(_rule, '#(');
 	strictEqual(result, _alertText, _dateComment());
 
@@ -95,7 +92,7 @@ test('DAT00004', function() {
 	var _rule = ['', 'DAT00004'],
 		_alertText = $.customOptions.allrules[_rule[1]].alertText 
 					+ ' ' + ($.customOptions.allrules[_rule[1]].dateFormat+'').replace(/,/g, ' or ');
-	
+
 	result = _runDate(_rule, '121212');
 	strictEqual(result, '121212', _dateComment());
 
@@ -172,7 +169,7 @@ test('DAT00005', function() {
 	var _rule = ['', 'DAT00005'],
 		_alertText = $.customOptions.allrules[_rule[1]].alertText 
 					+ ' ' + ($.customOptions.allrules[_rule[1]].dateFormat+'').replace(/,/g, ' or ');
-		
+
 
 	result = _runDate(_rule, '12121212');
 	strictEqual(result, '12121212', _dateComment()); 
@@ -292,7 +289,7 @@ test('DAT00006', function() {
 	var _rule = ['', 'DAT00006'],
 		_alertText = $.customOptions.allrules[_rule[1]].alertText 
 					+ ' ' + ($.customOptions.allrules[_rule[1]].dateFormat+'').replace(/,/g, ' or ');
-		
+
 
      result = _runDate(_rule, '1212');
      strictEqual(result, '1212', _dateComment());
@@ -332,66 +329,7 @@ test('DAT00006', function() {
 
 });
 
-test('DAT00008', function() {
-	$.customOptions.allrules['DAT00008'] = {
-			'dateFormat': ['MM.JJ', 'MM.JJJJ'],
-			'dateFormatOutput': 'MM.JJJJ',
-			'alertText': '* Please enter valid date in correct format'
-		};
-	var _rule = ['', 'DAT00008'],
-		_alertText = $.customOptions.allrules[_rule[1]].alertText 
-					+ ' ' + ($.customOptions.allrules[_rule[1]].dateFormat+'').replace(/,/g, ' or ');
-		
 
-     
-	result = _runDate(_rule, '02.12');
-	strictEqual(result, '02.2012', _dateComment());
-
-	result = _runDate(_rule, '02.50');
-	strictEqual(result, '02.1950', _dateComment());
-
-	result = _runDate(_rule, '02.99');
-	strictEqual(result, '02.1999', _dateComment());
-
-	result = _runDate(_rule, '02.00');
-	strictEqual(result, '02.2000', _dateComment());
-
-	result = _runDate(_rule, '09.1212');
-	strictEqual(result, '09.1212', _dateComment());
-
-	result = _runDate(_rule, '02.1950');
-	strictEqual(result, '02.1950', _dateComment());
-
-	result = _runDate(_rule, '02.1999');
-	strictEqual(result, '02.1999', _dateComment());
-
-	result = _runDate(_rule, '02.2000');
-	strictEqual(result, '02.2000', _dateComment());
-
-	result = _runDatewithError(_rule, '2.12');
-	strictEqual(result, _alertText, _dateComment());
-
-	result = _runDatewithError(_rule, '2.50');
-	strictEqual(result, _alertText, _dateComment());
-
-	result = _runDatewithError(_rule, '11.2');
-	strictEqual(result, _alertText, _dateComment());
-
-	result = _runDatewithError(_rule, '9.200');
-	strictEqual(result, _alertText, _dateComment());
-
-	result = _runDatewithError(_rule, '121211');
-	strictEqual(result, _alertText, _dateComment());
-
-	result = _runDatewithError(_rule, '13.00');
-	strictEqual(result, _alertText, _dateComment());
-
-	result = _runDatewithError(_rule, '1a');
-	strictEqual(result, _alertText, _dateComment());
-
-	result = _runDatewithError(_rule, '#(');
-	strictEqual(result, _alertText, _dateComment());
-});
 test('DAT00007', function() {
 	$.customOptions.allrules['DAT00007'] = {
 			'dateFormat': ['M/JJ', 'M/JJJJ'],
@@ -404,12 +342,12 @@ test('DAT00007', function() {
 		_alertText = $.customOptions.allrules[_rule[1]].alertText 
 					+ ' ' + ($.customOptions.allrules[_rule[1]].dateFormat+'').replace(/,/g, ' or '),
 		_alertTextRange = $.customOptions.allrules[_rule[1]].alertTextRange;
-			 
-	
+
+
      
 	result = _runDate(_rule, '2/12');
 	strictEqual(result, '02/2012', _dateComment());
-	
+
 	result = _runDate(_rule, '9/1990');
 	strictEqual(result, '09/1990',  _dateComment());
 
@@ -469,7 +407,7 @@ test('DAT00008', function() {
 	var _rule = ['', 'DAT00008'],
 		_alertText = $.customOptions.allrules[_rule[1]].alertText 
 					+ ' ' + ($.customOptions.allrules[_rule[1]].dateFormat+'').replace(/,/g, ' or ');
-		
+
 
 	result = _runDate(_rule, '02.12');
 	strictEqual(result, '02.2012',  _dateComment()); 
@@ -532,8 +470,8 @@ test('DAT00009', function() {
 		_alertText = $.customOptions.allrules[_rule[1]].alertText 
 					+ ' ' + ($.customOptions.allrules[_rule[1]].dateFormat+'').replace(/,/g, ' or '),
 		_alertTextRange = $.customOptions.allrules[_rule[1]].alertTextRange;
-			 
-	
+
+
 
 	result = _runDate(_rule, '12121212');
 	strictEqual(result, '12.12.1212',  _dateComment());
@@ -609,7 +547,7 @@ test('DAT00009', function() {
 
 	result = _runDate(_rule, '29022012');
 	strictEqual(result, '29.02.2012',  _dateComment());
-	
+
 	result = _runDatewithError(_rule, '9.9.2');
 	strictEqual(result, _alertText,  _dateComment());
 
@@ -658,39 +596,39 @@ test('DAT00011', function() {
 		_alertText = $.customOptions.allrules[_rule[1]].alertText 
 					+ ' ' + ($.customOptions.allrules[_rule[1]].dateFormat+'').replace(/,/g, ' or '),
 		_alertTextRange = $.customOptions.allrules[_rule[1]].alertTextRange;
-			 
-		
 
-	result = _runDate(_rule, '12092013');
-	strictEqual(result, '12.09.2013',  _dateComment());
 
-	result = _runDate(_rule, '120913');
-	strictEqual(result, '12.09.2013',  _dateComment());
 
-	result = _runDate(_rule, '9.9.13');
-	strictEqual(result, '09.09.2013',  _dateComment());
+	result = _runDate(_rule, '12122013');
+	strictEqual(result, '12.12.2013',  _dateComment());
 
-	result = _runDate(_rule, '9.9.2013');
-	strictEqual(result, '09.09.2013',  _dateComment());
+	result = _runDate(_rule, '121213');
+	strictEqual(result, '12.12.2013',  _dateComment());
+
+	result = _runDate(_rule, '9.1.14');
+	strictEqual(result, '09.01.2014',  _dateComment());
+
+	result = _runDate(_rule, '9.1.2014');
+	strictEqual(result, '09.01.2014',  _dateComment());
 
 	result = _runDate(_rule, '12.12.13');
 	strictEqual(result, '12.12.2013',  _dateComment());
 
-	result = _runDate(_rule, '31.8.13');
-	strictEqual(result, '31.08.2013',  _dateComment());
+	result = _runDate(_rule, '31.1.14');
+	strictEqual(result, '31.01.2014',  _dateComment());
 
-	result = _runDate(_rule, '120913');
-	strictEqual(result, '12.09.2013',  _dateComment());
+	result = _runDate(_rule, '120114');
+	strictEqual(result, '12.01.2014',  _dateComment());
 
 	result = _runDate(_rule, '021213');
 	strictEqual(result, '02.12.2013',  _dateComment());
 
-	result = _runDate(_rule, '12092013');
-	strictEqual(result, '12.09.2013',  _dateComment());
+	result = _runDate(_rule, '12012014');
+	strictEqual(result, '12.01.2014',  _dateComment());
 
 	result = _runDate(_rule, '02122013');
 	strictEqual(result, '02.12.2013',  _dateComment());
-	
+
 	result = _runDatewithError(_rule, '9.9.2');
 	strictEqual(result, _alertText,  _dateComment());
 
@@ -729,7 +667,7 @@ test('DAT00011', function() {
 
 	result = _runDatewithError(_rule, '29.2.13');
 	strictEqual(result, _alertText,  _dateComment());
-	
+
 	result = _runDatewithError(_rule, '310712');
 	strictEqual(result, _alertTextRange,  _dateComment());
 
@@ -772,7 +710,7 @@ test('DAT00012', function() {
 	var _rule = ['', 'DAT00012'],
 		_alertText = $.customOptions.allrules[_rule[1]].alertText 
 					+ ' ' + ($.customOptions.allrules[_rule[1]].dateFormat+'').replace(/,/g, ' or ');
-		
+
 
 
 	result = _runDate(_rule, '12121212');
@@ -836,7 +774,7 @@ test('DAT00013', function() {
 	var _rule = ['', 'DAT00013'],
 		_alertText = $.customOptions.allrules[_rule[1]].alertText 
 					+ ' ' + ($.customOptions.allrules[_rule[1]].dateFormat+'').replace(/,/g, ' or ');
-		
+
 
 	result = _runDate(_rule, '0212');
 	strictEqual(result, '02.12.',  _dateComment());
