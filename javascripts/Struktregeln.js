@@ -28,7 +28,7 @@ test('STR010', function() {
         ["'32345.'10000:39999"], ["'99.'GG10000:39999AA'77.'12345:47890"], 
        ["GG'55.'10000:39999AA'77.'12345:47890"],  ["6000:6999"], ["KK%AAGG..NNHH"], 
        ["GG%NNAAGG..NNHH"], ["KK%NNGGHH..NNAA"], [".."], [".AAA"], ["KKKKK."], 
-       [".GGGGG."], ["NNN"], ["HCCCCH"], ["'33.'"]],
+       [".GGGGG."], ["NNN"], ["HCCCCH"], ["'33.'"], ["%'33.'"], ["%GGK."]],
       'alertText': '* Please enter valid data in one of these formats'
    };
 	var _rule = ['','STR010'],
@@ -129,12 +129,28 @@ test('STR010', function() {
 
 	result = _runStruktwithError(_rule, 'F0aZ%FF');
 	strictEqual(result, _alertText, _struktComment());
+    
+    result = _runStruktwithError(_rule, 'f0aZ%F');
+    strictEqual(result, _alertText, _struktComment());
 
 	result = _runStrukt(_rule, '33.');
 	strictEqual(result, '33.', _struktComment());
 
 	result = _runStruktwithError(_rule, '33.3');
 	strictEqual(result, _alertText, _struktComment());
+
+    result = _runStrukt(_rule, 'flhsdlfsdhlhdf33.');
+    strictEqual(result, 'flhsdlfsdhlhdf33.', _struktComment());
+    
+    result = _runStruktwithError(_rule, 'flhsdlfsdhlhdf3.');
+    strictEqual(result, _alertText, _struktComment());    
+
+    result = _runStrukt(_rule, 'flhsdlfsdhlhdfABcD');
+    strictEqual(result, 'flhsdlfsdhlhdfABcD', _struktComment());
+
+    result = _runStruktwithError(_rule, 'flhsdlfsdhlhdfABcDe');
+    strictEqual(result, _alertText, _struktComment());
+
 });
 
 test('STR020', function() {
@@ -154,7 +170,8 @@ test('STR020', function() {
         ["'555.'GG10000:39999AA12345:47890", ".%K'Nr.'999GG'99.'."],
         ["'5555.'GG10000:39999AA12345:47890", ".%K'Nr.'999GG'99.'999"],
         ["'333.'GG10000:39999AA12345:47890", ".%K'Nr.'999GG-"],
-        ["'3333.'GG10000:39999AA12345:47890", ".%K'Nr.'999G-'99.'999"]
+        ["'3333.'GG10000:39999AA12345:47890", ".%K'Nr.'999G-'99.'999"],
+        ["'444.'GG10000:39999AA12345:47890", "-%K'Nr.'999G-'99.'999"]
         ],
       'alertText': '* Please enter valid data in one of these formats'
    };
@@ -287,4 +304,8 @@ test('STR020', function() {
 
     result = _runStruktwithError(_rule, '3333.BG22222aS234516');
     strictEqual(result, _alertText, _struktComment());   
+
+    result = _runStrukt(_rule, '444.BG22222aS23456');
+    strictEqual(result, 'BgNr.222A99.234', _struktComment());    
+
 });
