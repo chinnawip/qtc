@@ -7,6 +7,10 @@
  * 2.0 Rewrite by Olivier Refalo
  * http://www.crionics.com
  *
+ *
+ * changed for o2g (oxseed)
+ *
+ *
  * Form validation engine allowing custom regex rules to be added.
  * Licensed under the MIT License
  */
@@ -25,7 +29,7 @@
 			
 			if (!form.data('jqv') || form.data('jqv') == null ) {
 				options = methods._saveOptions(form, options);
-				$.customOptions = options;
+				$.customOptions = options; // for QUNIT O2G
 				// bind all formError elements to close on click
 				$(document).on("click", ".formError", function() {
 					$(this).fadeOut(150, function() {
@@ -882,8 +886,6 @@
 		 _validityProp: {
 			 "required": "value-missing",
 			 "custom": "custom-error",
-			 //"amount": "custom-error",
-			 //"strukt": "custom-error",
 			 "groupRequired": "value-missing",
 			 "ajax": "custom-error",
 			 "minSize": "range-underflow",
@@ -980,6 +982,7 @@
 		  return options.allrules[rules[i]].alertText;
 		}
 		},
+
 		/**
 		* Validate Structure
 		*
@@ -1474,14 +1477,16 @@ _date: function (field, rules, i, options) {
 		/** Checking the pattern with the input value and forming the output value. */
 		if (rule.regEx[dateFormatInputArray[ipfLen]].test(value)) {
 			var inputFormat = dateFormatInputArray[ipfLen],
-				day,
-				month,
+				day = '',
+				month = '',
 				year,
 				fullYear = '',
 				finalResultDate,
 				rangeIndex,
 				len,
 				found = false,
+				lastDayOfMonth,
+				outputFormatME = 'ME',
 				/** number of occurences of 'J' in inputformat */
 				inputFormatYearLength = (dateFormatInputArray[ipfLen].match(/J/g) || []).length === 2;
 			/** Getting day, month and year from the input value */
@@ -1493,38 +1498,43 @@ _date: function (field, rules, i, options) {
 				day = '';
 				month = value.replace(rule.regEx[dateFormatInputArray[ipfLen]], '$1');
 				year = value.replace(rule.regEx[dateFormatInputArray[ipfLen]], '$2');
+			} else if (inputFormat.indexOf('T') < 0 && inputFormat.indexOf('M') >= 0 && inputFormat.indexOf('J') < 0 && outputFormat === outputFormatME) {
+				day = '';
+				month = value.replace(rule.regEx[dateFormatInputArray[ipfLen]], '$1');
+			year = '';
+				finalResultDate = new Date(month + '.01.' + $.validationEngine.defaults.currentDate.getFullYear());
+				lastDayOfMonth = new Date(finalResultDate.getFullYear(), finalResultDate.getMonth() + 1, 0).getDate();
 			}
 
 			day = $.validationEngine.defaults.stringZeros.substr(0, (rule.dayFmt.length - day.length)) + day;
 			month = $.validationEngine.defaults.stringZeros.substr(0, (rule.monthFmt.length - month.length)) + month;
 
-			// convert to fullyear.
+			/** convert to fullyear. */
 			fullYear = (inputFormatYearLength) ? ((parseInt(year, 10) > 49) ? '19' + year : '20' + year) : year;
 
-			// Based on the output year format, getting the full year.
+			/** Based on the output year format, getting the full year. */
 			if (rule.outputFormatYearLength) {
 				if (inputFormatYearLength) {
 					year = fullYear;
 				}
 			}
 
-			outputFormat = outputFormat.replace(rule.dayFmt, day).replace(rule.monthFmt, month).replace(rule.yearFmt, year);
+			outputFormat = outputFormat.replace(outputFormatME, lastDayOfMonth).replace(rule.dayFmt, day).replace(rule.monthFmt, month).replace(rule.yearFmt, year);
 			(!day) ? day = '01' : day;
 
 			(!fullYear) ? fullYear = $.validationEngine.defaults.currentDate.getFullYear() : fullYear;
 
-			//To check the date is valid or not.
+			/** To check the date is valid or not.*/
 			if (!methods._isDate(month + '/' + day + '/' + fullYear)) {
 				jQuery.data(field, 'resultErrorText', rule.alertText + ' ' + String(rule.dateFormat).replace(/,/g, ' or '));
 				return rule.alertText + " " + String(rule.dateFormat).replace(/,/g, ' or ');
 			}
 
-			// checking the daterange if it is defined.
+			/** checking the daterange if it is defined. */
 			if (rule.dateRange !== undefined) {
 				finalResultDate = new Date(month + '.' + day + '.' + year);
 				rangeIndex = 0;
 				len = rule.range.length;
-				alert("Length :"+len);
 				while (len-- && !found) {
 				    found = rule.range[rangeIndex++](finalResultDate);
 				}
@@ -1555,8 +1565,8 @@ _date: function (field, rules, i, options) {
 			var rule = options.allrules[customRule];
 			var fn;
 			if(!rule) {
-				alert("jqv:custom rule not found - "+customRule);
-				return;
+				// alert("jqv:custom rule not found - "+customRule);
+				return "jqv:custom rule not found - "+customRule;
 			}
 
 			if(rule["regex"]) {
@@ -2558,7 +2568,7 @@ _date: function (field, rules, i, options) {
 	// for global access (especially for Qunit)
     $.methodAmount = methods._amount;
     $.methodDate = methods._date;
-	$.methodStrukt = methods._strukt;
+    $.methodStrukt = methods._strukt;
 
 	// LEAK GLOBAL OPTIONS
 	$.validationEngine= {fieldIdCounter: 0,defaults:{
@@ -2650,7 +2660,6 @@ _date: function (field, rules, i, options) {
 	}};
 	$(function(){$.validationEngine.defaults.promptPosition = methods.isRTL()?'topLeft':"topRight"});
 })(jQuery);
-
 
 
 
