@@ -583,6 +583,39 @@ test('DAT00009', function() {
 
 });
 
+test('DAT00010', function() {
+	$.customOptions.allrules['DAT00010'] = {
+			'dateFormat': ['MM','M'],
+			'dateFormatOutput': 'ME',
+			'alertText': '* Please enter valid date in correct format'
+		};
+
+	var _rule = ['', 'DAT00010'],
+		_alertText = $.customOptions.allrules[_rule[1]].alertText 
+					+ ' ' + ($.customOptions.allrules[_rule[1]].dateFormat+'').replace(/,/g, ' or ');
+
+	result = _runDate(_rule, '01');
+	strictEqual(result, '31',  _dateComment());
+	result = _runDate(_rule, '02');
+	strictEqual(result, '28',  _dateComment());
+	result = _runDate(_rule, '03');
+	strictEqual(result, '31',  _dateComment());
+	result = _runDate(_rule, '12');
+	strictEqual(result, '31',  _dateComment());
+	result = _runDate(_rule, '4');
+	strictEqual(result, '30',  _dateComment());
+	result = _runDate(_rule, '5');
+	strictEqual(result, '31',  _dateComment());
+	result = _runDate(_rule, '6');
+	strictEqual(result, '30',  _dateComment());
+	result = _runDate(_rule, '12');
+	strictEqual(result, '31',  _dateComment());
+	result = _runDatewithError(_rule, '121');
+	strictEqual(result, _alertText,  _dateComment());
+	result = _runDatewithError(_rule, '13');
+	strictEqual(result, _alertText,  _dateComment());	
+});
+
 test('DAT00011', function() {
 	$.customOptions.allrules['DAT00011'] = {
 			'dateFormat': ['TTMMJJJJ', 'TTMMJJ', 'T.M.JJ', 'T.M.JJJJ'],
