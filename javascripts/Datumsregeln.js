@@ -632,35 +632,35 @@ test('DAT00011', function() {
 
 
 
-	result = _runDate(_rule, '12122013');
-	strictEqual(result, '12.12.2013',  _dateComment());
+	result = _runDate(_rule, '12122015');
+	strictEqual(result, '12.12.2015',  _dateComment());
 
-	result = _runDate(_rule, '121213');
-	strictEqual(result, '12.12.2013',  _dateComment());
+	result = _runDate(_rule, '111115');
+	strictEqual(result, '11.11.2015',  _dateComment());
 
-	result = _runDate(_rule, '9.1.14');
-	strictEqual(result, '09.01.2014',  _dateComment());
+	result = _runDate(_rule, '9.1.16');
+	strictEqual(result, '09.01.2016',  _dateComment());
 
-	result = _runDate(_rule, '9.1.2014');
-	strictEqual(result, '09.01.2014',  _dateComment());
+	result = _runDate(_rule, '9.1.2016');
+	strictEqual(result, '09.01.2016',  _dateComment());
 
-	result = _runDate(_rule, '12.12.13');
-	strictEqual(result, '12.12.2013',  _dateComment());
+	result = _runDate(_rule, '12.12.15');
+	strictEqual(result, '12.12.2015',  _dateComment());
 
-	result = _runDate(_rule, '31.1.14');
-	strictEqual(result, '31.01.2014',  _dateComment());
+	result = _runDate(_rule, '31.1.16');
+	strictEqual(result, '31.01.2016',  _dateComment());
 
-	result = _runDate(_rule, '120114');
-	strictEqual(result, '12.01.2014',  _dateComment());
+	result = _runDate(_rule, '120116');
+	strictEqual(result, '12.01.2016',  _dateComment());
 
-	result = _runDate(_rule, '021213');
-	strictEqual(result, '02.12.2013',  _dateComment());
+	result = _runDate(_rule, '021215');
+	strictEqual(result, '02.12.2015',  _dateComment());
 
-	result = _runDate(_rule, '12012014');
-	strictEqual(result, '12.01.2014',  _dateComment());
+	result = _runDate(_rule, '12012016');
+	strictEqual(result, '12.01.2016',  _dateComment());
 
-	result = _runDate(_rule, '02122013');
-	strictEqual(result, '02.12.2013',  _dateComment());
+	result = _runDate(_rule, '02122015');
+	strictEqual(result, '02.12.2015',  _dateComment());
 
 	result = _runDatewithError(_rule, '9.9.2');
 	strictEqual(result, _alertText,  _dateComment());
