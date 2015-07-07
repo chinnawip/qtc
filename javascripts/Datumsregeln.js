@@ -551,7 +551,7 @@ test('DAT00009', function() {
 	result = _runDatewithError(_rule, '9.9.2');
 	strictEqual(result, _alertText,  _dateComment());
 
-	result = _runDatewithError(_rule, '12122014');
+	result = _runDatewithError(_rule, '12122017');
 	strictEqual(result, _alertTextRange,  _dateComment());
 
 	result = _runDatewithError(_rule, '12.12.1');
