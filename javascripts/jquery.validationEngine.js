@@ -1049,7 +1049,7 @@ _strukt : function (field, rules, i, options) {
 			opLiteralValueArray = (struktOpFormat.match(opFrmtLtrlRegExpObj) || []);
 
 			/** Get the literal value in the input-format if any*/
-			ipLiteralValueArray = (struktIpFormat.match(/(\'\w+\.\')/g) || []);
+			ipLiteralValueArray = (struktIpFormat.match(/(\'\w+\.\')/g) || struktIpFormat.match(/(\'\.\')/g) || []);
 
 			/** Get the range value in the input-format if any*/
 			rangeValueArray = (struktIpFormat.match(/([0-9]*\:[0-9]*)/g) || []);
