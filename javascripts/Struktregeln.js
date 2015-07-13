@@ -309,3 +309,78 @@ test('STR020', function() {
     strictEqual(result, 'BgNr.222A99.234', _struktComment());    
 
 });
+test('STR030', function() {
+    $.customOptions.allrules['STR030'] = {
+      'struktFormat': [  
+        ["NN'.'NNNNNN"],["NN'.'NNNNNNNN"]
+        ],
+      'alertText': '* Please enter valid data in one of these formats'
+   };
+   var _rule = ['','STR030'],  
+      _alertText = $.customOptions.allrules[_rule[1]].alertText;
+	//for rule ["NN'.'NNNNNN"]
+	result = _runStrukt(_rule, '00.000000');
+    strictEqual(result, '00.000000', _struktComment());
+	
+	result = _runStrukt(_rule, '11.111111');
+    strictEqual(result, '11.111111', _struktComment());
+	result = _runStrukt(_rule, '22.222222');
+    strictEqual(result, '22.222222', _struktComment());
+	result = _runStrukt(_rule, '33.333333');
+    strictEqual(result, '33.333333', _struktComment());
+	result = _runStrukt(_rule, '44.444444');
+    strictEqual(result, '44.444444', _struktComment());
+	result = _runStrukt(_rule, '55.555555');
+    strictEqual(result, '55.555555', _struktComment());
+	result = _runStrukt(_rule, '66.666666');
+    strictEqual(result, '66.666666', _struktComment());
+	result = _runStrukt(_rule, '77.777777');
+    strictEqual(result, '77.777777', _struktComment());
+	result = _runStrukt(_rule, '88.888888');
+    strictEqual(result, '88.888888', _struktComment());
+	result = _runStrukt(_rule, '99.999999');
+    strictEqual(result, '99.999999', _struktComment());
+	result = _runStrukt(_rule, '12.345678');
+    strictEqual(result, '12.345678', _struktComment());
+    result = _runStruktwithError(_rule, '325.222222');
+    strictEqual(result, _alertText, _struktComment());
+    result = _runStruktwithError(_rule, '32.1222222');
+    strictEqual(result, _alertText, _struktComment());
+	result = _runStruktwithError(_rule, '2.222222');
+    strictEqual(result, _alertText, _struktComment());
+	result = _runStruktwithError(_rule, '22.22222');
+    strictEqual(result, _alertText, _struktComment());
+
+//for rule ["NN'.'NNNNNNNN"]
+	result = _runStrukt(_rule, '00.00000000');
+    strictEqual(result, '00.00000000', _struktComment());
+	
+	result = _runStrukt(_rule, '11.11111111');
+    strictEqual(result, '11.11111111', _struktComment());
+	result = _runStrukt(_rule, '22.22222222');
+    strictEqual(result, '22.22222222', _struktComment());
+	result = _runStrukt(_rule, '33.33333333');
+    strictEqual(result, '33.33333333', _struktComment());
+	result = _runStrukt(_rule, '44.44444444');
+    strictEqual(result, '44.44444444', _struktComment());
+	result = _runStrukt(_rule, '55.55555555');
+    strictEqual(result, '55.55555555', _struktComment());
+	result = _runStrukt(_rule, '66.66666666');
+    strictEqual(result, '66.66666666', _struktComment());
+	result = _runStrukt(_rule, '77.77777777');
+    strictEqual(result, '77.77777777', _struktComment());
+	result = _runStrukt(_rule, '88.88888888');
+    strictEqual(result, '88.88888888', _struktComment());
+	result = _runStrukt(_rule, '99.99999999');
+    strictEqual(result, '99.99999999', _struktComment());
+	result = _runStrukt(_rule, '12.34567890');
+    strictEqual(result, '12.34567890', _struktComment());
+    result = _runStruktwithError(_rule, '325.22222222');
+    strictEqual(result, _alertText, _struktComment());
+    result = _runStruktwithError(_rule, '32.122222234');
+    strictEqual(result, _alertText, _struktComment());
+	result = _runStruktwithError(_rule, '2.22222222');
+    strictEqual(result, _alertText, _struktComment());
+	result = _runStruktwithError(_rule, '22.2222267');
+    strictEqual(result, _alertText, _struktComment());
+});
