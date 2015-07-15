@@ -312,7 +312,8 @@ test('STR020', function() {
 test('STR030', function() {
     $.customOptions.allrules['STR030'] = {
       'struktFormat': [  
-        ["NN'.'NNNNNN"],["NN'.'NNNNNNNN"]
+        ["NN'.'NNNNNN"],["NN'.'NNNNNNNN"],
+        ["NN'.'NNNNNN", "NN'.'NNNNNNNN"]
         ],
       'alertText': '* Please enter valid data in one of these formats'
    };
