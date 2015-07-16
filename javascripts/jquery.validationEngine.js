@@ -1053,7 +1053,7 @@ _strukt : function (field, rules, i, options) {
             struktIpFormat = struktFormat[ipfLen][0];
 
             /** Get the output-format of the corresponding input-format*/
-            opLiteralValueArray = (struktIpFormat.match(/(\'\.\')/g) || struktOpFormat.match(opFrmtLtrlRegExpObj) ||  []);
+            opLiteralValueArray = (struktOpFormat.match(opFrmtLtrlRegExpObj) ||  []);
 
             /** Get the literal value in the input-format if any*/
             ipLiteralValueArray = (struktIpFormat.match(/(\'\w+\.\')/g) || struktIpFormat.match(/(\'\.\')/g) || []);
@@ -1113,11 +1113,7 @@ _strukt : function (field, rules, i, options) {
 
             /** Put back the output literal values that is been replaced with temporary value as above. */
             while (opLiteralValueLen--) {
-                if (opLiteralValueArray[opLiteralValueLen] == "'.'" ){ /* for rules which has '.' in the outputformat */
-                    opRegExp = opRegExp.replace('$' + opLiteralValueLen, '(' + opLiteralValueArray[opLiteralValueLen].replace(/\'/g, '') + ')');
-                } else {
                     opRegExp = opRegExp.replace('$' + opLiteralValueLen, opFrmtLtrlRegExp);
-                }
             }
 
             /** create a Regular Expression object */
@@ -1167,7 +1163,6 @@ _strukt : function (field, rules, i, options) {
             if (found) {
                 /** Find the number of regular expression token to get the corresponding value in the given input. */
                 ipFormatRegExpLen = (!struktOpFormatOrg) ? 0 : (String(rule.ipRegEx[ipfLen]).match(/\(/g) || []).length;
-                opFormatRegExpLen = (!struktOpFormatOrg) ? 0 : (String(rule.opRegExp[ipfLen]).match(/\(/g) || []).length;
                 opFormatTokenValue = (!ipFormatRegExpLen) ? value : '';
 
                 /** Convert the given input into the defined output-formt.*/
