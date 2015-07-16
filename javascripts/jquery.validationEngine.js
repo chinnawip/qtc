@@ -1094,7 +1094,7 @@ _strukt : function (field, rules, i, options) {
 
             opRegExp = struktOpFormat.replace(/G/g, '(G)').replace(/K/g, '(K)').
                                     replace(/\-/g, '(\-)').replace(/\%/g, '(\%)').
-                                    replace(/\./g, '([\.])').replace(/N/g, '([0-9])');
+                                    replace(/\./g, '([\.])');
                             
 
             /** Replace all the input token value with the respective regular expression. */
