@@ -1142,6 +1142,9 @@ _strukt : function (field, rules, i, options) {
                     }
                 }
             }
+            
+            ipRegEx = ipRegEx.replace(/\(\.\)/g, '\(\[\.\]\)') /* Replace (.) with regular expression '[.]' in case not done before */
+            
             /** create a Regular Expression object */
             rule.ipRegEx[ipfLen] = new RegExp('^' + ipRegEx + '$');
 
@@ -1178,7 +1181,9 @@ _strukt : function (field, rules, i, options) {
                         opTokenRegExp = new RegExp('^' + opToken + '$');
                         if(opTokenRegExp.test(ipTokenValue)){
                             opFormatTokenValue = opFormatTokenValue + ipTokenValue;
-                        }
+                        } else if (opTokenRegExp.test('.')){
+                            opFormatTokenValue = opFormatTokenValue + '.' + ipTokenValue;
+						                   }
                     }
                 } else {
                     while (ipFormatRegExpLen--) {
