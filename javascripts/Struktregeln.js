@@ -313,12 +313,34 @@ test('STR030', function() {
     $.customOptions.allrules['STR030'] = {
       'struktFormat': [  
         ["NN'.'NNNNNN"],["NN'.'NNNNNNNN"],
-        ["NN'.'NNNNNN", "NN'.'NNNNNNNN"]
+        ["NN'.'NNNNNN", "NN'.'NNNNNNNN"],
+        ["NNNNNNNN","NN'.'NNNNNN"],
+	["NNNNNNNNNN","NN'.'NNNNNNNN"]
         ],
       'alertText': '* Please enter valid data in one of these formats'
    };
    var _rule = ['','STR030'],  
       _alertText = $.customOptions.allrules[_rule[1]].alertText;
+      
+      //["NN'.'NNNNNNNN", "NN'.'NNNNNNNN"]
+	result = _runStrukt(_rule, '12.34567890');
+    strictEqual(result, '12.34567890', _struktComment());
+	result = _runStruktwithError(_rule, '12.3456789');
+    strictEqual(result, _alertText, _struktComment());
+	result = _runStruktwithError(_rule, '123.34567890');
+    strictEqual(result, _alertText, _struktComment());
+	result = _runStruktwithError(_rule, '12.345678901');
+    strictEqual(result, _alertText, _struktComment());
+	result = _runStruktwithError(_rule, '123456789');
+    strictEqual(result, _alertText, _struktComment());
+	
+	//["NNNNNNNNNN","NN'.'NNNNNNNN"]
+	result = _runStrukt(_rule, '1234567890');
+    strictEqual(result, '12.34567890', _struktComment());
+	result = _runStruktwithError(_rule, '1234567');
+    strictEqual(result, _alertText, _struktComment());
+	result = _runStruktwithError(_rule, '12345678901');
+    strictEqual(result, _alertText, _struktComment());
 	//for rule ["NN'.'NNNNNN"]
 	result = _runStrukt(_rule, '00.000000');
     strictEqual(result, '00.000000', _struktComment());
