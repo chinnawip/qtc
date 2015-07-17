@@ -314,6 +314,7 @@ test('STR030', function() {
       'struktFormat': [  
         ["NN'.'NNNNNN"],["NN'.'NNNNNNNN"],
         ["NN'.'NNNNNN", "NN'.'NNNNNNNN"],
+        ["NN'.'NNNNNNNN", "NN'.'NNNNNNNN"],
         ["NNNNNNNN","NN'.'NNNNNN"],
 	["NNNNNNNNNN","NN'.'NNNNNNNN"]
         ],
