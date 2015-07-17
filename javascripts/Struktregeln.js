@@ -342,6 +342,15 @@ test('STR030', function() {
     strictEqual(result, _alertText, _struktComment());
 	result = _runStruktwithError(_rule, '12345678901');
     strictEqual(result, _alertText, _struktComment());
+    
+    	//["NNNNNNNN","NN'.'NNNNNN"],
+	result = _runStrukt(_rule, '12345678');
+    strictEqual(result, '12.345678', _struktComment());
+	result = _runStruktwithError(_rule, '1234567');
+    strictEqual(result, _alertText, _struktComment());
+	result = _runStruktwithError(_rule, '123456789');
+    strictEqual(result, _alertText, _struktComment());
+    
 	//for rule ["NN'.'NNNNNN"]
 	result = _runStrukt(_rule, '00.000000');
     strictEqual(result, '00.000000', _struktComment());
