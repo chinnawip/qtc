@@ -592,8 +592,8 @@
                     case "date":
                         errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._date);
                         break;                        
-                    case "strukt":
-                        errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._strukt);
+                    case "struct":
+                        errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._struct);
                         break;                        
                     case "groupRequired":
                         // Check is its the first of group, if not, reload validation with first field
@@ -815,7 +815,7 @@
              // Otherwise if we are doing a function call, make the call and return the object
              // that is passed back.
               var rule_index = jQuery.inArray(rule, rules);
-             if (rule === "custom" || rule === "funcCall" || rule === "amount" || rule === "strukt") {
+             if (rule === "custom" || rule === "funcCall" || rule === "amount" || rule === "struct") {
                  var custom_validation_type = rules[rule_index + 1];
                  rule = rule + "[" + custom_validation_type + "]";
                  // Delete the rule from the rules array so that it doesn't try to call the
@@ -993,16 +993,16 @@
         *            user options
         * @return an error string if validation failed
         */
-_strukt : function (field, rules, i, options) {
+_struct : function (field, rules, i, options) {
     var customRule = rules[i + 1],
         rule = options.allrules[customRule],
         ipRegEx,
         opRegExp,
         value = field.val(),
-        struktFormat = rule.struktFormat,
-        struktIpFormat,
-        struktOpFormat,
-        ipfLen = struktFormat.length,
+        structFormat = rule.structFormat,
+        structIpFormat,
+        structOpFormat,
+        ipfLen = structFormat.length,
         ipLiteralValueArray,
         opLiteralValueArray,
         rangeValueArray,
@@ -1022,14 +1022,15 @@ _strukt : function (field, rules, i, options) {
         opToken,
         opTokenRegExp,
         idx=0,
-        struktOpFormatOrgTmp,
+        structOpFormatOrgTmp,
         opFrmtLen,
         ipFormatTokenValue,
         opFormatToken,
-        struktOpFormatOrg,
+        structOpFormatOrg,
         found,
         opFmtTknLtrlNine,
         opFmtTknLtrlNineRegExp = new RegExp('^([9]*)$'),
+        opFmtTknLtrlSpecialRegExp = new RegExp('^([^0-9A-Na-z]*)$'),
         len,
         opFmtTknNine,
         opFrmtLtrlRegExpObj = /(\'\Nr\.\'[.%]|\'\Nr\.\'[9]*|\'[9]*\.\'[.%]|\'[9]*\.\'[9]*|[9]*)/g,
@@ -1041,8 +1042,8 @@ _strukt : function (field, rules, i, options) {
 
     while (ipfLen--) {
         /** Get the output-format of the corresponding input-format*/
-        struktOpFormat = (struktFormat[ipfLen][1] !== undefined) ? struktFormat[ipfLen][1] : '';
-        struktOpFormatOrg = struktOpFormat;
+        structOpFormat = (structFormat[ipfLen][1] !== undefined) ? structFormat[ipfLen][1] : '';
+        structOpFormatOrg = structOpFormat;
         found = true;
 
         /**
@@ -1050,16 +1051,16 @@ _strukt : function (field, rules, i, options) {
         */
         if (!rule.ipRegEx[ipfLen]) {
             /** Get the input-format */
-            struktIpFormat = struktFormat[ipfLen][0];
+            structIpFormat = structFormat[ipfLen][0];
 
             /** Get the output-format of the corresponding input-format*/
-            opLiteralValueArray = (struktOpFormat.match(opFrmtLtrlRegExpObj) ||  []);
+            opLiteralValueArray = (structOpFormat.match(opFrmtLtrlRegExpObj) ||  []);
 
             /** Get the literal value in the input-format if any*/
-            ipLiteralValueArray = (struktIpFormat.match(/(\'\w+\.\')/g) || struktIpFormat.match(/(\'\.\')/g) || []);
+            ipLiteralValueArray = (structIpFormat.match(/(\'\w+\.\')/g) || structIpFormat.match(/(\'\.\')/g) || []);
 
             /** Get the range value in the input-format if any*/
-            rangeValueArray = (struktIpFormat.match(/([0-9]*\:[0-9]*)/g) || []);
+            rangeValueArray = (structIpFormat.match(/([0-9]*\:[0-9]*)/g) || []);
 
             rule.rangeValueArray = (!rule.rangeValueArray) ? [] : rule.rangeValueArray;
 
@@ -1071,7 +1072,7 @@ _strukt : function (field, rules, i, options) {
             while (rangeValueLen--) {
                 rangeArray = rangeValueArray[rangeValueLen].split(':');
                 rangeValueRegExp[rangeValueLen] = '([0-9]{' + rangeArray[0].length + ',' + rangeArray[1].length + '})';
-                struktIpFormat = struktIpFormat.replace(rangeValueArray[rangeValueLen], rangeValueRegExp[rangeValueLen]);
+                structIpFormat = structIpFormat.replace(rangeValueArray[rangeValueLen], rangeValueRegExp[rangeValueLen]);
             }
             ipLiteralValueLen = ipLiteralValueArray.length;
 
@@ -1080,7 +1081,7 @@ _strukt : function (field, rules, i, options) {
             * to  avoid conflicts between the period(.) in the literals and normal period(.), like ..GG%.
             */
             while (ipLiteralValueLen--) {
-                struktIpFormat = struktIpFormat.replace(ipLiteralValueArray[ipLiteralValueLen], '$' + ipLiteralValueLen);
+                structIpFormat = structIpFormat.replace(ipLiteralValueArray[ipLiteralValueLen], '$' + ipLiteralValueLen);
             }
 
             /** 'len' is used here because, the token order in the array 'opLiteralValueArray' is matter, in case of, for example, '99.'.9 */
@@ -1088,18 +1089,18 @@ _strukt : function (field, rules, i, options) {
 
             len = 0;
             while (len < opLiteralValueLen) {
-                struktOpFormat = (opLiteralValueArray[len]) ? struktOpFormat.replace(opLiteralValueArray[len], '$' + len) : struktOpFormat;
+                structOpFormat = (opLiteralValueArray[len]) ? structOpFormat.replace(opLiteralValueArray[len], '$' + len) : structOpFormat;
                 len++;
             }
 
-            opRegExp = struktOpFormat.replace(/G/g, '(G)').replace(/K/g, '(K)').
+            opRegExp = structOpFormat.replace(/G/g, '(G)').replace(/K/g, '(K)').
                                     replace(/\-/g, '(\-)').replace(/\%/g, '(\%)').
                                     replace(/\./g, '([\.])');
                             
 
             /** Replace all the input token value with the respective regular expression. */
             //TODO: need to check with more special characters.
-            ipRegEx = struktIpFormat.replace(/A/g, '([A-Za-z])').replace(/\%/g, '([0-9A-Za-z,$!#%]*)')
+            ipRegEx = structIpFormat.replace(/A/g, '([A-Za-z])').replace(/\%/g, '([0-9A-Za-z,$!#%]*)')
                                     .replace(/\./g, '([0-9A-Za-z,$!#%])').replace(/G/g, '([A-Z])').replace(/K/g, '([a-z])')
                                     .replace(/N/g, '([0-9])').replace(/C/g, '([0-9A-Za-z,$!#%])').replace(/H/g, '([0-9A-F])');
 
@@ -1108,7 +1109,7 @@ _strukt : function (field, rules, i, options) {
             while (ipLiteralValueLen--) {
                 ipRegEx = ipRegEx.replace('$' + ipLiteralValueLen, '(' + ipLiteralValueArray[ipLiteralValueLen].replace(/\'/g, '') + ')');
             }
-
+            
             opLiteralValueLen = opLiteralValueArray.length;
 
             /** Put back the output literal values that is been replaced with temporary value as above. */
@@ -1142,9 +1143,9 @@ _strukt : function (field, rules, i, options) {
                     }
                 }
             }
-            
-            ipRegEx = ipRegEx.replace(/\(\.\)/g, '\(\[\.\]\)') /* Replace (.) with regular expression '[.]' in case not done before */
-            
+            /** Replace (.) with regular expression '[.]' in case not done before */
+            ipRegEx = ipRegEx.replace(/\(\.\)/g, '\(\[\.\]\)') 
+
             /** create a Regular Expression object */
             rule.ipRegEx[ipfLen] = new RegExp('^' + ipRegEx + '$');
 
@@ -1165,31 +1166,39 @@ _strukt : function (field, rules, i, options) {
 
             if (found) {
                 /** Find the number of regular expression token to get the corresponding value in the given input. */
-                ipFormatRegExpLen = (!struktOpFormatOrg) ? 0 : (String(rule.ipRegEx[ipfLen]).match(/\(/g) || []).length;
+                ipFormatRegExpLen = (!structOpFormatOrg) ? 0 : (String(rule.ipRegEx[ipfLen]).match(/\(/g) || []).length;
                 opFormatTokenValue = (!ipFormatRegExpLen) ? value : '';
 
                 /** Convert the given input into the defined output-formt.*/
-                if (struktOpFormatOrg.search("'.'") > 0 ){ /* for rules which has '.' in the outputformat */
-                     var  idx=0,
-                         struktOpFormatOrgTmp = struktOpFormatOrg.replace(/\'/g, ''),
-                         opFrmtLen = struktOpFormatOrgTmp.length;
+                if (structOpFormatOrg.search("'.'") > 0 ){ /* for rules which has '.' in the outputformat */
+                     var  idx=0, opTokenValue, 
+                         structOpFormatOrgTmp = structOpFormatOrg.replace(/\'/g, ''),
+                         opFrmtLen = structOpFormatOrgTmp.length;
                     /* This following logic is to prepare output in format as defined in rule, in case of the the output format has '.' notation */
                     while(idx++ < opFrmtLen){ 
                         ipTokenValue = value.replace(rule.ipRegEx[ipfLen], ('$' + idx));
-                        opToken = struktOpFormatOrgTmp[idx-1];
-                        opToken = opToken.replace(/N/g, '([0-9])').replace(/\./g,'[.]');
-                        opTokenRegExp = new RegExp('^' + opToken + '$');
+                        opToken = structOpFormatOrgTmp[idx-1];
+                        opTokenValue = opToken;
+                        if (opToken === 'N') {
+                            opToken = opToken.replace(/N/g, '([0-9])');
+                            opTokenRegExp = new RegExp('^' + opToken + '$');
+                        } else {
+                            opTokenRegExp = opFmtTknLtrlSpecialRegExp; /** Check only special characters */
+                        }
+                        
                         if(opTokenRegExp.test(ipTokenValue)){
                             opFormatTokenValue = opFormatTokenValue + ipTokenValue;
-                        } else if (opTokenRegExp.test('.')){
-                            opFormatTokenValue = opFormatTokenValue + '.' + ipTokenValue;
-						                   }
+                        } else if (opFmtTknLtrlSpecialRegExp.test(opTokenValue)){
+                            opFormatTokenValue = opFormatTokenValue + opTokenValue + ipTokenValue;
+                        }
                     }
+                    jQuery.data(field, 'resultString', opFormatTokenValue);
+                    return;
                 } else {
                     while (ipFormatRegExpLen--) {
                         /** Get the corresponding value from the given input-value */
                         ipFormatTokenValue = value.replace(rule.ipRegEx[ipfLen], ('$' + (ipFormatRegExpLen + 1)));
-                        opFormatToken = struktOpFormatOrg.replace(rule.opRegExp[ipfLen], ('$' + (ipFormatRegExpLen + 1)));
+                        opFormatToken = structOpFormatOrg.replace(rule.opRegExp[ipfLen], ('$' + (ipFormatRegExpLen + 1)));
 
                         /** If 'opFormatToken' has the format like '9999' series, as part of output format.. */
                         opFmtTknNine = 'NONE';
@@ -2597,7 +2606,7 @@ _date: function (field, rules, i, options) {
     // for global access (especially for Qunit)
     $.methodAmount = methods._amount;
     $.methodDate = methods._date;
-    $.methodStrukt = methods._strukt;
+    $.methodStruct = methods._struct;
 
     // LEAK GLOBAL OPTIONS
     $.validationEngine= {fieldIdCounter: 0,defaults:{
