@@ -417,3 +417,213 @@ test('STR030', function() {
 	result = _runStruktwithError(_rule, '22.2222267');
     strictEqual(result, _alertText, _struktComment());
 });
+
+test('STR030_1', function() {
+    $.customOptions.allrules['STR030_1'] = {
+      'structFormat': [  
+		["NNNNNNNNNN","NN'.'NNNNNNNN"]
+        ],
+      'alertText': '* Please enter valid data in one of these formats'
+   };
+   var _rule = ['','STR030_1'],  
+      _alertText = $.customOptions.allrules[_rule[1]].alertText;
+	  //["NNNNNNNNNN","NN'.'NNNNNNNN"]
+	result = _runStruct(_rule, '1234567890');
+    strictEqual(result, '12.34567890', _structComment());
+});
+
+test('STR030_2', function() {
+    $.customOptions.allrules['STR030_2'] = {
+      'structFormat': [  
+		["NNNNNNNNNN","NN'@'NNNNNNNN"]
+        ],
+      'alertText': '* Please enter valid data in one of these formats'
+   };
+   var _rule = ['','STR030_2'],  
+      _alertText = $.customOptions.allrules[_rule[1]].alertText;
+	  
+result = _runStruct(_rule, '1234567890');
+    strictEqual(result, '12@34567890', _structComment());
+});
+
+test('STR030_3', function() {
+    $.customOptions.allrules['STR030_3'] = {
+      'structFormat': [  
+		["NNNNNNNNNN","NN'~'NNNNNNNN"]
+        ],
+      'alertText': '* Please enter valid data in one of these formats'
+   };
+   var _rule = ['','STR030_3'],  
+      _alertText = $.customOptions.allrules[_rule[1]].alertText;
+	  
+result = _runStruct(_rule, '1234567890');
+    strictEqual(result, '12~34567890', _structComment());
+});
+
+test('STR030_4', function() {
+    $.customOptions.allrules['STR030_4'] = {
+      'structFormat': [  
+		["NNNNNNNNNN","NN'`'NNNNNNNN"]
+        ],
+      'alertText': '* Please enter valid data in one of these formats'
+   };
+   var _rule = ['','STR030_4'],  
+      _alertText = $.customOptions.allrules[_rule[1]].alertText;
+	  
+result = _runStruct(_rule, '1234567890');
+    strictEqual(result, '12`34567890', _structComment());
+});
+
+test('STR030_5', function() {
+    $.customOptions.allrules['STR030_5'] = {
+      'structFormat': [  
+		["NNNNNNNNNN","NN'+'NNNNNNNN"]
+        ],
+      'alertText': '* Please enter valid data in one of these formats'
+   };
+   var _rule = ['','STR030_5'],  
+      _alertText = $.customOptions.allrules[_rule[1]].alertText;
+	  
+	result = _runStruct(_rule, '1234567890');
+    strictEqual(result, '12+34567890', _structComment());
+});
+
+test('STR030_6', function() {
+    $.customOptions.allrules['STR030_6'] = {
+      'structFormat': [  
+		["NNNNNNNNNN","NN'='NNNNNNNN"]
+        ],
+      'alertText': '* Please enter valid data in one of these formats'
+   };
+   var _rule = ['','STR030_6'],  
+      _alertText = $.customOptions.allrules[_rule[1]].alertText;
+	  
+	result = _runStruct(_rule, '1234567890');
+    strictEqual(result, '12=34567890', _structComment());
+});
+
+test('STR030_7', function() {
+    $.customOptions.allrules['STR030_7'] = {
+      'structFormat': [  
+		["NNNNNNNNNN","NN'!'NNNNNNNN"]
+        ],
+      'alertText': '* Please enter valid data in one of these formats'
+   };
+   var _rule = ['','STR030_7'],  
+      _alertText = $.customOptions.allrules[_rule[1]].alertText;
+	  
+	result = _runStruct(_rule, '1234567890');
+    strictEqual(result, '12!34567890', _structComment());
+});
+
+test('STR030_8', function() {
+    $.customOptions.allrules['STR030_8'] = {
+      'structFormat': [  
+		["NNNNNNNNNN","NN'#'NNNNNNNN"]
+        ],
+      'alertText': '* Please enter valid data in one of these formats'
+   };
+   var _rule = ['','STR030_8'],  
+      _alertText = $.customOptions.allrules[_rule[1]].alertText;
+	  
+	result = _runStruct(_rule, '1234567890');
+    strictEqual(result, '12#34567890', _structComment());
+});
+
+test('STR030_9', function() {
+    $.customOptions.allrules['STR030_9'] = {
+      'structFormat': [  
+		["NNNNNNNNNN","NN'$'NNNNNNNN"]
+        ],
+      'alertText': '* Please enter valid data in one of these formats'
+   };
+   var _rule = ['','STR030_9'],  
+      _alertText = $.customOptions.allrules[_rule[1]].alertText;
+	  
+	result = _runStruct(_rule, '1234567890');
+    strictEqual(result, '12$34567890', _structComment());
+});
+
+test('STR030_10', function() {
+    $.customOptions.allrules['STR030_10'] = {
+      'structFormat': [  
+		["NNNNNNNNNN","NN'%'NNNNNNNN"]
+        ],
+      'alertText': '* Please enter valid data in one of these formats'
+   };
+   var _rule = ['','STR030_10'],  
+      _alertText = $.customOptions.allrules[_rule[1]].alertText;
+	  
+	result = _runStruct(_rule, '1234567890');
+    strictEqual(result, '12%34567890', _structComment());
+});
+
+test('STR030_11', function() {
+    $.customOptions.allrules['STR030_11'] = {
+      'structFormat': [  
+		["NNNNNNNNNN","NN'^'NNNNNNNN"]
+        ],
+      'alertText': '* Please enter valid data in one of these formats'
+   };
+   var _rule = ['','STR030_11'],  
+      _alertText = $.customOptions.allrules[_rule[1]].alertText;
+	  
+	result = _runStruct(_rule, '1234567890');
+    strictEqual(result, '12^34567890', _structComment());
+});
+
+test('STR030_12', function() {
+    $.customOptions.allrules['STR030_12'] = {
+      'structFormat': [  
+		["NNNNNNNNNN","NN'&'NNNNNNNN"]
+        ],
+      'alertText': '* Please enter valid data in one of these formats'
+   };
+   var _rule = ['','STR030_12'],  
+      _alertText = $.customOptions.allrules[_rule[1]].alertText;
+	  
+	result = _runStruct(_rule, '1234567890');
+    strictEqual(result, '12&34567890', _structComment());
+});
+
+test('STR030_12', function() {
+    $.customOptions.allrules['STR030_12'] = {
+      'structFormat': [  
+		["NNNNNNNNNN","NN'*'NNNNNNNN"]
+        ],
+      'alertText': '* Please enter valid data in one of these formats'
+   };
+   var _rule = ['','STR030_12'],  
+      _alertText = $.customOptions.allrules[_rule[1]].alertText;
+	  
+	result = _runStruct(_rule, '1234567890');
+    strictEqual(result, '12*34567890', _structComment());
+});
+
+test('STR030_13', function() {
+    $.customOptions.allrules['STR030_13'] = {
+      'structFormat': [  
+		["NNNNNNNNNN","NN'-'NNNNNNNN"]
+        ],
+      'alertText': '* Please enter valid data in one of these formats'
+   };
+   var _rule = ['','STR030_13'],  
+      _alertText = $.customOptions.allrules[_rule[1]].alertText;
+	  
+	result = _runStruct(_rule, '1234567890');
+    strictEqual(result, '12-34567890', _structComment());
+});
+test('STR030_14', function() {
+    $.customOptions.allrules['STR030_14'] = {
+      'structFormat': [  
+		["NNNNNNNNNN","NN'_'NNNNNNNN"]
+        ],
+      'alertText': '* Please enter valid data in one of these formats'
+   };
+   var _rule = ['','STR030_14'],  
+      _alertText = $.customOptions.allrules[_rule[1]].alertText;
+	  
+	result = _runStruct(_rule, '1234567890');
+    strictEqual(result, '12_34567890', _structComment());
+});
+
