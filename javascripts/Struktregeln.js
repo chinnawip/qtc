@@ -1,30 +1,30 @@
-module('Strukt');
+module('Struct');
 
    var field = $('<input></input>'),
       result;
 
 
-   var _struktComment = function () { 
+   var _structComment = function () { 
          return 'Input: ' + field.val() + ' , Result: ' + result;
       };
 
-   var _runStrukt = function(_rule, _value) {
+   var _runStruct = function(_rule, _value) {
          $.data(field, 'resultString', '');
          field.val(_value);
-         $.methodStrukt(field, _rule, 0, $.customOptions);
+         $.methodStruct(field, _rule, 0, $.customOptions);
          return $.data(field, 'resultString'); 
       };
 
-   var _runStruktwithError = function(_rule, _value) {
+   var _runStructwithError = function(_rule, _value) {
          $.data(field, 'resultErrorText', '');
          field.val(_value);
-         $.methodStrukt(field, _rule, 0, $.customOptions);
+         $.methodStruct(field, _rule, 0, $.customOptions);
          return $.data(field, 'resultErrorText'); 
       };
 
 test('STR010', function() {
    $.customOptions.allrules['STR010'] = {
-      'struktFormat': [  
+      'structFormat': [  
         ["'32345.'10000:39999"], ["'99.'GG10000:39999AA'77.'12345:47890"], 
        ["GG'55.'10000:39999AA'77.'12345:47890"],  ["6000:6999"], ["KK%AAGG..NNHH"], 
        ["GG%NNAAGG..NNHH"], ["KK%NNGGHH..NNAA"], [".."], [".AAA"], ["KKKKK."], 
@@ -34,128 +34,128 @@ test('STR010', function() {
 	var _rule = ['','STR010'],
 	   _alertText = $.customOptions.allrules[_rule[1]].alertText;
 
-	result = _runStrukt(_rule, '32345.12345');
-	strictEqual(result, '32345.12345', _struktComment());
+	result = _runStruct(_rule, '32345.12345');
+	strictEqual(result, '32345.12345', _structComment());
 	
-	result = _runStruktwithError(_rule, '32345.123451');
-	strictEqual(result, _alertText, _struktComment());
+	result = _runStructwithError(_rule, '32345.123451');
+	strictEqual(result, _alertText, _structComment());
 
-	result = _runStrukt(_rule, '99.DS12345ff77.46789');
-	strictEqual(result, '99.DS12345ff77.46789', _struktComment());
+	result = _runStruct(_rule, '99.DS12345ff77.46789');
+	strictEqual(result, '99.DS12345ff77.46789', _structComment());
 
-	result = _runStruktwithError(_rule, '99.DS12345ff77.467892');
-	strictEqual(result, _alertText, _struktComment());
+	result = _runStructwithError(_rule, '99.DS12345ff77.467892');
+	strictEqual(result, _alertText, _structComment());
 
-	result = _runStrukt(_rule, 'DS55.12345ff77.46789');
-	strictEqual(result, 'DS55.12345ff77.46789', _struktComment());
+	result = _runStruct(_rule, 'DS55.12345ff77.46789');
+	strictEqual(result, 'DS55.12345ff77.46789', _structComment());
 
-	result = _runStruktwithError(_rule, 'DS55.12345ff77.467894');
-	strictEqual(result, _alertText, _struktComment());
+	result = _runStructwithError(_rule, 'DS55.12345ff77.467894');
+	strictEqual(result, _alertText, _structComment());
 
-	result = _runStrukt(_rule, '6789');
-	strictEqual(result, '6789', _struktComment());
+	result = _runStruct(_rule, '6789');
+	strictEqual(result, '6789', _structComment());
 
-	result = _runStruktwithError(_rule, '16789');
-	strictEqual(result, _alertText, _struktComment());
+	result = _runStructwithError(_rule, '16789');
+	strictEqual(result, _alertText, _structComment());
 
-	result = _runStrukt(_rule, 'fsghfggdfdfdfdfsfs6789BCDFMG120F');
-	strictEqual(result, 'fsghfggdfdfdfdfsfs6789BCDFMG120F', _struktComment());
+	result = _runStruct(_rule, 'fsghfggdfdfdfdfsfs6789BCDFMG120F');
+	strictEqual(result, 'fsghfggdfdfdfdfsfs6789BCDFMG120F', _structComment());
 	
-	result = _runStruktwithError(_rule, 'Afsghfggdfdfdfdfsfs6789BCDFMG120F');
-	strictEqual(result, _alertText, _struktComment());
+	result = _runStructwithError(_rule, 'Afsghfggdfdfdfdfsfs6789BCDFMG120F');
+	strictEqual(result, _alertText, _structComment());
 	
-	result = _runStrukt(_rule, 'fsBCDFMG120F'); // 0 length for % in ["KK%AAGG..NNHH"]
-	strictEqual(result, 'fsBCDFMG120F', _struktComment());
+	result = _runStruct(_rule, 'fsBCDFMG120F'); // 0 length for % in ["KK%AAGG..NNHH"]
+	strictEqual(result, 'fsBCDFMG120F', _structComment());
 
-	result = _runStruktwithError(_rule, 'fsbCDfMg120H'); // 0 length for % in ["KK%AAGG..NNHH"]
-	strictEqual(result, _alertText, _struktComment());
+	result = _runStructwithError(_rule, 'fsbCDfMg120H'); // 0 length for % in ["KK%AAGG..NNHH"]
+	strictEqual(result, _alertText, _structComment());
 
-	result = _runStrukt(_rule, 'FGghfggdfdfdfdfsfs6789fdknk12BCDFMG120F');
-	strictEqual(result, 'FGghfggdfdfdfdfsfs6789fdknk12BCDFMG120F', _struktComment());
+	result = _runStruct(_rule, 'FGghfggdfdfdfdfsfs6789fdknk12BCDFMG120F');
+	strictEqual(result, 'FGghfggdfdfdfdfsfs6789fdknk12BCDFMG120F', _structComment());
 
-	result = _runStruktwithError(_rule, '0FGghfggdfdfdfdfsfs6789fdknk12BCDFMG120F');
-	strictEqual(result, _alertText, _struktComment());
+	result = _runStructwithError(_rule, '0FGghfggdfdfdfdfsfs6789fdknk12BCDFMG120F');
+	strictEqual(result, _alertText, _structComment());
 
-	result = _runStrukt(_rule, 'fgghfggdfdfdfdfsfs6789fdknk19BC0Fnh12jk');
-	strictEqual(result, 'fgghfggdfdfdfdfsfs6789fdknk19BC0Fnh12jk', _struktComment()); 
+	result = _runStruct(_rule, 'fgghfggdfdfdfdfsfs6789fdknk19BC0Fnh12jk');
+	strictEqual(result, 'fgghfggdfdfdfdfsfs6789fdknk19BC0Fnh12jk', _structComment()); 
 
-	result = _runStruktwithError(_rule, 'fgghfggdfdfdfdfsfs6789fdknk19BC0Fnnh12jk');
-	strictEqual(result, _alertText, _struktComment()); 
+	result = _runStructwithError(_rule, 'fgghfggdfdfdfdfsfs6789fdknk19BC0Fnnh12jk');
+	strictEqual(result, _alertText, _structComment()); 
 
-	result = _runStrukt(_rule, 'fg');
-	strictEqual(result, 'fg', _struktComment());
+	result = _runStruct(_rule, 'fg');
+	strictEqual(result, 'fg', _structComment());
 
-	result = _runStruktwithError(_rule, 'fg1');
-	strictEqual(result, _alertText, _struktComment());
+	result = _runStructwithError(_rule, 'fg1');
+	strictEqual(result, _alertText, _structComment());
 		 
-	result = _runStrukt(_rule, 'kFgG');
-	strictEqual(result, 'kFgG', _struktComment());
+	result = _runStruct(_rule, 'kFgG');
+	strictEqual(result, 'kFgG', _structComment());
 
-	result = _runStruktwithError(_rule, 'kFgGS');
-	strictEqual(result, _alertText, _struktComment());
+	result = _runStructwithError(_rule, 'kFgGS');
+	strictEqual(result, _alertText, _structComment());
 
-	result = _runStrukt(_rule, 'fgjkvf');
-	strictEqual(result, 'fgjkvf', _struktComment());
+	result = _runStruct(_rule, 'fgjkvf');
+	strictEqual(result, 'fgjkvf', _structComment());
 
-	result = _runStruktwithError(_rule, 'fgjkvf2');
-	strictEqual(result, _alertText, _struktComment());
+	result = _runStructwithError(_rule, 'fgjkvf2');
+	strictEqual(result, _alertText, _structComment());
 
-	result = _runStrukt(_rule, 'fGVF');
-	strictEqual(result, 'fGVF', _struktComment());
+	result = _runStruct(_rule, 'fGVF');
+	strictEqual(result, 'fGVF', _structComment());
 
-	result = _runStruktwithError(_rule, '1fGVF');
-	strictEqual(result, _alertText, _struktComment());
+	result = _runStructwithError(_rule, '1fGVF');
+	strictEqual(result, _alertText, _structComment());
 
-	result = _runStrukt(_rule, 'GVFG');
-	strictEqual(result, 'GVFG', _struktComment());
+	result = _runStruct(_rule, 'GVFG');
+	strictEqual(result, 'GVFG', _structComment());
 
-	result = _runStruktwithError(_rule, '1GVFG');
-	strictEqual(result, _alertText, _struktComment());
+	result = _runStructwithError(_rule, '1GVFG');
+	strictEqual(result, _alertText, _structComment());
 
-	result = _runStrukt(_rule, 'aGVKUFz');
-	strictEqual(result, 'aGVKUFz', _struktComment());
+	result = _runStruct(_rule, 'aGVKUFz');
+	strictEqual(result, 'aGVKUFz', _structComment());
 
-	result = _runStruktwithError(_rule, '1aGVKUFz');
-	strictEqual(result, _alertText, _struktComment());
+	result = _runStructwithError(_rule, '1aGVKUFz');
+	strictEqual(result, _alertText, _structComment());
 
-	result = _runStrukt(_rule, '012');
-	strictEqual(result, '012', _struktComment());
+	result = _runStruct(_rule, '012');
+	strictEqual(result, '012', _structComment());
 
-	result = _runStruktwithError(_rule, '0123');
-	strictEqual(result, _alertText, _struktComment());
+	result = _runStructwithError(_rule, '0123');
+	strictEqual(result, _alertText, _structComment());
 
-	result = _runStrukt(_rule, 'F0aZ%F');
-	strictEqual(result, 'F0aZ%F', _struktComment());
+	result = _runStruct(_rule, 'F0aZ%F');
+	strictEqual(result, 'F0aZ%F', _structComment());
 
-	result = _runStruktwithError(_rule, 'F0aZ%FF');
-	strictEqual(result, _alertText, _struktComment());
+	result = _runStructwithError(_rule, 'F0aZ%FF');
+	strictEqual(result, _alertText, _structComment());
     
-    result = _runStruktwithError(_rule, 'f0aZ%F');
-    strictEqual(result, _alertText, _struktComment());
+    result = _runStructwithError(_rule, 'f0aZ%F');
+    strictEqual(result, _alertText, _structComment());
 
-	result = _runStrukt(_rule, '33.');
-	strictEqual(result, '33.', _struktComment());
+	result = _runStruct(_rule, '33.');
+	strictEqual(result, '33.', _structComment());
 
-	result = _runStruktwithError(_rule, '33.3');
-	strictEqual(result, _alertText, _struktComment());
+	result = _runStructwithError(_rule, '33.3');
+	strictEqual(result, _alertText, _structComment());
 
-    result = _runStrukt(_rule, 'flhsdlfsdhlhdf33.');
-    strictEqual(result, 'flhsdlfsdhlhdf33.', _struktComment());
+    result = _runStruct(_rule, 'flhsdlfsdhlhdf33.');
+    strictEqual(result, 'flhsdlfsdhlhdf33.', _structComment());
     
-    result = _runStruktwithError(_rule, 'flhsdlfsdhlhdf3.');
-    strictEqual(result, _alertText, _struktComment());    
+    result = _runStructwithError(_rule, 'flhsdlfsdhlhdf3.');
+    strictEqual(result, _alertText, _structComment());    
 
-    result = _runStrukt(_rule, 'flhsdlfsdhlhdfABcD');
-    strictEqual(result, 'flhsdlfsdhlhdfABcD', _struktComment());
+    result = _runStruct(_rule, 'flhsdlfsdhlhdfABcD');
+    strictEqual(result, 'flhsdlfsdhlhdfABcD', _structComment());
 
-    result = _runStruktwithError(_rule, 'flhsdlfsdhlhdfABcDe');
-    strictEqual(result, _alertText, _struktComment());
+    result = _runStructwithError(_rule, 'flhsdlfsdhlhdfABcDe');
+    strictEqual(result, _alertText, _structComment());
 
 });
 
 test('STR020', function() {
     $.customOptions.allrules['STR020'] = {
-      'struktFormat': [  
+      'structFormat': [  
         ["'32345.'10000:39999", "%."],
         ["'323456.'10000:39999", ".."], 
         ["'3234567.'10000:39999", ".%"], ["'32345678.'10000:39999", ".-"],
@@ -178,245 +178,247 @@ test('STR020', function() {
    var _rule = ['','STR020'],  
       _alertText = $.customOptions.allrules[_rule[1]].alertText;
 
+    result = _runStruct(_rule, '32345.22222');
+    strictEqual(result, '32345.22222', _structComment());
 
-    result = _runStrukt(_rule, '32345.22222');
-    strictEqual(result, '32345.22222', _struktComment());
+    result = _runStructwithError(_rule, '32345.2222');
+    strictEqual(result, _alertText, _structComment());
 
-    result = _runStruktwithError(_rule, '32345.2222');
-    strictEqual(result, _alertText, _struktComment());
+    result = _runStruct(_rule, '323456.22222');
+    strictEqual(result, '323456.22222', _structComment());
 
-    result = _runStrukt(_rule, '323456.22222');
-    strictEqual(result, '323456.22222', _struktComment());
+    result = _runStructwithError(_rule, '3234.22222');
+    strictEqual(result, _alertText, _structComment());
 
-    result = _runStruktwithError(_rule, '3234.22222');
-    strictEqual(result, _alertText, _struktComment());
+    result = _runStruct(_rule, '3234567.22222');
+    strictEqual(result, '3234567.22222', _structComment());
 
-    result = _runStrukt(_rule, '3234567.22222');
-    strictEqual(result, '3234567.22222', _struktComment());
+    result = _runStructwithError(_rule, '3234567.2222');
+    strictEqual(result, _alertText, _structComment());    
 
-    result = _runStruktwithError(_rule, '3234567.2222');
-    strictEqual(result, _alertText, _struktComment());    
+    result = _runStruct(_rule, '32345678.22222');
+    strictEqual(result, '32345678.', _structComment());
 
-    result = _runStrukt(_rule, '32345678.22222');
-    strictEqual(result, '32345678.', _struktComment());
+    result = _runStructwithError(_rule, '32345678.322222');
+    strictEqual(result, _alertText, _structComment());
 
-    result = _runStruktwithError(_rule, '32345678.322222');
-    strictEqual(result, _alertText, _struktComment());
+    result = _runStruct(_rule, '323456789.22222');
+    strictEqual(result, '22222', _structComment());
 
-    result = _runStrukt(_rule, '323456789.22222');
-    strictEqual(result, '22222', _struktComment());
+    result = _runStructwithError(_rule, '323456789.222422');
+    strictEqual(result, _alertText, _structComment());
 
-    result = _runStruktwithError(_rule, '323456789.222422');
-    strictEqual(result, _alertText, _struktComment());
+    result = _runStruct(_rule, '99.BG22222as77.23456');
+    strictEqual(result, '99.bg22222as77.23456', _structComment());
 
-    result = _runStrukt(_rule, '99.BG22222as77.23456');
-    strictEqual(result, '99.bg22222as77.23456', _struktComment());
+    result = _runStructwithError(_rule, '99.BG22222as777.23456');
+    strictEqual(result, _alertText, _structComment());
 
-    result = _runStruktwithError(_rule, '99.BG22222as777.23456');
-    strictEqual(result, _alertText, _struktComment());
+    result = _runStruct(_rule, '999.BG22222as777.23456');
+    strictEqual(result, '999.bG22222As777.23456', _structComment());   
 
-    result = _runStrukt(_rule, '999.BG22222as777.23456');
-    strictEqual(result, '999.bG22222As777.23456', _struktComment());   
+    result = _runStructwithError(_rule, '999.BG22222as777.234567');
+    strictEqual(result, _alertText, _structComment()); 
 
-    result = _runStruktwithError(_rule, '999.BG22222as777.234567');
-    strictEqual(result, _alertText, _struktComment()); 
+    result = _runStruct(_rule, '9.BG22222as7.23456');
+    strictEqual(result, '9.Bg22222AS7.23456', _structComment());   
 
-    result = _runStrukt(_rule, '9.BG22222as7.23456');
-    strictEqual(result, '9.Bg22222AS7.23456', _struktComment());   
+    result = _runStructwithError(_rule, '9.BG22222as7.234567');
+    strictEqual(result, _alertText, _structComment());   
 
-    result = _runStruktwithError(_rule, '9.BG22222as7.234567');
-    strictEqual(result, _alertText, _struktComment());   
+    result = _runStruct(_rule, '77.BG22222as99.23456');
+    strictEqual(result, '77.Bg22222AS23456', _structComment());     
 
-    result = _runStrukt(_rule, '77.BG22222as99.23456');
-    strictEqual(result, '77.Bg22222AS23456', _struktComment());     
+    result = _runStructwithError(_rule, '77.BG22222as999.23456');
+    strictEqual(result, _alertText, _structComment());   
 
-    result = _runStruktwithError(_rule, '77.BG22222as999.23456');
-    strictEqual(result, _alertText, _struktComment());   
+    result = _runStruct(_rule, '6500');
+    strictEqual(result, 'Nr.6500', _structComment());  
 
-    result = _runStrukt(_rule, '6500');
-    strictEqual(result, 'Nr.6500', _struktComment());  
+    result = _runStructwithError(_rule, '65001');
+    strictEqual(result, _alertText, _structComment());  
 
-    result = _runStruktwithError(_rule, '65001');
-    strictEqual(result, _alertText, _struktComment());  
+    result = _runStruct(_rule, '1500');
+    strictEqual(result, '99.1500', _structComment());  
 
-    result = _runStrukt(_rule, '1500');
-    strictEqual(result, '99.1500', _struktComment());  
-
-    result = _runStruktwithError(_rule, '15001');
-    strictEqual(result, _alertText, _struktComment());  
+    result = _runStructwithError(_rule, '15001');
+    strictEqual(result, _alertText, _structComment());  
         
-    result = _runStrukt(_rule, '7500');
-    strictEqual(result, 'Nr.750', _struktComment());     
+    result = _runStruct(_rule, '7500');
+    strictEqual(result, 'Nr.750', _structComment());     
 
-    result = _runStruktwithError(_rule, '75001');
-    strictEqual(result, _alertText, _struktComment()); 
+    result = _runStructwithError(_rule, '75001');
+    strictEqual(result, _alertText, _structComment()); 
 
-    result = _runStrukt(_rule, '8500');
-    strictEqual(result, 'Nr.8500', _struktComment());     
+    result = _runStruct(_rule, '8500');
+    strictEqual(result, 'Nr.8500', _structComment());     
 
-    result = _runStruktwithError(_rule, '85001');
-    strictEqual(result, _alertText, _struktComment());     
+    result = _runStructwithError(_rule, '85001');
+    strictEqual(result, _alertText, _structComment());     
 
-    result = _runStrukt(_rule, '150');
-    strictEqual(result, '99.1', _struktComment());  
+    result = _runStruct(_rule, '150');
+    strictEqual(result, '99.1', _structComment());  
 
-    result = _runStruktwithError(_rule, '15');
-    strictEqual(result, _alertText, _struktComment());  
+    result = _runStructwithError(_rule, '15');
+    strictEqual(result, _alertText, _structComment());  
 
-    result = _runStrukt(_rule, '350');
-    strictEqual(result, '99.350', _struktComment());  
+    result = _runStruct(_rule, '350');
+    strictEqual(result, '99.350', _structComment());  
 
-    result = _runStruktwithError(_rule, '35');
-    strictEqual(result, _alertText, _struktComment());  
+    result = _runStructwithError(_rule, '35');
+    strictEqual(result, _alertText, _structComment());  
 
-    result = _runStrukt(_rule, '9999.BG22222aS7777.23456');
-    strictEqual(result, '9999.Bg222AS7777.23456', _struktComment()); 
+    result = _runStruct(_rule, '9999.BG22222aS7777.23456');
+    strictEqual(result, '9999.Bg222AS7777.23456', _structComment()); 
 
-    result = _runStruktwithError(_rule, '9999.BG22222aS7777.234561');
-    strictEqual(result, _alertText, _struktComment()); 
+    result = _runStructwithError(_rule, '9999.BG22222aS7777.234561');
+    strictEqual(result, _alertText, _structComment()); 
 
-    result = _runStrukt(_rule, '99999.BG22222aS77777.23456');
-    strictEqual(result, '99999.BgNr.222AS77777.23456', _struktComment()); 
+    result = _runStruct(_rule, '99999.BG22222aS77777.23456');
+    strictEqual(result, '99999.BgNr.222AS77777.23456', _structComment()); 
 
-    result = _runStruktwithError(_rule, '99999.BG22222aS777777.23456');
-    strictEqual(result, _alertText, _struktComment()); 
+    result = _runStructwithError(_rule, '99999.BG22222aS777777.23456');
+    strictEqual(result, _alertText, _structComment()); 
 
-    result = _runStrukt(_rule, '555.BG22222aS23456');
-    strictEqual(result, '555.BgNr.222AS99.23456', _struktComment()); 
+    result = _runStruct(_rule, '555.BG22222aS23456');
+    strictEqual(result, '555.BgNr.222AS99.23456', _structComment()); 
 
-    result = _runStruktwithError(_rule, '555.BG22222aS234567');
-    strictEqual(result, _alertText, _struktComment()); 
+    result = _runStructwithError(_rule, '555.BG22222aS234567');
+    strictEqual(result, _alertText, _structComment()); 
 
-    result = _runStrukt(_rule, '5555.BG22222aS23456');
-    strictEqual(result, '5555.BgNr.222AS99.234', _struktComment());
+    result = _runStruct(_rule, '5555.BG22222aS23456');
+    strictEqual(result, '5555.BgNr.222AS99.234', _structComment());
 
-    result = _runStruktwithError(_rule, '5555.BG22222aS234567');
-    strictEqual(result, _alertText, _struktComment());
+    result = _runStructwithError(_rule, '5555.BG22222aS234567');
+    strictEqual(result, _alertText, _structComment());
 
-    result = _runStrukt(_rule, '333.BG22222aS23456');
-    strictEqual(result, '333.BgNr.222AS', _struktComment());    
+    result = _runStruct(_rule, '333.BG22222aS23456');
+    strictEqual(result, '333.BgNr.222AS', _structComment());    
 
-    result = _runStruktwithError(_rule, '333.BG222223aS23456');
-    strictEqual(result, _alertText, _struktComment());   
+    result = _runStructwithError(_rule, '333.BG222223aS23456');
+    strictEqual(result, _alertText, _structComment());   
 
-    result = _runStrukt(_rule, '3333.BG22222aS23456');
-    strictEqual(result, '3333.BgNr.222A99.234', _struktComment());    
+    result = _runStruct(_rule, '3333.BG22222aS23456');
+    strictEqual(result, '3333.BgNr.222A99.234', _structComment());    
 
-    result = _runStruktwithError(_rule, '3333.BG22222aS234516');
-    strictEqual(result, _alertText, _struktComment());   
+    result = _runStructwithError(_rule, '3333.BG22222aS234516');
+    strictEqual(result, _alertText, _structComment());   
 
-    result = _runStrukt(_rule, '444.BG22222aS23456');
-    strictEqual(result, 'BgNr.222A99.234', _struktComment());    
+    result = _runStruct(_rule, '444.BG22222aS23456');
+    strictEqual(result, 'BgNr.222A99.234', _structComment());    
 
 });
+
 test('STR030', function() {
     $.customOptions.allrules['STR030'] = {
-      'struktFormat': [  
-        ["NN'.'NNNNNN"],["NN'.'NNNNNNNN"],
-        ["NN'.'NNNNNN", "NN'.'NNNNNNNN"],
-        ["NN'.'NNNNNNNN", "NN'.'NNNNNNNN"],
-        ["NNNNNNNN","NN'.'NNNNNN"],
-	["NNNNNNNNNN","NN'.'NNNNNNNN"]
+      'structFormat': [  
+	  	//["6000:6999", "'Nr.'.."]
+       ["NN'.'NNNNNN"],["NN'.'NNNNNNNN"]
+	,["NN'.'NNNNNN", "NN'.'NNNNNNNN"]
+	,["NN'.'NNNNNNNN", "NN'.'NNNNNNNN"]
+	,["NNNNNNNN","NN'.'NNNNNN"]
+	,["NNNNNNNNNN","NN'.'NNNNNNNN"]
+		
         ],
       'alertText': '* Please enter valid data in one of these formats'
    };
    var _rule = ['','STR030'],  
       _alertText = $.customOptions.allrules[_rule[1]].alertText;
-      
-      //["NN'.'NNNNNNNN", "NN'.'NNNNNNNN"]
-	result = _runStrukt(_rule, '12.34567890');
-    strictEqual(result, '12.34567890', _struktComment());
-	result = _runStruktwithError(_rule, '12.3456789');
-    strictEqual(result, _alertText, _struktComment());
-	result = _runStruktwithError(_rule, '123.34567890');
-    strictEqual(result, _alertText, _struktComment());
-	result = _runStruktwithError(_rule, '12.345678901');
-    strictEqual(result, _alertText, _struktComment());
-	result = _runStruktwithError(_rule, '123456789');
-    strictEqual(result, _alertText, _struktComment());
+
+	  //["NN'.'NNNNNNNN", "NN'.'NNNNNNNN"]
+	result = _runStruct(_rule, '12.34567890');
+    strictEqual(result, '12.34567890', _structComment());
+	result = _runStructwithError(_rule, '12.3456789');
+    strictEqual(result, _alertText, _structComment());
+	result = _runStructwithError(_rule, '123.34567890');
+    strictEqual(result, _alertText, _structComment());
+	result = _runStructwithError(_rule, '12.345678901');
+    strictEqual(result, _alertText, _structComment());
+	result = _runStructwithError(_rule, '123456789');
+    strictEqual(result, _alertText, _structComment());
 	
 	//["NNNNNNNNNN","NN'.'NNNNNNNN"]
-	result = _runStrukt(_rule, '1234567890');
-    strictEqual(result, '12.34567890', _struktComment());
-	result = _runStruktwithError(_rule, '1234567');
-    strictEqual(result, _alertText, _struktComment());
-	result = _runStruktwithError(_rule, '12345678901');
-    strictEqual(result, _alertText, _struktComment());
-    
-    	//["NNNNNNNN","NN'.'NNNNNN"],
-	result = _runStrukt(_rule, '12345678');
-    strictEqual(result, '12.345678', _struktComment());
-	result = _runStruktwithError(_rule, '1234567');
-    strictEqual(result, _alertText, _struktComment());
-	result = _runStruktwithError(_rule, '123456789');
-    strictEqual(result, _alertText, _struktComment());
-    
-	//for rule ["NN'.'NNNNNN"]
-	result = _runStrukt(_rule, '00.000000');
-    strictEqual(result, '00.000000', _struktComment());
+	result = _runStruct(_rule, '1234567890');
+    strictEqual(result, '12.34567890', _structComment());
+	result = _runStructwithError(_rule, '1234567');
+    strictEqual(result, _alertText, _structComment());
+	result = _runStructwithError(_rule, '12345678901');
+    strictEqual(result, _alertText, _structComment());
 	
-	result = _runStrukt(_rule, '11.111111');
-    strictEqual(result, '11.111111', _struktComment());
-	result = _runStrukt(_rule, '22.222222');
-    strictEqual(result, '22.222222', _struktComment());
-	result = _runStrukt(_rule, '33.333333');
-    strictEqual(result, '33.333333', _struktComment());
-	result = _runStrukt(_rule, '44.444444');
-    strictEqual(result, '44.444444', _struktComment());
-	result = _runStrukt(_rule, '55.555555');
-    strictEqual(result, '55.555555', _struktComment());
-	result = _runStrukt(_rule, '66.666666');
-    strictEqual(result, '66.666666', _struktComment());
-	result = _runStrukt(_rule, '77.777777');
-    strictEqual(result, '77.777777', _struktComment());
-	result = _runStrukt(_rule, '88.888888');
-    strictEqual(result, '88.888888', _struktComment());
-	result = _runStrukt(_rule, '99.999999');
-    strictEqual(result, '99.999999', _struktComment());
-	result = _runStrukt(_rule, '12.345678');
-    strictEqual(result, '12.345678', _struktComment());
-    result = _runStruktwithError(_rule, '325.222222');
-    strictEqual(result, _alertText, _struktComment());
-    result = _runStruktwithError(_rule, '32.1222222');
-    strictEqual(result, _alertText, _struktComment());
-	result = _runStruktwithError(_rule, '2.222222');
-    strictEqual(result, _alertText, _struktComment());
-	result = _runStruktwithError(_rule, '22.22222');
-    strictEqual(result, _alertText, _struktComment());
+	//["NNNNNNNN","NN'.'NNNNNN"],
+	result = _runStruct(_rule, '12345678');
+    strictEqual(result, '12.345678', _structComment());
+	result = _runStructwithError(_rule, '1234567');
+    strictEqual(result, _alertText, _structComment());
+	result = _runStructwithError(_rule, '123456789');
+    strictEqual(result, _alertText, _structComment());
+	
+	//for rule ["NN'.'NNNNNN"]
+	result = _runStruct(_rule, '00.000000');
+    strictEqual(result, '00.000000', _structComment());
+	result = _runStruct(_rule, '11.111111');
+    strictEqual(result, '11.111111', _structComment());
+	result = _runStruct(_rule, '22.222222');
+    strictEqual(result, '22.222222', _structComment());
+	result = _runStruct(_rule, '33.333333');
+    strictEqual(result, '33.333333', _structComment());
+	result = _runStruct(_rule, '44.444444');
+    strictEqual(result, '44.444444', _structComment());
+	result = _runStruct(_rule, '55.555555');
+    strictEqual(result, '55.555555', _structComment());
+	result = _runStruct(_rule, '66.666666');
+    strictEqual(result, '66.666666', _structComment());
+	result = _runStruct(_rule, '77.777777');
+    strictEqual(result, '77.777777', _structComment());
+	result = _runStruct(_rule, '88.888888');
+    strictEqual(result, '88.888888', _structComment());
+	result = _runStruct(_rule, '99.999999');
+    strictEqual(result, '99.999999', _structComment());
+	result = _runStruct(_rule, '12.345678');
+    strictEqual(result, '12.345678', _structComment());
+    result = _runStructwithError(_rule, '325.222222');
+    strictEqual(result, _alertText, _structComment());
+    result = _runStructwithError(_rule, '32.1222222');
+    strictEqual(result, _alertText, _structComment());
+	result = _runStructwithError(_rule, '2.222222');
+    strictEqual(result, _alertText, _structComment());
+	result = _runStructwithError(_rule, '22.22222');
+    strictEqual(result, _alertText, _structComment());
 
 //for rule ["NN'.'NNNNNNNN"]
-	result = _runStrukt(_rule, '00.00000000');
-    strictEqual(result, '00.00000000', _struktComment());
+	result = _runStruct(_rule, '00.00000000');
+    strictEqual(result, '00.00000000', _structComment());
 	
-	result = _runStrukt(_rule, '11.11111111');
-    strictEqual(result, '11.11111111', _struktComment());
-	result = _runStrukt(_rule, '22.22222222');
-    strictEqual(result, '22.22222222', _struktComment());
-	result = _runStrukt(_rule, '33.33333333');
-    strictEqual(result, '33.33333333', _struktComment());
-	result = _runStrukt(_rule, '44.44444444');
-    strictEqual(result, '44.44444444', _struktComment());
-	result = _runStrukt(_rule, '55.55555555');
-    strictEqual(result, '55.55555555', _struktComment());
-	result = _runStrukt(_rule, '66.66666666');
-    strictEqual(result, '66.66666666', _struktComment());
-	result = _runStrukt(_rule, '77.77777777');
-    strictEqual(result, '77.77777777', _struktComment());
-	result = _runStrukt(_rule, '88.88888888');
-    strictEqual(result, '88.88888888', _struktComment());
-	result = _runStrukt(_rule, '99.99999999');
-    strictEqual(result, '99.99999999', _struktComment());
-	result = _runStrukt(_rule, '12.34567890');
-    strictEqual(result, '12.34567890', _struktComment());
-    result = _runStruktwithError(_rule, '325.22222222');
-    strictEqual(result, _alertText, _struktComment());
-    result = _runStruktwithError(_rule, '32.122222234');
-    strictEqual(result, _alertText, _struktComment());
-	result = _runStruktwithError(_rule, '2.22222222');
-    strictEqual(result, _alertText, _struktComment());
-	result = _runStruktwithError(_rule, '22.2222267');
-    strictEqual(result, _alertText, _struktComment());
+	result = _runStruct(_rule, '11.11111111');
+    strictEqual(result, '11.11111111', _structComment());
+	result = _runStruct(_rule, '22.22222222');
+    strictEqual(result, '22.22222222', _structComment());
+	result = _runStruct(_rule, '33.33333333');
+    strictEqual(result, '33.33333333', _structComment());
+	result = _runStruct(_rule, '44.44444444');
+    strictEqual(result, '44.44444444', _structComment());
+	result = _runStruct(_rule, '55.55555555');
+    strictEqual(result, '55.55555555', _structComment());
+	result = _runStruct(_rule, '66.66666666');
+    strictEqual(result, '66.66666666', _structComment());
+	result = _runStruct(_rule, '77.77777777');
+    strictEqual(result, '77.77777777', _structComment());
+	result = _runStruct(_rule, '88.88888888');
+    strictEqual(result, '88.88888888', _structComment());
+	result = _runStruct(_rule, '99.99999999');
+    strictEqual(result, '99.99999999', _structComment());
+	result = _runStruct(_rule, '12.34567890');
+    strictEqual(result, '12.34567890', _structComment());
+    result = _runStructwithError(_rule, '325.22222222');
+    strictEqual(result, _alertText, _structComment());
+    result = _runStructwithError(_rule, '32.122222234');
+    strictEqual(result, _alertText, _structComment());
+	result = _runStructwithError(_rule, '2.22222222');
+    strictEqual(result, _alertText, _structComment());
+	result = _runStructwithError(_rule, '22.2222267');
+    strictEqual(result, _alertText, _structComment());
 });
+
 
 test('STR030_1', function() {
     $.customOptions.allrules['STR030_1'] = {
@@ -626,4 +628,3 @@ test('STR030_14', function() {
 	result = _runStruct(_rule, '1234567890');
     strictEqual(result, '12_34567890', _structComment());
 });
-
